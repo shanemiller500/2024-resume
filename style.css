@@ -4,6 +4,13 @@ body {
     background-image: url("public/image/test2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    
+  }
+
+  img { 
+    width: 100%; 
+    height: 100%; 
+    max-width: 100%; 
   }
   
   a {
