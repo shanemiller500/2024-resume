@@ -1,16 +1,10 @@
 body {
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image: url("public/image/test3.jpg");
+    background-image: url("public/image/test.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     
-  }
-
-  img { 
-    width: 100%; 
-    height: 100%; 
-    max-width: 100%; 
   }
   
   a {
