@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html manifest="demo_html.appcache">
+
+<head>
+  <!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-91612823-1', 'auto');
+  ga('send', 'pageview');
+
+  /**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/ 
+
+//OLD CODE didnt open link in new window//
+// var trackOutboundLink = function(url) {
+//    ga('send', 'event', 'outbound', 'click', url, {
+//      'transport': 'beacon',
+//      'hitCallback': function(){document.location = url;}
+//    });
+// }
+
+   var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){window.open(url);}
+   });
+}
+
+</script>
+<!-- End Google Analytics -->
+
+  <meta http-equiv="refresh" content="360">
+  <link rel='stylesheet' href='style.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <h1>
+    Shane Miller
+  </h1>
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <p>Web Developer Extraordinaire</p>
+      <p>
+        From where I stand in this picture, on the edge of the Eurasian Tectonic Plate in Iceland, to the beautiful Colorado Rocky Mountains,
+         I have certainly come a long way from where I started in Australia.
+      </p>
+      <p>
+        I have always believed in seizing the opportunities life presents me. When I was 21, I left my home to travel the world and have never regretted that choice.
+         I worked London winters and spent summers relaxing in the Greek isles. I traveled from Sweden to Thailand and never missed the chance for an adventure.
+          I have met new people whose paths I never would have crossed had I stayed put.
+      </p>
+      <p>
+        The reason I have gotten this far is because I work for what I want. I learned to be self-reliant and that the only way
+         to make my dreams a reality is to do it myself.
+      </p>
+      <br>
+      <ul class="list-inline list-social">
+        <li><a href="mailto:shanemiller500@gmail.com?subject=You rock Shane, your're hired!" onclick="trackOutboundLink('mailto:shanemiller500@gmail.com'); return false;" class="btn btn-primary"><i class="fa fa-envelope fa-fw"></i> Email</a></li>
+        <li><a href="http://www.linkedin.com/in/shane-miller-a0225288" target="_blank" onclick="trackOutboundLink('https://www.linkedin.com/in/shane-miller-a0225288'); return false;" class="btn btn-primary"><i class="fa fa-linkedin fa-fw"></i> LinkedIn</a></li>
+        <li><a target="_blank" class="btn btn-primary" href="public/pdf/ShaneResumeFeb2017.pdf" onclick="trackOutboundLink('public/pdf/ShaneResumeFeb2017.pdf'); return false;" class="fa fa-file fa-f"> Resume (PDF)</a></li>
+      </ul>
+    </div>
+  </div>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/javascripts/scripts.js"></script>
+  
+</body>
+
+</html>
