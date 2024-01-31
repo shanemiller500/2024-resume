@@ -21,7 +21,5 @@ body {
 
   div { 
     display: inline-block; 
-    width: (1950px); 
-    height: (1500px); 
     overflow: hidden 
    }
