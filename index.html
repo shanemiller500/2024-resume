@@ -3,37 +3,14 @@
 
 <head>
   <!-- Google Analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CC1SCRJJSW"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-91612823-1', 'auto');
-  ga('send', 'pageview');
-
-  /**
-* Function that tracks a click on an outbound link in Analytics.
-* This function takes a valid URL string as an argument, and uses that URL string
-* as the event label. Setting the transport method to 'beacon' lets the hit be sent
-* using 'navigator.sendBeacon' in browser that support it.
-*/ 
-
-//OLD CODE didnt open link in new window//
-// var trackOutboundLink = function(url) {
-//    ga('send', 'event', 'outbound', 'click', url, {
-//      'transport': 'beacon',
-//      'hitCallback': function(){document.location = url;}
-//    });
-// }
-
-   var trackOutboundLink = function(url) {
-   ga('send', 'event', 'outbound', 'click', url, {
-     'transport': 'beacon',
-     'hitCallback': function(){window.open(url);}
-   });
-}
-
+  gtag('config', 'G-CC1SCRJJSW');
 </script>
 <!-- End Google Analytics -->
 
