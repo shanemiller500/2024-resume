@@ -1,10 +1,7 @@
 body {
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image: url("public/image/test.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+
   }
   
   a {
@@ -21,3 +18,10 @@ body {
       background-color: rgba(51, 122, 183, 0.65);
       border-color: rgba(51, 122, 183, 0.65);
   }
+
+  div { 
+    display: inline-block; 
+    width: (1950px); 
+    height: (1500px); 
+    overflow: hidden 
+   }
