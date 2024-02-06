@@ -33,9 +33,11 @@ a {
     /* Decrease font size for better readability on smaller screens */
   }
 
-  #contain {
+  .col-sm-4 {
+    background-color: rgba(255, 255, 255, 0.88);
     width: 41.333333%;
   }
+
 
 }
 
@@ -46,8 +48,8 @@ a {
     font-size: 12px;
     /* Further decrease font size for smaller screens */
   }
-
-  #contain {
+  .col-sm-4 {
+    background-color: rgba(255, 255, 255, 0.88);
     width: 41.333333%;
   }
 
@@ -59,8 +61,10 @@ a {
     font-size: 10px;
   }
 
-  #contain {
+  .col-sm-4 {
+    background-color: rgba(255, 255, 255, 0.88);
     width: 41.333333%;
   }
+
 
 }
