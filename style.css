@@ -35,7 +35,7 @@ a {
 
   .col-sm-4 {
     background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333%;
+    width: 41.333333% !important;
   }
 
 
@@ -50,21 +50,7 @@ a {
   }
   .col-sm-4 {
     background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333%;
+    width: 41.333333% !important;
   }
-
-}
-
-/* Media Query for Phones (Landscape) */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
-  body {
-    font-size: 10px;
-  }
-
-  .col-sm-4 {
-    background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333%;
-  }
-
 
 }
