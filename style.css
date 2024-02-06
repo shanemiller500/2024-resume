@@ -33,6 +33,10 @@ a {
     /* Decrease font size for better readability on smaller screens */
   }
 
+  .col-sm-4 {
+    width: 41.333333%;
+  }
+
 }
 
 /* Media Query for Phones (Portrait) */
@@ -43,6 +47,10 @@ a {
     /* Further decrease font size for smaller screens */
   }
 
+  .col-sm-4 {
+    width: 41.333333%;
+  }
+
 }
 
 /* Media Query for Phones (Landscape) */
@@ -50,4 +58,9 @@ a {
   body {
     font-size: 10px;
   }
+
+  .col-sm-4 {
+    width: 41.333333%;
+  }
+
 }
