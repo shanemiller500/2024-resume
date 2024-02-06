@@ -25,7 +25,7 @@ a {
 }
 
 /* Media Query for Phones (Portrait and Landscape) */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
 
   /* Adjust styles for phones */
   body {
@@ -42,7 +42,7 @@ a {
 }
 
 /* Media Query for Phones (Portrait) */
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 576px) {
 
   body {
     font-size: 12px;
