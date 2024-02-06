@@ -1,34 +1,53 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image: url("public/image/cabin.jpg");
-    background-repeat: no-repeat;
-    background-size: 850px;
-    background-position-x: center;
-    
-  }
-  
-  a {
-    color: #00B7FF;
-  }
-  
-  .col-sm-4 {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("public/image/cabin.jpg");
+  background-repeat: no-repeat;
+  background-size: 850px;
+  background-position-x: center;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.col-sm-4 {
   background-color: rgba(255, 255, 255, 0.88);
   width: 27.333333%;
-  }
-  
-  
-  .btn.btn-primary {
-      color: #fff;
-      background-color: rgba(51, 122, 183, 0.65);
-      border-color: rgba(51, 122, 183, 0.65);
-  }
+}
 
-  /* Media Query for Small Screens */
-@media only screen and (max-width: 100px) {
+
+.btn.btn-primary {
+  color: #fff;
+  background-color: rgba(51, 122, 183, 0.65);
+  border-color: rgba(51, 122, 183, 0.65);
+}
+
+/* Media Query for Phones (Portrait and Landscape) */
+@media only screen and (max-width: 768px) {
+
+  /* Adjust styles for phones */
   body {
-      width: 100%;  */
+    font-size: 14px;
+    /* Decrease font size for better readability on smaller screens */
   }
 
-  /* Adjust other styles as needed for small screens */
+}
+
+/* Media Query for Phones (Portrait) */
+@media only screen and (max-width: 576px) {
+
+  body {
+    font-size: 12px;
+    /* Further decrease font size for smaller screens */
+  }
+
+}
+
+/* Media Query for Phones (Landscape) */
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  body {
+    font-size: 10px;
+  }
 }
