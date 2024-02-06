@@ -30,14 +30,13 @@ a {
   /* Adjust styles for phones */
   body {
     font-size: 14px;
-    background-image: url("public/image/cabin.jpg");
     background-repeat: no-repeat;
-    background-size: 142% !important;
+    background-size: 142%;
   }
 
   .col-sm-4 {
     background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333% !important;
+    width: 41.333333%;
   }
 
 }
@@ -47,13 +46,12 @@ a {
 
   body {
     font-size: 12px;
-    background-image: url("public/image/cabin.jpg");
     background-repeat: no-repeat;
-    background-size: 142% !important;
+    background-size: 142%;
   }
   .col-sm-4 {
     background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333% !important;
+    width: 41.333333%;
   }
 
 }
