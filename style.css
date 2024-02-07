@@ -63,9 +63,9 @@ a {
 
   .btn {
     display: inline-block;
-    padding: 4px 3px;
+    padding: 1px 1px;
     margin-bottom: 6px;
-    font-size: 10px;
+    font-size: 7px;
   }
 
 }
