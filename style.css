@@ -39,6 +39,13 @@ a {
     width: 41.333333% !important;
   }
 
+  .btn {
+    display: inline-block;
+    padding: 4px 3px;
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+
 }
 
 /* Media Query for Phones (Portrait) */
@@ -52,6 +59,13 @@ a {
   .col-sm-4 {
     background-color: rgba(255, 255, 255, 0.88);
     width: 41.333333% !important;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 4px 3px;
+    margin-bottom: 6px;
+    font-size: 10px;
   }
 
 }
