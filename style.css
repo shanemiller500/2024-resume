@@ -72,7 +72,7 @@ a {
 
 
 /* Media Query for Phones (Portrait) */
-@media screen and (max-width: 412px) {
+@media screen and (min-width: 412px) {
 
   body {
     font-size: 12px;
