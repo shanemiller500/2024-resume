@@ -95,8 +95,7 @@ a {
 
 /* 1179×2556 pixels at 460ppi */
 @media only screen 
-    and (width: 393px) 
-    and (height: 852px) 
+    and (width: 412px) 
     and (-webkit-device-pixel-ratio: 3) {
       body {
         font-size: 12px;
@@ -120,8 +119,7 @@ a {
 
     /* 1284×2778 pixels at 460ppi */
 @media only screen 
-and (width: 430px) 
-and (height: 932px) 
+and (width: 479px) 
 and (-webkit-device-pixel-ratio: 3) { 
   body {
     font-size: 12px;
