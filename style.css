@@ -93,10 +93,7 @@ a {
 
 }
 
-/* 1179×2556 pixels at 460ppi */
-@media only screen 
-    and (width: 412px) 
-    and (-webkit-device-pixel-ratio: 3) {
+@media screen and (max-width: 412px) {
       body {
         font-size: 12px;
         background-repeat: no-repeat;
@@ -117,10 +114,7 @@ a {
 
      }
 
-    /* 1284×2778 pixels at 460ppi */
-@media only screen 
-and (width: 479px) 
-and (-webkit-device-pixel-ratio: 3) { 
+@media screen and (width: 479px)  { 
   body {
     font-size: 12px;
     background-repeat: no-repeat;
