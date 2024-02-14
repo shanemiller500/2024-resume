@@ -22,3 +22,10 @@ var trackOutboundLink = function (url) {
         'hitCallback': function () { window.open(url); }
     });
 }
+
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-91612823-1');
