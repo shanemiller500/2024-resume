@@ -31,8 +31,9 @@ a {
   }
 
   body {
-    background-size: 600px;
+    background-size: cover;
     background-position-x: 305px;
+    background-position-y: 82px;
   }
 
   .btn.btn-primary  {
@@ -49,7 +50,7 @@ a {
   }
 
   body {
-    background-size: 600px;
+    background-size: cover;
     background-position-x: 305px;
   }
 
