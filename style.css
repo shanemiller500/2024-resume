@@ -52,6 +52,7 @@ a {
   body {
     background-size: cover;
     background-position-x: 305px;
+    background-position-y: 82px;
   }
 
   .btn.btn-primary  {
