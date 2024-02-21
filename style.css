@@ -24,49 +24,49 @@ a {
   border-color: rgba(51, 122, 183, 0.65);
 }
 
-/* Media Query for Phones (Portrait and Landscape) */
-@media screen and (max-width: 768px) {
-
-  /* Adjust styles for phones */
-  body {
-    font-size: 14px;
-    background-repeat: no-repeat;
-    background-size: 142%;
-  }
-
+@media screen and (max-width: 480px) {
+   
   .col-sm-4 {
-    background-color: rgba(255, 255, 255, 0.88);
-    width: 41.333333% !important;
+    width:83.333333%;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 4px 3px;
+  body {
+    background-size: 600px;
+  }
+
+  .btn.btn-primary  {
+    font-size: 7px;
     margin-bottom: 6px;
+
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 900px) {
+ 
+  .col-sm-4 {
+    width:56.333333%;
+  }
+
+  body {
+    background-size: 600px;
+  }
+
+  .btn.btn-primary  {
+    font-size: 8px;
+    margin-bottom: 6px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1224px) {
+  .col-sm-4 {
+    width:51.333333%;
+  }
+
+  body {
+    background-size: 600px;
+  }
+
+  .btn.btn-primary  {
     font-size: 10px;
   }
-
 }
-
-/* Media Query for Phones (Portrait) */
-@media screen and (max-width: 576px) {
-
-  body {
-    font-size: 12px;
-    background-repeat: no-repeat;
-    background-size: 150%;
-  }
-  .col-sm-4 {
-    background-color: rgba(255, 255, 255, 0.88);
-    width: 50.333333% !important;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 3px 3px;
-    margin-bottom: 6px;
-    font-size: 7px;
-  }
-
-}
-
