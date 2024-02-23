@@ -49,7 +49,7 @@ img {
   height: auto ;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and  (min-width: 180px) and (max-width: 680px) {
   .image-container img {
   margin-left: 2%;
   }
