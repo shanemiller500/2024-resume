@@ -1,72 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("public/image/cabin.jpg");
-  background-repeat: no-repeat;
-  background-size: 850px;
-  background-position-x: center;
-
-}
 
 a {
   color: #00B7FF;
-}
 
-.col-sm-4 {
-  background-color: rgba(255, 255, 255, 0.88);
-  width:31.333333%;
 }
-
 
 .btn.btn-primary {
   color: #fff;
   background-color: rgba(51, 122, 183, 0.65);
   border-color: rgba(51, 122, 183, 0.65);
+  font-size: 12px;
 }
 
-@media screen and (max-width: 480px) {
-   
-  .col-sm-4 {
-    width:60.333333%;
-  }
 
-  body {
-    background-position-x: -62px;
-  }
-
-  .btn.btn-primary  {
-    font-size: 7px;
-    margin-bottom: 6px;
-
-  }
+.image-container {
+  position: relative;
+  display: inline-block;
 }
 
-@media screen and (min-width: 480px) and (max-width: 900px) {
- 
-  .col-sm-4 {
-    width:66.333333%;
-  }
-
-  body {
-    background-position-x: -50px;
-  }
-
-  .btn.btn-primary  {
-    font-size: 8px;
-    margin-bottom: 6px;
-  }
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-left: 25%;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1224px) {
-  .col-sm-4 {
-    width:51.333333%;
-  }
+.overlay-text {
+  position: absolute;
+  top: 78%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  color: #000000; 
+  padding: 10px 20px; 
+  font-size: 14px; 
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.88);
+  width:31.333333%;
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-  body {
-    background-size: 600px;
-  }
-
-  .btn.btn-primary  {
-    font-size: 10px;
-  }
+.fuck {
+  background-position: center;
+}
+img {
+  width: auto ;
+  max-width: 100% ;
+  height: auto ;
 }
