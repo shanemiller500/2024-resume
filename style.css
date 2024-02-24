@@ -40,17 +40,26 @@ a {
   height: auto;
 }
 
-.fuck {
-  background-position: center;
-}
 img {
   width: auto ;
-  max-width: 100% ;
+  max-width: 90% ;
   height: auto ;
 }
 
 @media screen and  (min-width: 10px) and (max-width: 680px) {
   .image-container img {
   margin-left: 2%;
+  }
+}
+
+@media screen and (min-width: 700px)  and  (max-width: 1440px) {
+  .image-container img {
+  margin-left: 25%;
+  }
+}
+
+@media screen and (min-width: 2000px) and  (max-width: 2800px) {
+  .image-container img {
+  margin-left: 68%;
   }
 }
