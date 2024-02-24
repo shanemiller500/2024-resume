@@ -48,7 +48,7 @@ img {
 
 @media screen and  (min-width: 10px) and (max-width: 680px) {
   .image-container img {
-  margin-left: 2%;
+  margin-left: 6%;
   }
 }
 
