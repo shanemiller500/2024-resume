@@ -1,65 +1,81 @@
-
-a {
-  color: #00B7FF;
-
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
 }
 
-.btn.btn-primary {
-  color: #fff;
-  background-color: rgba(51, 122, 183, 0.65);
-  border-color: rgba(51, 122, 183, 0.65);
-  font-size: 12px;
-}
-
-
-.image-container {
+.bgimg-1, .bgimg-2, .bgimg-3 {
   position: relative;
-  display: inline-block;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("public/image/cabin.jpg");
+  min-height: 100%;
 }
 
-.image-container img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-left: 25%;
+.bgimg-2 {
+  background-image: url("public/image/field.JPG");
+  min-height: 400px;
 }
 
-.overlay-text {
+.bgimg-3 {
+  background-image: url("public/image/fiji.jpg");
+  min-height: 400px;
+}
+
+.caption {
   position: absolute;
-  top: 78%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  color: #000000; 
-  padding: 10px 20px; 
-  font-size: 14px; 
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.88);
-  width:31.333333%;
-  display: block;
+  left: 0;
+  top: 50%;
   width: 100%;
-  height: auto;
+  text-align: center;
+  color: #000;
 }
 
-img {
-  width: auto ;
-  max-width: 90% ;
-  height: auto ;
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
 }
 
-@media screen and  (min-width: 10px) and (max-width: 680px) {
-  .image-container img {
-  margin-left: 6%;
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off  scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
   }
 }
 
-@media screen and (min-width: 700px)  and  (max-width: 1440px) {
-  .image-container img {
-  margin-left: 29%;
-  }
+.btn-primary {
+  color: #fff;
+  background-color: #000000fc;
+  border-color: #000000fc;
 }
 
-@media screen and (min-width: 2000px) and  (max-width: 2800px) {
-  .image-container img {
-  margin-left: 86%;
-  }
+.static {
+  color: #777;
+  background-color:white;
+  text-align:center;
+  padding:50px 80px;
+  text-align: center;
+}
+
+.clear {
+  background-color:transparent;
+  font-size:25px;
+  color: #f7f7f7;
 }
