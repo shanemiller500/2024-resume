@@ -5,7 +5,7 @@ body, html {
   color: #777;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3 {
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
   position: relative;
   opacity: 0.65;
   background-attachment: fixed;
@@ -20,13 +20,19 @@ body, html {
 }
 
 .bgimg-2 {
-  background-image: url("public/image/field.JPG");
-  min-height: 400px;
+  background-image: url("public/image/fiji.JPG");
+  min-height: 450px;
 }
 
 .bgimg-3 {
-  background-image: url("public/image/fiji.jpg");
-  min-height: 400px;
+  background-image: url("public/image/field.jpg");
+  min-height: 450px;
+}
+
+.bgimg-4 {
+  background-image: url("public/image/wedding.JPG");
+  min-height: 450px;
+  background-position-y: -144px;
 }
 
 .caption {
@@ -85,7 +91,7 @@ h3 {
 
 /* Turn off  scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2, .bgimg-3 {
+  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
     background-attachment: scroll;
   }
 
@@ -102,10 +108,15 @@ h3 {
   }
 
   .bgimg-2 {
-    min-height: 676px;
+    min-height: 573px;
   }
 
   .bgimg-3 {
-    min-height: 540px;
+    min-height: 672px;
+  }
+
+  .bgimg-4 {
+    min-height: 722px;
+    background-position-y: -210px;
   }
   }
