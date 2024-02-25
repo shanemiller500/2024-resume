@@ -5,7 +5,7 @@ body, html {
   color: #777;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
   position: relative;
   opacity: 0.65;
   background-attachment: fixed;
@@ -35,13 +35,23 @@ body, html {
   background-position-y: -144px;
 }
 
+.bgimg-5 {
+  background-image: url("public/image/cabin.jpg");
+  min-height: 100%; 
+}
+
 .caption {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 5%;
   width: 100%;
   text-align: center;
   color: #000;
+}
+
+.links {
+  width: 100%;
+  text-align: center;
 }
 
 .caption span.border {
@@ -89,10 +99,18 @@ h3 {
   border-color: #9a999982;
 } 
 
+.list-inline>li {
+margin-top: 27%;
+}
+
 /* Turn off  scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
     background-attachment: scroll;
+  }
+
+  .caption {
+    top: 27%;
   }
 
   p {
@@ -119,4 +137,9 @@ h3 {
     min-height: 722px;
     background-position-y: -210px;
   }
+
+  .list-inline>li {
+    margin-top: 1214px;
+    }
+
   }
