@@ -113,11 +113,8 @@ margin-top: 27%;
 .work   {
   height: 60px
 }
-.copyright {
-  text-align: center;
-  color: #fff;
-  margin-top: 100px;
-  
+.fa-copyright {
+  background-color: rgba(0, 0, 0, 0.05);;
 }
 
 /* Turn off  scrolling for tablets and phones */
