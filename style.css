@@ -5,7 +5,7 @@ body, html {
   color: #777;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
   position: relative;
   opacity: 0.65;
   background-attachment: fixed;
@@ -39,6 +39,11 @@ body, html {
   background-image: url("public/image/cabin.jpg");
   min-height: 85%; 
 }
+ .bgimg-6 {
+  background-image: url("public/image/couch.jpg");
+  min-height: 60%;
+  background-position-y: -333px;
+ }
 
 .caption {
   position: absolute;
@@ -105,9 +110,13 @@ h3 {
 margin-top: 27%;
 }
 
+.work   {
+  height: 60px
+}
+
 /* Turn off  scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
+  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
     background-attachment: scroll;
   }
 
@@ -140,8 +149,17 @@ margin-top: 27%;
     background-position-y: -210px;
   }
 
+  .bgimg-6 {
+    min-height: 40%;
+    background-position-y: 1px;
+  }
+
   .list-inline>li {
     margin-top: 1214px;
     }
 
+    .work {
+      height: 95px;
   }
+
+}
