@@ -113,6 +113,12 @@ margin-top: 27%;
 .work   {
   height: 60px
 }
+.copyright {
+  text-align: center;
+  color: #fff;
+  margin-top: 100px;
+  
+}
 
 /* Turn off  scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
