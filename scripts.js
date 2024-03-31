@@ -56,3 +56,15 @@ $(document).ready(function() {
     );
 });
  
+
+$(document).ready(function() {
+    // Add pulse effect class on touchstart for touch devices
+    $('.skills p').on('touchstart', function() {
+        $(this).addClass('animate__animated animate__pulse pulse-effect');
+    });
+
+    // Remove pulse effect class on touchend for touch devices
+    $('.skills p').on('touchend', function() {
+        $(this).removeClass('animate__animated animate__pulse pulse-effect');
+    });
+});
