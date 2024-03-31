@@ -27,3 +27,32 @@ gtag('config', 'UA-91612823-1');
   gtag('js', new Date());
 
   gtag('config', 'G-CC1SCRJJSW');
+
+//   jQuery(document).ready(function(){
+//     $('h1').mousemove(function(e){
+//       var rXP = (e.pageX - this.offsetLeft-$(this).width()/2);
+//       var rYP = (e.pageY - this.offsetTop-$(this).height()/2);
+//       $('h1').css('text-shadow', +rYP/10+'px '+rXP/80+'px rgba(255, 0, 0, 1), '+rYP/8+'px '+rXP/60+'px rgba(255, 255, 0, 1), '+rXP/70+'px '+rYP/12+'px rgba(255, 165, 0, 1)');
+//     });
+//  });
+
+//  jQuery(document).ready(function(){
+//     $('h1').on("touchmove",function(e){
+//       var rXP = (e.pageX - this.offsetLeft-$(this).width()/2);
+//       var rYP = (e.pageY - this.offsetTop-$(this).height()/2);
+//       $('h1').css('text-shadow', +rYP/10+'px '+rXP/80+'px rgba(255, 255, 0, 1), '+rYP/8+'px '+rXP/60+'px rgba(255, 20, 147, 1), '+rXP/70+'px '+rYP/12+'px rgba(41, 206, 255, 1)');
+//     });
+//  });
+
+$(document).ready(function() {
+    // Add hover effect class
+    $('.skills p').hover(
+        function() {
+            $(this).addClass('animate__animated animate__pulse');
+        },
+        function() {
+            $(this).removeClass('animate__animated animate__pulse');
+        }
+    );
+});
+ 

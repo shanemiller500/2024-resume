@@ -4,6 +4,16 @@ body, html {
   font: 500 15px/1.8 "Lato", sans-serif;
   color: #777;
 }
+/* h1{
+  text-transform:uppercase;
+  font-size:72px;
+  font-family:'Verdana';
+  padding:30px;
+} */
+h4{
+  display: inline-block;
+  font-size: 15px;
+}
 
 .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
   position: relative;
