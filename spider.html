@@ -3,12 +3,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 
-<div>So you clicked the spider..</div> 
+<div>So you clicked the spider...</div> 
 <div> 
-  <span>Now what?</span>
-  <a href="roll.html" class=""><i class="fas fa-capsules"></i>  </a>
+  <span>choose wisely</span>
  
+  <a  style="text-decoration:none" href="#" class="close red"><i class="fas fa-capsules"></i> </a>
+
+  <a style="text-decoration:none" href="roll.html" class="blue"><i class="fas fa-capsules"></i>  </a>
+ </div>
 </div>
+
 
 
 
@@ -16,6 +20,13 @@
 <style>
   @import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
+  .red {
+    color: red;
+  }
+
+  .blue {
+    color: blue;
+  }
 body {
   text-align:center;
   background:linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
@@ -38,21 +49,26 @@ div {
 }
 
 div:first-of-type {    
-  animation: showup 7s infinite;
+  animation: showup 10s infinite;
 }
 
 div:last-of-type {
   width:0px;
-  animation: reveal 7s infinite;
+  animation: reveal 10s infinite;
 }
 
 div:last-of-type span {
   margin-left:-355px;
-  animation: slidein 7s infinite;
+  animation: slidein 10s infinite;
 }
 div:last-of-type span {
   margin-left:-455px;
-  animation: slidein 7s infinite;
+  animation: slidein 10s infinite;
+}
+div:last-of-type span a {
+  margin-left:-455px;
+  margin-top: 50px;
+  animation: slidein 10s infinite;
 }
 @keyframes showup {
     0% {opacity:0;}
@@ -83,3 +99,14 @@ p {
   margin-top:200px;
 }  
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click event listener to the close button
+        document.querySelector('.close').addEventListener('click', function() {
+            // Close the current window
+            alert('You should have chosen the blue pill... The window will close now.');
+            window.close();
+        });
+    });
+</script>
