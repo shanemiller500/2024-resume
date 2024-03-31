@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     // Add pulse effect class on touchstart for touch devices
-    $('.skills p').on('touchmove', function() {
+    $('.skills p').on('touchstart', function() {
         $(this).addClass('animate__animated animate__pulse pulse-effect');
     });
 
