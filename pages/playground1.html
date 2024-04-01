@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playground1</title>
-    <script type="module">
-        import { API_KEY } from './apikey.js';
-        console.log(API_KEY);
-      </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script>
+    <script src="config.js"></script>  
     <style>
         /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
@@ -19,6 +15,22 @@
         }
 
     </style>
+
+    <script>
+            var API_KEY = config.API_KEY;
+ 
+ // Construct the Google Maps API script URL with the API_KEY variable
+ var scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+
+ // Create a new script element
+ var scriptElement = document.createElement('script');
+
+ // Set the src attribute of the script element to the constructed URL
+ scriptElement.src = scriptUrl;
+
+ // Append the script element to the document's head to load the Google Maps API
+ document.head.appendChild(scriptElement);
+    </script>
 </head>
 <body>
     <div>
@@ -39,10 +51,7 @@
     // Initialize variables for map and markers
     var map;
     var markers = [];
-
-    // Initialize autocomplete for search input using Google Places Autocomplete
-    var input = document.getElementById('searchInput');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    var API_KEY = config.API_KEY;
 
     // Event handler for search button click
     $('#searchBtn').click(function() {
@@ -54,7 +63,7 @@
             method: 'GET',
             data: {
                 address: userInput,
-                key: 'API_KEY' // Replace with your actual Google Maps API key
+                key: API_KEY 
             },
             success: function(response) {
                 if (response.results && response.results.length > 0) {
@@ -79,7 +88,6 @@
         });
     });
 
-    
 
     // Function to display location details on the page
     function displayLocation(location) {
@@ -204,6 +212,6 @@ function searchNearby(location, keyword, targetElement, title) {
         });
     }
 });
-    </script>
+    </script>     
 </body>
 </html>

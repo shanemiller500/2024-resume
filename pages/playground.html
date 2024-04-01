@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="config.js"></script>
     <title>Flight Search</title>
     <style>
         /* Style for autocomplete dropdown */
@@ -10,6 +11,20 @@
             z-index: 10000; /* Ensure autocomplete dropdown is displayed above other elements */
         }
     </style>
+
+    <script>  var API_KEY = config.API_KEY;
+ 
+        // Construct the Google Maps API script URL with the API_KEY variable
+        var scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+
+        // Create a new script element
+        var scriptElement = document.createElement('script');
+
+        // Set the src attribute of the script element to the constructed URL
+        scriptElement.src = scriptUrl;
+
+        // Append the script element to the document's head to load the Google Maps API
+        document.head.appendChild(scriptElement);</script>
 </head>
 <body>
     <form id="flightSearchForm">
@@ -31,9 +46,12 @@
     <div id="flightResults"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script>
+
     <script>
+
+        
         $(document).ready(function() {
+
             // Initialize Google Places Autocomplete for origin and destination inputs
             var originInput = document.getElementById('origin');
             var destinationInput = document.getElementById('destination');
