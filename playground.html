@@ -1,0 +1,218 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps API Example</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg&libraries=places"></script>
+</head>
+<body>
+
+<div>
+    <input id="searchInput" type="text" placeholder="Enter location">
+    <button id="searchBtn">Search</button>
+</div>
+
+<div id="map"></div>
+<div id="searchResults"></div>
+
+<script>
+$(document).ready(function() {
+    // Initialize Google Places Autocomplete
+    var input = document.getElementById('searchInput');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    $('#searchBtn').click(function() {
+        var place = autocomplete.getPlace();
+
+        if (place.geometry) {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: place.geometry.location,
+                zoom: 15
+            });
+
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            $('#searchResults').html('<p>Formatted Address: ' + place.formatted_address + '</p>');
+        } else {
+            $('#searchResults').html('<p>No location found for the input.</p>');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps API Example</title>
+<style>
+    /* Add CSS styles for the map container */
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <input type="text" id="searchInput" placeholder="Enter an address">
+    <button id="searchBtn">Search</button>
+    <div id="searchResults"></div>
+    <div id="map"></div>
+
+     Include jQuery and Google Maps API -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg&libraries=places"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchBtn').click(function() {
+                var userInput = $('#searchInput').val();
+
+                $.ajax({
+                    url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                    method: 'GET',
+                    data: {
+                        address: userInput,
+                        key: 'AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg'
+                    },
+                    success: function(response) {
+                        if (response.results && response.results.length > 0) {
+                            var formattedAddress = response.results[0].formatted_address;
+                            $('#searchResults').html('<p>Formatted Address: ' + formattedAddress + '</p>');
+
+                            // Display map
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                center: { lat: response.results[0].geometry.location.lat, lng: response.results[0].geometry.location.lng },
+                                zoom: 15
+                            });
+
+                            // Add marker to the map
+                            var marker = new google.maps.Marker({
+                                position: { lat: response.results[0].geometry.location.lat, lng: response.results[0].geometry.location.lng },
+                                map: map,
+                                title: formattedAddress
+                            });
+                        } else {
+                            $('#searchResults').html('<p>No address found for the input.</p>');
+                        }
+                    },
+                    error: function() {
+                        $('#searchResults').html('<p>Error fetching data from Google Maps API.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps API Example</title>
+<style>
+    /* Add CSS styles for the map container */
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 400px;"></div>
+    <input type="text" id="searchInput" placeholder="Enter location">
+    <button id="searchBtn">Search</button>
+    <div id="searchResults"></div>
+    <div id="photos"></div>
+    <!-- Include jQuery and Google Maps API -->
+    <!-- AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg&libraries=places"></script>
+    <script>
+$(document).ready(function() {
+    // Initialize Google Places Autocomplete
+    var input = document.getElementById('searchInput');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    $('#searchBtn').click(function() {
+        var userInput = $('#searchInput').val();
+
+        $.ajax({
+            url: 'https://maps.googleapis.com/maps/api/geocode/json',
+            method: 'GET',
+            data: {
+                address: userInput,
+                key: 'AIzaSyBFl8tnrZlEdpDty7PevwDq-MWrFA26QKg'
+            },
+            success: function(response) {
+                if (response.results && response.results.length > 0) {
+                    var formattedAddress = response.results[0].formatted_address;
+                    $('#searchResults').html('<p>Formatted Address: ' + formattedAddress + '</p>');
+
+                    // Display map
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: { lat: response.results[0].geometry.location.lat, lng: response.results[0].geometry.location.lng },
+                        zoom: 15
+                    });
+
+                    // Add marker to the map
+                    var marker = new google.maps.Marker({
+                        position: { lat: response.results[0].geometry.location.lat, lng: response.results[0].geometry.location.lng },
+                        map: map,
+                        title: formattedAddress
+                    });
+
+                    // Get photos of the location
+                    var placeId = response.results[0].place_id;
+                    var photoService = new google.maps.places.PlacesService(map);
+                    photoService.getDetails({ placeId: placeId }, function(place, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK && place.photos && place.photos.length > 0) {
+                            var photosHtml = '<div id="photosContainer">';
+                            place.photos.forEach(function(photo) {
+                                photosHtml += '<img src="' + photo.getUrl({ maxWidth: 200, maxHeight: 200 }) + '" alt="Photo">';
+                            });
+                            photosHtml += '</div>';
+                            $('#photos').html(photosHtml);
+                        } else {
+                            $('#photos').html('<p>No photos found for the location.</p>');
+                        }
+                    });
+                } else {
+                    $('#searchResults').html('<p>No address found for the input.</p>');
+                }
+            },
+            error: function() {
+                $('#searchResults').html('<p>Error fetching data from Google Maps API.</p>');
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>
