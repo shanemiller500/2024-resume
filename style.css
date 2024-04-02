@@ -220,7 +220,7 @@ ul li a:hover:before {
 }
 
 ul li:nth-child(1) a:before{
-  background: linear-gradient(to right, #25accb,#3588c2,#3665b8,#2e43ae,#1932ae,#060606,#bb0000,#8f0000,#660000,#2b2d31,#392b31,#552531,#7e1e32,#a81732,#a20e0e,#d8580b,#4882b7,#814a66,#333333,#ff9800,#416d19,#2fa777,#4fbd83)
+  background: linear-gradient(to right, #008a35,#46a64b, #46a64b,#008a35);
 }
 
 ul li:nth-child(2) a:before{
@@ -239,4 +239,3 @@ ul li:nth-child(5) a:before {
   background: linear-gradient(to right, #ff0000, #ff5a00, #1B1F22);
   color: #fff;
 }
-
