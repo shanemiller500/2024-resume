@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
     // Initialize Google Places Autocomplete for origin and destination inputs
     // var originInput = document.getElementById('origin');
     // var destinationInput = document.getElementById('destination');
@@ -12,8 +12,6 @@ $(document).ready(function() {
         var departDate = $('#departDate').val();
         var returnDate = $('#returnDate').val();
         var adults = $('#adults').val();
-        var children = $('#children').val();
-        var infants = $('#infants').val();
 
         // Construct the Google Flights URL with the form data
         var googleFlightsUrl = 'https://www.google.com/flights?'
@@ -27,7 +25,7 @@ $(document).ready(function() {
     });
 
     // Function to search for nearby places based on location, keyword, and target element
-    function searchNearby(location, keyword, targetElement, title, adults, children, infants) {
+    function searchNearby(location, keyword, targetElement, title, adults) {
         var placesService = new google.maps.places.PlacesService(map);
 
         // Perform a nearby search using Google Places API
@@ -44,9 +42,6 @@ $(document).ready(function() {
                     var address = place.vicinity ? '<p>Address: ' + place.vicinity + '</p>' : '';
                     var rating = place.rating ? '<p>Rating: ' + place.rating + '</p>' : '';
                     $(targetElement).append('<div><p>' + place.name + ' - Rating: ' + place.rating + '</p>' 
-                        + '<p>Adults: ' + adults + '</p>'
-                        + '<p>Children: ' + children + '</p>'
-                        + '<p>Infants: ' + infants + '</p>'
                         + address + photosHtml + '</div>');
                 });
             } else {
@@ -54,4 +49,24 @@ $(document).ready(function() {
             }
         });
     }
-});
+
+
+    // for XXS prevention 
+    function processInputs() {
+        const inputFields = document.querySelectorAll('input[type="text"]');
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = ''; // Clear previous output
+
+        inputFields.forEach(input => {
+            const sanitizedValue = sanitizeInput(input.value);
+            const outputText = document.createElement('p');
+            outputText.innerText = `Sanitized value: ${sanitizedValue}`;
+            outputDiv.appendChild(outputText);
+        });
+    }
+
+    function sanitizeInput(input) {
+        // Replace HTML special characters with blank spaces
+        return input.replace(/</g, ' ').replace(/>/g, ' ');
+    }
+    

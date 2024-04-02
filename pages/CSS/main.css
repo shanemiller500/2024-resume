@@ -1,9 +1,10 @@
 
-/*
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+       /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 300px;
+            width: 100%;
+        }
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -951,6 +952,9 @@ input, select, textarea {
 		table.alt {
 			border-collapse: separate;
 		}
+		input {
+			color: #000000;
+		}
 
 			table.alt tbody tr td {
 				border: solid 1px #ffffff;
@@ -975,12 +979,16 @@ input, select, textarea {
 			}
 
 /* Button */
-
+	.searchButton {
+		margin-left: 71px;
+	}
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
 	button,
 	.button {
+		margin-top: 15px;;
+		padding-bottom: 15px;
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
@@ -1213,7 +1221,7 @@ input, select, textarea {
 /* Header */
 
 	#header {
-		display: -moz-flex;
+		position:absolute;
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
@@ -1247,7 +1255,7 @@ input, select, textarea {
 		}
 
 			#header > *:before {
-				content: '';
+				
 				display: block;
 				position: absolute;
 				top: calc(-3.5rem - 1px);

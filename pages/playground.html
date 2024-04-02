@@ -39,25 +39,28 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span class=" far fa-lightbulb fa-spin"></span>
-							<i class=""></i>
+							<span class="fas fa-mountain"></span>
 						</div>
 						<div class="content">
 							<div class="inner">
 								<h1>My Playground</h1>
-								<p>A Place where you will see all the things I have been playing with recently.</p>
+								<p>A Place where you will see the things I have been playing with recently. (this is work in progress)</p>
+								
 							</div>
 						</div>
 						<nav>
 							<ul>
 								<li><a href="#flight">Flight Project</a></li>
 								<li><a href="#places">Places Project</a></li>
-								<!-- <li><a href="#about">About</a></li>
-								<li><a href="#contact">Contact</a></li> -->
-								<!--<li><a href="#elements">Elements</a></li>-->
+								 <li><a href="#next">Next Project</a></li>
+								<!-- <li><a href="#next">Next</a></li>
+								<li><a href="#after">after that</a></li> -->
 							</ul>
-						</nav>
-					</header>
+						</nav>			
+						<span style="text-decoration:none; " href="#" class="close"><i class="fas fa-times"></i></span>			
+					</header>		
+					
+				
 
 				<!-- Main -->
 					<div id="main">
@@ -65,7 +68,8 @@
 						<!-- Intro -->
 							<article id="flight">
 								<h2 class="major">Search for a flight</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>A simple call to the Google flight search engine.</p>
+								
 								<form id="flightSearchForm">
 									<label for="origin">Origin Airport:</label>
 									<input type="text" id="origin" name="origin" required>
@@ -82,19 +86,20 @@
 									<label for="adults">Adults:</label>
 									<input type="number" id="adults" name="adults" min="1" value="1" required>
 							
-									<button type="submit">Search Flights</button>
+									<button class="searchButton" type="submit">Search Flights</button>
+	
 								</form>
 								<div id="flightResults"></div>
 							</article>
 
 						<!-- Work -->
 							<article id="places">
-								<h2 class="major">Work</h2>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-
-								<input class="c-form__input" placeholder="Location" type="text" id="searchInput" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
-								<label class="c-form__buttonLabel" for="checkbox">
-								  <button class="c-form__button" id="searchBtn" type="button">Send</button>
+								<h2 class="major">Google places</h2>
+								<p>A search that will pick up the top bars/restaurants, Top Golf Courses & top Activities for you & your children. (A work in progress.) </p>
+								<input placeholder="Location" type="text" id="searchInput">
+								<label  for="checkbox">
+								  <button id="searchBtn" type="button">Search PLaces</button>
+								  <button id="clearButton">Clear Results</button>
 								  <div id="map"></div>
 								  <div class="container">
 									  <div class="row">
@@ -112,22 +117,23 @@
 										<div class="col-sm">
 										  <div id="Kid"></div>
 									  <div id="freeNearby"></div>
-							
-										  
-
 							</article>
-
-						<!-- About -->
-							<article id="PROJECT">
-								<h2 class="major">About</h2>
+							<article id="next">
+								<h2 class="major">What's next will appear here!</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<p>My next project will appear here soon!</p>
 							</article>
+
+							<article id="after">
+								<h2 class="major">What's after next will appear here!</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>My next project will appear here soon!</p>
+							</article>
+
 					</div>
 		<!-- Scripts -->
 			<script src="scripts/main.js"></script>
 			<script src="scripts/flight.js"></script>
-			<script src="scripts/places.js"></script>
-
+			<script src="scripts/places.js"></script>				
 	</body>
 </html>

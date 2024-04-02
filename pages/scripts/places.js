@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
     // Initialize variables for map and markers
     var map;
     var markers = [];
@@ -116,7 +116,7 @@ $(document).ready(function () {
         }, function (results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 $(targetElement).append('<h3>' + title + '</h3>'); // Add a heading for the category
-                results.slice(0, 10).forEach(function (place) {
+                results.slice(0, 5).forEach(function (place) {
                     // Iterate through the results and display place details like name, rating, address, and photos
                     var photosHtml = place.photos ? '<img src="' + place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) + '" alt="Photo">' : '<p>No photo available</p>';
                     var address = place.vicinity ? '<p>Address: ' + place.vicinity + '</p>' : '';
@@ -154,7 +154,7 @@ $(document).ready(function () {
         }, function (results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 $(targetElement).append('<h3>' + title + '</h3>'); // Add a heading for the category
-                results.slice(0, 10).forEach(function (place) {
+                results.slice(0, 5).forEach(function (place) {
                     // Iterate through the results and display place details like name, rating, address, and photos
                     var photosHtml = place.photos ? '<img src="' + place.photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) + '" alt="Photo">' : '<p>No photo available</p>';
                     var address = place.vicinity ? '<p>Address: ' + place.vicinity + '</p>' : '';
@@ -166,4 +166,3 @@ $(document).ready(function () {
             }
         });
     }
-});
