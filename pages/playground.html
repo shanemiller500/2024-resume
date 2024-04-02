@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Playground</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="CSS/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+		<script src="config.js"></script>
+		<title>Flight Search</title>
+		<style>
+			/* Style for autocomplete dropdown */
+			.pac-container {
+				z-index: 10000; /* Ensure autocomplete dropdown is displayed above other elements */
+			}
+		</style>
+	
+		<script>  var API_KEY = config.API_KEY;
+	 
+			// Construct the Google Maps API script URL with the API_KEY variable
+			var scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+	
+			// Create a new script element
+			var scriptElement = document.createElement('script');
+	
+			// Set the src attribute of the script element to the constructed URL
+			scriptElement.src = scriptUrl;
+	
+			// Append the script element to the document's head to load the Google Maps API
+			document.head.appendChild(scriptElement);</script>
+
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+							<span class=" far fa-lightbulb fa-spin"></span>
+							<i class=""></i>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>My Playground</h1>
+								<p>A Place where you will see all the things I have been playing with recently.</p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#flight">Flight Project</a></li>
+								<li><a href="#places">Places Project</a></li>
+								<!-- <li><a href="#about">About</a></li>
+								<li><a href="#contact">Contact</a></li> -->
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+							<article id="flight">
+								<h2 class="major">Search for a flight</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<form id="flightSearchForm">
+									<label for="origin">Origin Airport:</label>
+									<input type="text" id="origin" name="origin" required>
+									
+									<label for="destination">Destination Airport:</label>
+									<input type="text" id="destination" name="destination" required>
+									
+									<label for="departDate">Departure Date:</label>
+									<input type="date" id="departDate" name="departDate" required>
+									
+									<label for="returnDate">Return Date:</label>
+									<input type="date" id="returnDate" name="returnDate" required>
+								
+									<label for="adults">Adults:</label>
+									<input type="number" id="adults" name="adults" min="1" value="1" required>
+							
+									<button type="submit">Search Flights</button>
+								</form>
+								<div id="flightResults"></div>
+							</article>
+
+						<!-- Work -->
+							<article id="places">
+								<h2 class="major">Work</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+
+								<input class="c-form__input" placeholder="Location" type="text" id="searchInput" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+								<label class="c-form__buttonLabel" for="checkbox">
+								  <button class="c-form__button" id="searchBtn" type="button">Send</button>
+								  <div id="map"></div>
+								  <div class="container">
+									  <div class="row">
+										<div class="col-sm">
+										  <div id="address"></div>
+										</div>
+										<div class="col-sm">
+										  <div id="bar"></div>
+									  <div id="restaurant"></div>
+										</div>
+										<div class="col-sm">
+										  <div id="golfResults"></div>
+										</div>
+										</div>
+										<div class="col-sm">
+										  <div id="Kid"></div>
+									  <div id="freeNearby"></div>
+							
+										  
+
+							</article>
+
+						<!-- About -->
+							<article id="PROJECT">
+								<h2 class="major">About</h2>
+								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+							</article>
+					</div>
+		<!-- Scripts -->
+			<script src="scripts/main.js"></script>
+			<script src="scripts/flight.js"></script>
+			<script src="scripts/places.js"></script>
+
+	</body>
+</html>
