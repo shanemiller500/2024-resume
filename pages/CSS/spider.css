@@ -9,7 +9,7 @@
 }
 body {
 text-align:center;
-background:linear-gradient(141deg, #ff000047 25%, #eee 40%, #0053ff2b 55%);
+background: linear-gradient(to left, #2b2d31,#392b31,#552531,#7e1e32,#a81732);
 color:#555;
 font-family:'Roboto';
 font-weight:300;
