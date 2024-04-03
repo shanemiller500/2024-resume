@@ -60,10 +60,26 @@
 								<li><a href="#places">Places Project</a></li>
 								 <li><a href="#country">Country Search</a></li>
 								 <li><a href="#marvel">Marvel Search</a></li>
-							<!--	<li><a href="#after">after that</a></li> -->
-							<!--	<li><a href="#after">after that</a></li> -->
-							<!--	<li><a href="#after">after that</a></li> -->
+								<li><a href="#random">Bored?</a></li> 
+							
 							</ul>
+							<br>
+							<ul>
+								<li><a href="#comic">Comic Book Search</a></li> 
+								<li><a href="#chuck">Chuck Norris Quotes</a></li>
+								<li><a href="#advice">Solid Advice Search</a></li>
+								 <li><a href="#soon">Coming Soon!</a></li>
+								 <!-- <li><a href="#soon">I'll be soon!</a></li>
+							  -->
+							</ul>
+							<br>
+							<!-- <ul>
+								<li><a href="#soon">Coming Soon!</a></li> 
+								<li><a href="#soon">Coming Soon!</a></li>
+								<li><a href="#soon">Coming Soon!</a></li>
+								<li><a href="#soon">Coming Soon!</a></li>
+	
+							</ul> -->
 						</nav>			
 						<span style="text-decoration:none; " href="#" class="close"><i class="fas fa-times"></i></span>			
 					</header>		
@@ -152,17 +168,57 @@
 									<div id="customResults" class="row"></div>
 							</article>
 
-
-
-							<article id="next">
-								<h2 class="major">Coming soon</h2>
-								<p>My next project will appear here soon!</p>
+							<article id="random">
+								<h2 class="major">Random Activity</h2>
+								<p>Need something to do? Well find something below for you!</p>
+								<br>
+								<p id="activity"></p>
+								<p id="type"></p>
+								<p id="participants"></p>
+								<p id="price"></p>
+								<p id="link"></p>
+								<br>
+								<button id="getActivityButton">Get New Activity</button>
 							</article>
 
-							<article id="next">
+							<article id="comic">
+								<h2 class="major">Marvel Comic Book Search</h2>
+								<p>Search for comic books here!</p>
+<br>
+								<div class="container">
+									<div class="row mb-4">
+									  <div class="col-8">
+										<input type="text" id="searchInputComic" class="form-control typeahead" placeholder="Enter a comic or something...">
+									  </div>
+									  <div class="col-4">
+										<button onclick="searchComics()">Search</button>
+									  </div>
+									</div>
+									<div id="comicResults" class="row"></div>
+								  </div>
+							</article>
+
+							<article id="chuck">
+								<h2 class="major">chuck Norris Quotes</h2>
+								<div id="jokeContainer"></div>
+								<br>
+								<button id="getJokeButton">Get New Quote</button>
+							</article>
+
+							<article id="advice">
+								<h2 class="major">Solid Advice Search</h2>
+								<p>We all need is advice from time to time, no need to ask just recieve. </p>
+								<br>
+								<div id="adviceContainer"></div>
+								<br>
+								<button onclick="fetchAdvice()">Get Advice</button>
+							</article>
+
+<!-- 
+							<article id="after">
 								<h2 class="major">Coming soon</h2>
 								<p>My next project will appear here soon!</p>
-							</article>
+							</article> -->
 
 					</div>
 		<!-- Scripts -->
@@ -171,5 +227,8 @@
 			<script src="scripts/places.js"></script>	
 			<script src="scripts/country.js" ></script>
 			<script src="scripts/marvel.js" ></script>
+			<script src="scripts/random.js" ></script>
+			<script src="scripts/advice.js" ></script>
+			<script src="scripts/chuck.js" ></script>
 	</body>
 </html>

@@ -32,8 +32,7 @@ const displayCustomResults = async () => {
                 const characterImage = `<img src="${thumbnail}" class="img-fluid" alt="${character.name}">`;
 
                 const characterInfo = `<h2>${character.name}</h2>
-                                        <p>${character.description || 'No description available'}</p>`;
-
+                                        <p>${character.description || 'No description available'}</p>`;                               
                 characterDiv.innerHTML = `
                     <div class="card">
                         <div class="card-body">
@@ -68,3 +67,69 @@ $(document).ready(function() {
         }
     });
 });
+
+
+
+
+// ================================================================================
+
+// FOR COMIC BOOK SEARCH 
+
+// ================================================================================
+
+
+const CUSTOM_API_URL1 = 'https://gateway.marvel.com/v1/public/comics';
+
+function getHash(timestamp) {
+    const hash = CryptoJS.MD5(timestamp + CUSTOM_PRIVATE_KEY + CUSTOM_PUBLIC_KEY);
+    return hash.toString();
+  }
+
+  const autocompleteUrl = `${CUSTOM_API_URL1}?apikey=${CUSTOM_PUBLIC_KEY}&ts=${new Date().getTime()}&hash=${getHash(new Date().getTime())}`;
+
+  $('#searchInputComic').typeahead({
+    source: function (query, result) {
+      $.getJSON(autocompleteUrl + '&titleStartsWith=' + query, function (data) {
+        const titles = data.data.results.map(comic => comic.title);
+        result(titles);
+      });
+    }
+  });
+
+  function searchComics() {
+    const searchInput = document.getElementById('searchInputComic').value.trim();
+    const timestamp = new Date().getTime();
+    const hash = getHash(timestamp);
+
+    const apiUrl = `${CUSTOM_API_URL1}?apikey=${CUSTOM_PUBLIC_KEY}&ts=${timestamp}&hash=${hash}&titleStartsWith=${searchInput}`;
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const comicResultsElement = document.getElementById('comicResults');
+        comicResultsElement.innerHTML = ''; // Clear previous results
+
+        data.data.results.forEach(comic => {
+          const comicCard = document.createElement('div');
+          comicCard.classList.add('col-lg-10', 'comic-card');
+          comicCard.innerHTML = `
+            <div class="card">
+              <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">
+              <div class="card-body">
+                <h5 class="card-title">${comic.title}</h5>
+                <p class="card-text">${comic.description || 'No description available'}</p>
+              </div>
+            </div>
+          `;
+          comicResultsElement.appendChild(comicCard);
+        });
+      })
+      .catch(error => {
+        console.error('There was a problem fetching the data:', error);
+      });
+  }

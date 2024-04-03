@@ -1011,7 +1011,7 @@ input, select, textarea {
 	input[type="button"],
 	button,
 	.button {
-		margin-top: 15px;;
+		
 		padding-bottom: 15px;
 		-moz-appearance: none;
 		-webkit-appearance: none;
@@ -1391,7 +1391,7 @@ input, select, textarea {
 			left: calc(50% - 1px);
 			width: 1px;
 			height: 100%;
-			background: #ffffff;
+			
 		}
 
 		#header nav.use-middle ul li.is-middle {
@@ -1686,3 +1686,12 @@ input, select, textarea {
 		h3.card-title  {
 			color: white;
 		}
+
+		.advice-text {
+			font-weight: bold;
+			font-style: italic;
+		  }
+
+		  #searchInputComic {
+			color: white;
+		  }
