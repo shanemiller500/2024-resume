@@ -1,3 +1,4 @@
+const config = require('./config');
 const CUSTOM_PUBLIC_KEY = config.CUSTOM_PUBLIC_KEY; 
 const CUSTOM_PRIVATE_KEY = config.CUSTOM_PRIVATE_KEY; 
 const CUSTOM_API_URL = 'https://gateway.marvel.com/v1/public/characters';
