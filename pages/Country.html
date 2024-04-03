@@ -1,0 +1,108 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Information</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Country Information</h1>
+        <input type="text" id="searchInput1" class="form-control mb-4" placeholder="Search for a country" autocomplete="off">
+        <div id="countryList" class="row" style="display: none;"></div>
+        <div id="mapContainer" class="mt-4 mb-4">
+            <iframe id="countryMap" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+    <script>
+        async function fetchData() {
+            const apiUrl = 'https://restcountries.com/v3.1/all';
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return [];
+            }
+        }
+
+        async function renderCountries() {
+            const countryListDiv = document.getElementById('countryList');
+            const searchInput = document.getElementById('searchInput1');
+            const countriesData = await fetchData();
+
+            if (countriesData.length === 0) {
+                countryListDiv.innerHTML = '<p>Error fetching data.</p>';
+                return;
+            }
+
+            countryListDiv.innerHTML = ''; // Clear previous content
+
+            const filteredCountries = countriesData.filter(country =>
+                country.name.common.toLowerCase().includes(searchInput.value.toLowerCase())
+            );
+
+            filteredCountries.forEach(country => {
+                const countryCard = document.createElement('div');
+                countryCard.className = 'col-md-4 mb-4';
+
+                countryCard.innerHTML = `
+                    <div class="card">
+                        <img src="${country.flags.png}" class="card-img-top" alt="${country.name.common} Flag">
+                        <div class="card-body">
+                            <h5 class="card-title">${country.name.common}</h5>
+                            <p class="card-text">Capital: ${country.capital}</p>
+                            <p class="card-text">Population: ${country.population}</p>
+                            <p class="card-text">Region: ${country.region}</p>
+                            <p class="card-text">Languages: ${Object.values(country.languages).join(', ')}</p>
+                        </div>
+                    </div>
+                `;
+
+                countryListDiv.appendChild(countryCard);
+            });
+
+            // Show the cards that match the search
+            if (searchInput.value.trim() === '') {
+                countryListDiv.style.display = 'none'; // Hide all country cards
+            } else {
+                countryListDiv.style.display = 'block'; // Show country cards if search is performed
+            }
+
+            // Set map URL based on the searched country
+            const searchedCountry = filteredCountries.length > 0 ? filteredCountries[0] : null;
+            const mapUrl = searchedCountry ? `https://maps.google.com/maps?q=${searchedCountry.latlng[0]},${searchedCountry.latlng[1]}&z=4&output=embed` : '';
+            document.getElementById('countryMap').src = mapUrl;
+        }
+
+        window.onload = () => {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', renderCountries);
+
+            // Autocomplete using Bootstrap Typeahead
+            $(document).ready(function(){
+                $('#searchInput').typeahead({
+                    source: function(query, result){
+                        const countries = [];
+                        fetchData().then(countriesData => {
+                            countriesData.forEach(country => {
+                                if(country.name.common.toLowerCase().includes(query.toLowerCase())){
+                                    countries.push(country.name.common);
+                                }
+                            });
+                            result(countries);
+                        });
+                    }
+                });
+            });
+
+            renderCountries();
+        };
+    </script>
+</body>
