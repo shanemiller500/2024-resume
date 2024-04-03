@@ -10,6 +10,14 @@ async function fetchData() {
     return [];
   }
 }
+// fetchData().then(country => {
+//     if (country) {
+//         const languages = Object.keys(country.languages).map(lang => country.languages[lang]).join(', ');
+//         console.log(`Languages: ${languages}`);
+//     } else {
+//         console.error('Country data is null.');
+//     }
+// });
 
 async function renderCountries() {
   const countryListDiv = document.getElementById("countryList");
@@ -49,8 +57,8 @@ async function renderCountries() {
                         <p class="card-text">currencies: ${(country.currencies && Object.values(country.currencies)[0] && Object.values(country.currencies)[0].name) || 'N/A'}</p>
                     </div>     
                     <div class="col">
-                        <p class="card-text">languages: ${country.languages.eng}</p>
-                        <p class="card-text">languages (Native): ${country.languages.rar}</p>
+                        <p class="card-text">languages: ${country.languages}</p>
+
                         <p class="card-text">UN Member: ${country.unMember}</p>
                     </div>           
             </div>                    

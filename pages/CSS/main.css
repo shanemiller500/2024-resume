@@ -165,8 +165,32 @@ input, select, textarea {
 		font-weight: 600;
 	}
 
+	#customSearchInput {
+		color: #ffffff;
+		margin-top: 10px;
+	}
+
+	.typeahead .dropdown-menu {
+		color: white;
+		
+	}
+
+	strong {
+		color: #000000;
+	}
+
 	em, i {
 		font-style: italic;
+	}
+
+	.col-md-4 {
+		flex: 0 0 auto;
+		/* width: min-content; */
+	}
+
+	#customSearchButton {
+		margin-top: 10px;
+		margin-left: 10px;
 	}
 
 	p {

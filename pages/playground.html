@@ -12,6 +12,9 @@
 		 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   		<link rel="stylesheet" href="CSS/main.css" />
 		<title>Flight Search</title>
+    <!-- Include CryptoJS for MD5 hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
 		<style>
 			/* Style for autocomplete dropdown */
 			.pac-container {
@@ -56,7 +59,9 @@
 								<li><a href="#flight">Flight Search</a></li>
 								<li><a href="#places">Places Project</a></li>
 								 <li><a href="#country">Country Search</a></li>
-								 <li><a href="#next">Coming soon</a></li>
+								 <li><a href="#marvel">Marvel Search</a></li>
+							<!--	<li><a href="#after">after that</a></li> -->
+							<!--	<li><a href="#after">after that</a></li> -->
 							<!--	<li><a href="#after">after that</a></li> -->
 							</ul>
 						</nav>			
@@ -131,6 +136,29 @@
 								</div>	
 							</article>
 
+							<article id="marvel">
+								<h2 class="major">Marvel API search</h2>
+								<p>Search for your favorite marvel character </p>
+								<div class="container">
+									<div id="searchContainer" class="my-4">
+										<label for="searchInput">Search Character:</label>
+										<div class="input-group">
+											<input type="text" id="customSearchInput" class="form-control" placeholder="Enter character name">
+											<div class="input-group-append">
+												<button id="customSearchButton" >Search</button>
+											</div>
+										</div>
+									</div>
+									<div id="customResults" class="row"></div>
+							</article>
+
+
+
+							<article id="next">
+								<h2 class="major">Coming soon</h2>
+								<p>My next project will appear here soon!</p>
+							</article>
+
 							<article id="next">
 								<h2 class="major">Coming soon</h2>
 								<p>My next project will appear here soon!</p>
@@ -142,5 +170,6 @@
 			<script src="scripts/flight.js"></script>
 			<script src="scripts/places.js"></script>	
 			<script src="scripts/country.js" ></script>
+			<script src="scripts/marvel.js" ></script>
 	</body>
 </html>
