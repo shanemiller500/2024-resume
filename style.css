@@ -240,3 +240,8 @@ ul li:nth-child(5) a:before {
   color: #fff;
 }
 
+ul li:nth-child(6) a:before {
+  background: linear-gradient(to right,#f2c35c,#a67b40,#36373a);
+  color: #fff;
+}
+
