@@ -30,7 +30,7 @@
   }
 
   // Initial call to fetch and display the ISS location
-  getISSLocation();
-
-  // Set an interval to update the ISS location every 10 seconds
-  setInterval(getISSLocation, 10000);
+  setTimeout(getISSLocation, 50);
+        
+        // Set an interval to update the ISS location every 10 seconds after the initial fetch
+setInterval(getISSLocation, 10000);
