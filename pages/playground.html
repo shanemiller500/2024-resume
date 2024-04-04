@@ -10,6 +10,8 @@
 		<script src="config.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 		 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+		 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
   		<link rel="stylesheet" href="CSS/main.css" />
 		<title>Flight Search</title>
     <!-- Include CryptoJS for MD5 hashing -->
@@ -60,7 +62,8 @@
 								<li><a href="#places">Places Project</a></li>
 								 <li><a href="#country">Country Search</a></li>
 								 <li><a href="#marvel">Marvel Search</a></li>
-								<li><a href="#random">Bored?</a></li> 
+								<li><a href="#random">Bored?</a></li>
+								
 							
 							</ul>
 							<br>
@@ -68,18 +71,17 @@
 								<li><a href="#comic">Comic Book Search</a></li> 
 								<li><a href="#chuck">Chuck Norris Quotes</a></li>
 								<li><a href="#advice">Solid Advice Search</a></li>
-								 <li><a href="#soon">Coming Soon!</a></li>
-								 <!-- <li><a href="#soon">I'll be soon!</a></li>
-							  -->
+								<li><a href="#ISS">Track the ISS</a></li> 
+								 
+							 
 							</ul>
 							<br>
-							<!-- <ul>
+							<ul>
 								<li><a href="#soon">Coming Soon!</a></li> 
 								<li><a href="#soon">Coming Soon!</a></li>
-								<li><a href="#soon">Coming Soon!</a></li>
-								<li><a href="#soon">Coming Soon!</a></li>
-	
-							</ul> -->
+								<!-- <li><a href="#soon">Coming Soon!</a></li>
+								<li><a href="#soon">Coming Soon!</a></li> -->
+							</ul>
 						</nav>			
 						<span style="text-decoration:none; " href="#" class="close"><i class="fas fa-times"></i></span>			
 					</header>		
@@ -214,6 +216,19 @@
 								<button onclick="fetchAdvice()">Get Advice</button>
 							</article>
 
+							
+							<article id="ISS">
+								<h2 class="major">Track the ISS Live</h2>
+								<p>Live tracking of the International Space Station</p>
+								<br>
+								<div id="mapISS"></div>
+								<h2>Astronauts Onboard</h2>
+								<div class="astronauts-container" id="astronautsContainer"></div>
+								<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+								<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+							
+							</article>
+
 <!-- 
 							<article id="after">
 								<h2 class="major">Coming soon</h2>
@@ -230,5 +245,7 @@
 			<script src="scripts/random.js" ></script>
 			<script src="scripts/advice.js" ></script>
 			<script src="scripts/chuck.js" ></script>
+			<script src="scripts/ISS.js" ></script>
+
 	</body>
 </html>

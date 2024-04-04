@@ -1346,10 +1346,10 @@ input, select, textarea {
 			display: -moz-flex;
 			display: -webkit-flex;
 			display: -ms-flex;
-			display: flex;
-			margin-bottom: 0;
+			display: inline-flex;
+			margin: 8px;
 			list-style: none;
-			padding-left: 0;
+			padding: 3px;
 			border: solid 1px #ffffff;
 			border-radius: 4px;
 		}
@@ -1695,3 +1695,23 @@ input, select, textarea {
 		  #searchInputComic {
 			color: white;
 		  }
+
+
+		  #mapISS {
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .astronauts-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .astronaut-card {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #525252;
+        }
