@@ -15,10 +15,10 @@ const satelliteIcon = L.icon({
 
 // Function to fetch and update the ISS location on the map
 function getISSLocation() {
-    fetch('https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=1436029892,1436029902&units=miles') // Fetch ISS location data
+    fetch('https://api.wheretheiss.at/v1/satellites/25544') // Fetch ISS location data
         .then(response => response.json()) // Parse response as JSON
         .then(data => {
-            const { latitude, longitude } = data[0]; // Extract latitude and longitude from the first data object in the array
+            const { latitude, longitude } = data; // Extract latitude and longitude from the data
             // Add a marker with the custom satellite icon at the ISS location on the map
             L.marker([latitude, longitude], { icon: satelliteIcon }).addTo(mapISS)
                 .bindPopup('Current ISS Location') // Add a popup with location information
@@ -28,32 +28,32 @@ function getISSLocation() {
         .catch(error => console.error('Error fetching ISS location:', error)); // Log any errors
 }
 
-// Function to fetch and display information about astronauts on the ISS
-function getAstronauts() {
-    fetch('http://api.open-notify.org/astros.json') // Fetch astronaut data
-        .then(response => response.json()) // Parse response as JSON
-        .then(data => {
-            const astronautsContainer = document.getElementById('astronautsContainer'); // Get the astronauts container element
-            astronautsContainer.innerHTML = ''; // Clear previous data from the container
+// // Function to fetch and display information about astronauts on the ISS
+// function getAstronauts() {
+//     fetch('http://api.open-notify.org/astros.json') // Fetch astronaut data
+//         .then(response => response.json()) // Parse response as JSON
+//         .then(data => {
+//             const astronautsContainer = document.getElementById('astronautsContainer'); // Get the astronauts container element
+//             astronautsContainer.innerHTML = ''; // Clear previous data from the container
 
-            // Loop through each astronaut and create a card with their name and craft
-            data.people.forEach(person => {
-                const astronautCard = document.createElement('div'); // Create a new div element
-                astronautCard.classList.add('astronaut-card'); // Add a CSS class to the div
-                astronautCard.innerHTML = `
-                    <h3>${person.name}</h3>
-                    <p>Craft: ${person.craft}</p>
-                `; // Set the HTML content of the div
-                astronautsContainer.appendChild(astronautCard); // Append the div to the astronauts container
-            });
-        })
-        .catch(error => console.error('Error fetching astronauts:', error)); // Log any errors
-}
+//             // Loop through each astronaut and create a card with their name and craft
+//             data.people.forEach(person => {
+//                 const astronautCard = document.createElement('div'); // Create a new div element
+//                 astronautCard.classList.add('astronaut-card'); // Add a CSS class to the div
+//                 astronautCard.innerHTML = `
+//                     <h3>${person.name}</h3>
+//                     <p>Craft: ${person.craft}</p>
+//                 `; // Set the HTML content of the div
+//                 astronautsContainer.appendChild(astronautCard); // Append the div to the astronauts container
+//             });
+//         })
+//         .catch(error => console.error('Error fetching astronauts:', error)); // Log any errors
+// }
 
 // Initial call to fetch and display the ISS location and astronauts
 getISSLocation();
-getAstronauts();
+// getAstronauts();
 
 // Set intervals to update the ISS location every 10 seconds and astronauts every 30 seconds
 setInterval(getISSLocation, 10000);
-setInterval(getAstronauts, 30000);
+// setInterval(getAstronauts, 30000);
