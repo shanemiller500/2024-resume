@@ -1708,3 +1708,28 @@ input, select, textarea {
             padding: 10px;
             margin-top: 20px;
         }
+
+		   #currencySuggestions {
+            position: absolute;
+            background-color: black;
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            z-index: 1;
+        }
+        #currencySuggestions div {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        #currencySuggestions div:hover {
+            background-color: black;
+        }
+
+		#currencyInput {
+			color: #ccc;
+		}
+
+		#exchangeRateResult {
+			font-size: 50px;
+			font-family: none;
+		}
