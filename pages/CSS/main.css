@@ -1733,3 +1733,16 @@ input, select, textarea {
 			font-size: 50px;
 			font-family: none;
 		}
+
+
+		.card-title {
+			color: #ccc;
+		}
+
+		.carousel-control-next, .carousel-control-prev {
+			display: hidden;
+		}
+
+		.displayArt  {
+			color: #000000;
+		}
