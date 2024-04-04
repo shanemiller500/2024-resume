@@ -15,10 +15,10 @@ const satelliteIcon = L.icon({
 
 // Function to fetch and update the ISS location on the map
 function getISSLocation() {
-    fetch('http://api.open-notify.org/iss-now.json') // Fetch ISS location data
+    fetch('https://api.wheretheiss.at/v1/satellites/25544/positions?timestamps=1436029892,1436029902&units=miles') // Fetch ISS location data
         .then(response => response.json()) // Parse response as JSON
         .then(data => {
-            const { latitude, longitude } = data.iss_position; // Extract latitude and longitude from data
+            const { latitude, longitude } = data[0]; // Extract latitude and longitude from the first data object in the array
             // Add a marker with the custom satellite icon at the ISS location on the map
             L.marker([latitude, longitude], { icon: satelliteIcon }).addTo(mapISS)
                 .bindPopup('Current ISS Location') // Add a popup with location information
