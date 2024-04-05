@@ -1,3 +1,4 @@
+window.onload = function(){
 // Initialize Leaflet map
 const mapISS = L.map('mapISS').setView([0, 0], 2);
 
@@ -35,8 +36,10 @@ function getISSLocation() {
         .catch(error => console.error('Error fetching ISS data:', error)); // Log any errors
 }
 
-// Initial call to fetch and display the ISS location and data
 setTimeout(getISSLocation, 50);
-
-// Set an interval to update the ISS location and data every 10 seconds after the initial fetch
+// Set an interval to update the ISS location and data every 5 seconds after the initial fetch
 setInterval(getISSLocation, 5000);
+
+
+};
+
