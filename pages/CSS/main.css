@@ -1730,8 +1730,8 @@ input, select, textarea {
 		}
 
 		#exchangeRateResult {
-			font-size: 50px;
-			font-family: none;
+			font-size: 40px;
+			font-family: sans-serif;
 		}
 
 

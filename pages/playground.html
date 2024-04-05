@@ -82,9 +82,9 @@
 							<ul>
 								<li><a href="#exchangeRates">Exchange Rates</a></li> 
 								<li><a href="#art">Art Institute of Chicago</a></li>
-								<!-- <li><a href="#soon">Coming Soon!</a></li> -->
-								<!-- <li><a href="#soon">Coming Soon!</a></li> -->
+								<li><a href="#trump">Did he really just say that?</a></li>
 							</ul>
+
 						</nav>			
 						<span style="text-decoration:none; " href="#" class="close"><i class="fas fa-times"></i></span>			
 					</header>		
@@ -267,27 +267,21 @@
 									<span class="visually-hidden">Next</span>
 									</button>
 								</div>
-
-								<!-- Bootstrap Carousel for Artwork Details in Cards -->
-								<div id="detailsCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
-									<div class="carousel-indicators"></div>
-									<div class="carousel-inner"></div>
-									<button class="carousel-control-prev" type="button" data-bs-target="#detailsCarousel" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-									</button>
-									<button class="carousel-control-next" type="button" data-bs-target="#detailsCarousel" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-									</button>
+								</article>
+								
+							<article id="trump">
+								<h2 class="major">Trump quotes</h2>
+								<p>We've been inundated with quotes we never asked for, yet they keep coming and we cant stop looking.</p>
+								<br>
+								<div id="quote-container">
+									<!-- Quote and author will be displayed here -->
 								</div>
-								</div>
+								<br>
+								<iframe id="tweet-frame" border="0" frameborder="0" height="400" width="550"></iframe>
+								
+								<button onclick="fetchRandomQuote()">Refresh Quote</button>
+								
 							</article>
-							<!-- 
-							<article id="after">
-								<h2 class="major">Coming soon</h2>
-								<p>My next project will appear here soon!</p>
-							</article> -->
 
 							<!-- 
 							<article id="after">
@@ -314,6 +308,7 @@
 			<script src="scripts/ISS.js" ></script>
 			<script src="scripts/exchangerates.js" ></script>
 			<script src="scripts/artWork.js" ></script>
+			<script src="scripts/trump.js" ></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 

@@ -6,7 +6,7 @@ function getActivity() {
             // Update HTML elements with data from API
             document.getElementById('activity').innerText = `Activity: ${data.activity}`;
             document.getElementById('type').innerText = `Type: ${data.type}`;
-            document.getElementById('participants').innerText = `Minium Participants: ${data.participants}`;
+            document.getElementById('participants').innerText = `Minimum Participants: ${data.participants}`;
             document.getElementById('link').innerHTML = `Link: <a href="${data.link}" target="_blank">${data.link}</a>`;
         })
         .catch(error => console.error('Error fetching data:', error));

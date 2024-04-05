@@ -7,7 +7,7 @@ function getJoke() {
             const jokeContainer = document.getElementById('jokeContainer');
             jokeContainer.innerHTML = `
               
-                <p><b>Quote:</b><em> " ${data.value} "</em> </p>
+                <p><b>Quote:</b><em> "${data.value}"</em> </p>
             `;
         })
         .catch(error => console.error('Error fetching joke:', error));
