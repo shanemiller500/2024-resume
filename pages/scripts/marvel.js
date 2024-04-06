@@ -27,33 +27,42 @@ const displayCustomResults = async () => {
     customResultsDiv.innerHTML = ''; // Clear previous results
 
     if (customSearchInput) {
-        const data = await customFetchData(customSearchInput);
-        if (data && data.data && data.data.results) {
-            data.data.results.forEach(character => {
-                // Create HTML elements for each character result
-                const characterDiv = document.createElement('div');
-                characterDiv.classList.add('col-md-4', 'mb-4');
+        // Display spinner for 2 seconds
+        const spinnerDiv = document.createElement('div');
+        spinnerDiv.classList.add('lds-ripple');
+        spinnerDiv.innerHTML = '<div></div><div></div>';
+        customResultsDiv.appendChild(spinnerDiv);
 
-                // Construct image and character info HTML
-                const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`;
-                const characterImage = `<img src="${thumbnail}" class="img-fluid" alt="${character.name}">`;
-                const characterInfo = `<h2>${character.name}</h2>
-                                        <p>${character.description || 'No description available'}</p>`;                               
-                
-                // Set HTML content for character card
-                characterDiv.innerHTML = `
-                    <div class="card">
-                        <div class="card-body">
-                            ${characterImage}
-                            ${characterInfo}
+        setTimeout(async () => {
+            const data = await customFetchData(customSearchInput);
+            if (data && data.data && data.data.results) {
+                customResultsDiv.innerHTML = ''; // Clear spinner
+                data.data.results.forEach(character => {
+                    // Create HTML elements for each character result
+                    const characterDiv = document.createElement('div');
+                    characterDiv.classList.add('col-md-4', 'mb-4');
+
+                    // Construct image and character info HTML
+                    const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`;
+                    const characterImage = `<img src="${thumbnail}" class="img-fluid" alt="${character.name}">`;
+                    const characterInfo = `<h2>${character.name}</h2>
+                                            <p>${character.description || 'No description available'}</p>`;                               
+                    
+                    // Set HTML content for character card
+                    characterDiv.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                ${characterImage}
+                                ${characterInfo}
+                            </div>
                         </div>
-                    </div>
-                `;
-                customResultsDiv.appendChild(characterDiv);
-            });
-        } else {
-            customResultsDiv.innerHTML = '<p class="col">No matching characters found.</p>';
-        }
+                    `;
+                    customResultsDiv.appendChild(characterDiv);
+                });
+            } else {
+                customResultsDiv.innerHTML = '<p class="col">No matching characters found.</p>';
+            }
+        }, 2000); // Wait for 2 seconds before fetching and displaying results
     } else {
         customResultsDiv.innerHTML = '<p class="col">Please enter a character name to search.</p>';
     }
@@ -77,7 +86,6 @@ $(document).ready(function() {
         }
     });
 });
-
 
 // ================================================================================
 
@@ -120,35 +128,61 @@ function searchComics() {
   // Construct the API URL for fetching comic data based on search input
   const apiUrl = `${CUSTOM_API_URL1}?apikey=${CUSTOM_PUBLIC_KEY}&ts=${timestamp}&hash=${hash}&titleStartsWith=${searchInput}`;
 
-  // Fetch comic data from the Marvel API
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      const comicResultsElement = document.getElementById('comicResults');
-      comicResultsElement.innerHTML = ''; // Clear previous results
+  // Display spinner for 2 seconds
+  const spinnerDiv = document.createElement('div');
+  spinnerDiv.classList.add('lds-ripple');
+  spinnerDiv.innerHTML = '<div></div><div></div>';
+  const comicResultsElement = document.getElementById('comicResults'); // Define comicResultsElement here
+  comicResultsElement.appendChild(spinnerDiv);
 
-      // Loop through the comic data and create HTML elements to display each comic
-      data.data.results.forEach(comic => {
-        const comicCard = document.createElement('div');
-        comicCard.classList.add('col-lg-4', 'comic-card');
-        comicCard.innerHTML = `
-          <div class="card">
-            <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">
-            <div class="card-body">
-              <h5 class="card-title">${comic.title}</h5>
-              <p class="card-text">${comic.description || 'No description available'}</p>
+  // Fetch comic data from the Marvel API after 2 seconds
+  setTimeout(() => {
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        comicResultsElement.innerHTML = ''; // Clear previous results
+
+        // Loop through the comic data and create HTML elements to display each comic
+        data.data.results.forEach(comic => {
+          const comicCard = document.createElement('div');
+          comicCard.classList.add('col-lg-4', 'comic-card');
+          comicCard.innerHTML = `
+            <div class="card">
+              <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">
+              <div class="card-body">
+                <h5 class="card-title">${comic.title}</h5>
+                <p class="card-text">${comic.description || 'No description available'}</p>
+              </div>
             </div>
-          </div>
-        `;
-        comicResultsElement.appendChild(comicCard);
+          `;
+          comicResultsElement.appendChild(comicCard);
+        });
+      })
+      .catch(error => {
+        console.error('There was a problem fetching the data:', error);
+      })
+      .finally(() => {
+        // Remove the spinner after fetching data
+        comicResultsElement.removeChild(spinnerDiv);
       });
-    })
-    .catch(error => {
-      console.error('There was a problem fetching the data:', error);
-    });
+  }, 2000); // Wait for 2 seconds before fetching data
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
