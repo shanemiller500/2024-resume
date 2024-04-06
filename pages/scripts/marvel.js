@@ -32,7 +32,7 @@ const displayCustomResults = async () => {
             data.data.results.forEach(character => {
                 // Create HTML elements for each character result
                 const characterDiv = document.createElement('div');
-                characterDiv.classList.add('col-md-10', 'mb-10');
+                characterDiv.classList.add('col-md-4', 'mb-4');
 
                 // Construct image and character info HTML
                 const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`;
@@ -135,7 +135,7 @@ function searchComics() {
       // Loop through the comic data and create HTML elements to display each comic
       data.data.results.forEach(comic => {
         const comicCard = document.createElement('div');
-        comicCard.classList.add('col-lg-10', 'comic-card');
+        comicCard.classList.add('col-lg-4', 'comic-card');
         comicCard.innerHTML = `
           <div class="card">
             <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">

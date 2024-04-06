@@ -21,7 +21,7 @@ function displayQuote(quoteData) {
         <br>
         <p>Wordsmith: The ${_embedded.author[0].name} </p>
         <p>Created: <em> ${datePart} </em></p>
-        <p>Source: <a href="${_embedded.source[0].url}" target="_blank">Link</a></p>
+        <p>Source: <a href="${_embedded.source[0].url}" target="_blank"> X</a></p>
     `;
     quoteContainer.innerHTML = ''; // Clear previous quote
     quoteContainer.appendChild(quoteElement);
