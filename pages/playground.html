@@ -321,12 +321,15 @@
 			<!-- trump -->
 			<article id="trump">
 				<h2 class="major">Trump quotes</h2>
-				<p>We've been inundated with quotes we never asked for, yet they keep coming and we can't stop looking.</p>
+				<div id="spinner" class="lds-ripple" style="display: none;"><div></div><div></div></div>
+				<p id="quote-text">We've been inundated with quotes we never asked for, yet they keep coming and we can't stop looking.</p>
 				<br>
 				<div id="quote-container"></div>
 				<br>
+				
 				<iframe id="tweet-frame" height="400" width="550"></iframe>
-				<button onclick="fetchRandomQuote()">Refresh Quote</button>
+				<button id="refresh-button" onclick="refreshQuote()">Refresh Quote</button>
+				
 			</article>
 
 			<!-- Nasa -->
