@@ -37,11 +37,12 @@ $(document).ready(function () {
         $('#cryptoResults').empty();
         cryptoData.forEach(function (crypto) {
             let changeClass = parseFloat(crypto.changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
+            let changeIcon = parseFloat(crypto.changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
             let html = `<div class="card col-md-4">
                             <div class="card-body ${changeClass}">
                                 <h5 class="card-title">${crypto.name} (${crypto.symbol})</h5>
-                                <p class="card-text"> Price: $ ${parseFloat(crypto.priceUsd).toFixed(2)}</p>
-                                <p class="card-text">24h Change: <span>${formatSupplyValue(crypto.changePercent24Hr)}%</span></p>
+                                <p class="card-text"> Price: $ ${parseFloat(crypto.priceUsd).toFixed(2)}   ${changeIcon}</p>
+                                <p class="card-text">24h Change: <span>${formatSupplyValue(crypto.changePercent24Hr)}%</span></p>  
                             </div>
                         </div>`;
             $('#cryptoResults').append(html);
