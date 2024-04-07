@@ -14,6 +14,8 @@
 
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+   
 
 	<!-- Custom JavaScript config -->
 	<script src="config.js"></script>
@@ -107,7 +109,7 @@
 				</ul>
 				<br>
 				<ul>
-					<li><a href="#exchangeRates">Exchange Rates</a></li>
+					<li><a href="#exchangeRates">Crypto prices</a></li>
 					<li><a href="#art">Art Institute of Chicago</a></li>
 					<li><a href="#comic">Comic Book Search</a></li>
 					<li><a href="#ISS">Track the ISS</a></li>
@@ -216,10 +218,13 @@
 			<!-- Random -->
 			<article id="random">
 				<h2 class="major">Random Activity</h2>
-				<p>Need something to do? Well find something below for you!</p>
+				<div id="randomSpinner" class="lds-ripple" style="display: none;"><div></div><div></div></div>
+				<p id="smlTxt">Need something to do? Well find something below for you!  </p> <br>
+				
 				<br>
 				<p id="activity"></p>
 				<p id="type"></p>
+				<p id="warned"><small><em>Be warned, this can return some weird things..</em></small></p>
 				<p id="participants"></p>
 				<p id="price"></p>
 				<p id="link"></p>
@@ -250,8 +255,10 @@
 			<!-- Chuck -->
 			<article id="chuck">
 				<h2 class="major">chuck Norris Quotes</h2>
-				<div id="jokeContainer"></div>
 				<br>
+				<div id="roundhouseSpinner" class="shuriken-4" style="display: none;"><div></div><div></div></div>
+				<div id="jokeContainer"></div>
+				<br><br><br>	
 				<button id="getJokeButton">Get New Quote</button>
 			</article>
 
@@ -279,21 +286,18 @@
 				<p id="visibility">Visibility: </p>
 			</article>
 
+			<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 			<!-- Exchange -->
 			<article id="exchangeRates">
-				<h2 class="major">Exchange Rate to USD</h2>
-				<p>
-					Please input any country's currency code or cryptocurrency code to view the most recent exchange
-					rates against USD.</p>
-				<div class="container mt-5">
-					<div class="mb-3">
-						<label for="currencyInput" class="form-label">Enter Currency code:</label>
-						<input type="text" class="form-control" id="currencyInput" placeholder="(e.g. BTC, USD, AUD)">
-						<div id="currencySuggestions"></div>
+				<h2 class="major">Crypto prices</h2>
+				<p>The latest crypto prices search any crypto to narrow down your search.</p>
+					<div class="container">
+						<div class="mt-4">
+							<label for="searchCrypto" class="form-label">Search Crypto:</label>
+							<input type="text" id="searchCrypto" class="form-control" placeholder="Enter crypto name or symbol">
+						</div>
+						<div id="cryptoResults" class="row mt-4"></div>
 					</div>
-					<button onclick="getExchangeRate()">Get Exchange Rate</button>
-					<div id="exchangeRateResult" class="mt-3"></div>
-				</div>
 			</article>
 
 			<!-- Art -->
@@ -352,6 +356,7 @@
 					<button id="marsSearchBtn" class="">Search</button>
 					<!-- <div class="mt-3" style="display: none;"> -->
 						<div  id="marsLoadingSpinner" class="lds-ripple mt-3"  style="display: none;"><div></div><div></div></div>
+						
 						
 					</div>
 					<div id="marsPhotoContainer" class="row mt-3"></div>

@@ -50,7 +50,7 @@ const displayCustomResults = async () => {
                     
                     // Set HTML content for character card
                     characterDiv.innerHTML = `
-                        <div class="card">
+                        <div class="card" id="marvel">
                             <div class="card-body">
                                 ${characterImage}
                                 ${characterInfo}
@@ -152,7 +152,7 @@ function searchComics() {
           const comicCard = document.createElement('div');
           comicCard.classList.add('col-lg-4', 'comic-card');
           comicCard.innerHTML = `
-            <div class="card">
+            <div class="card" id="marvel">
               <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">
               <div class="card-body">
                 <h5 class="card-title">${comic.title}</h5>

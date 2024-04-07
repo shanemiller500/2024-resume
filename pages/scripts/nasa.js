@@ -135,7 +135,7 @@ function getNASAData(apiKey) {
                         const cameraName = photo.camera.full_name;
                         if (!photoCounts[cameraName]) {
                             photoCounts[cameraName] = 1;
-                        } else if (photoCounts[cameraName] >= 20) {
+                        } else if (photoCounts[cameraName] >= 10) {
                             return; // Skip adding more than 10 photos per camera
                         } else {
                             photoCounts[cameraName]++;

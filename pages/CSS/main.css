@@ -148,10 +148,35 @@
 	}
   }
 
-#marsSolInput {
+#marsSolInput,#searchCrypto {
 	color: #ccc;
 }
-
+.shuriken-4 {
+	width: calc(80px*0.707);
+	height: calc(80px*0.707);
+	background: white;
+	clip-path: polygon(0 0,50% 15%,100% 0,85% 50%,100% 100%,50% 85%,0 100%,15% 50%);
+	-webkit-mask:
+	  radial-gradient(circle closest-side,#0000 92%,#000) top   /100% 33.4%,
+	  radial-gradient(circle closest-side,#0000 92%,#000) left  /33.4%  33.4%,
+	  radial-gradient(circle 5px         ,#0000 92%,#000) center/33.3%  33.3%,
+	  radial-gradient(circle closest-side,#0000 92%,#000) right /33.4%  33.4%,
+	  radial-gradient(circle closest-side,#0000 92%,#000) bottom/100% 33.4%;
+	-webkit-mask-repeat:no-repeat;
+	animation:sh4 1.5s infinite linear;
+ 	 margin-left: auto;
+ 	 margin-right: auto;
+  }
+  
+  #marsLoadingSpinner, #randomSpinner {
+	margin-left: auto;
+ 	 margin-right: auto;
+  }
+  
+  @keyframes sh4 { 
+	100%{transform: rotate(1turn)}
+  }
+  
 		  
 		#mapContainer {
 			padding-top: 10px;
@@ -162,7 +187,11 @@
 			
 			background: #71717121
 		}
-		.card p {
+		#marvel .card p {
+			color: white;
+		}
+
+		#marvel .card-body  {
 			color: white;
 		}
 

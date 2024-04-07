@@ -38,7 +38,7 @@ function getISSLocation() {
 
 setTimeout(getISSLocation, 50);
 // Set an interval to update the ISS location and data every 5 seconds after the initial fetch
-setInterval(getISSLocation, 5000);
+setInterval(getISSLocation, 10000);
 
 
 };
