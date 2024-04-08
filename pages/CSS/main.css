@@ -179,7 +179,7 @@
 	margin-top:11%
 }
   
-  #marsLoadingSpinner, #randomSpinner {
+  #marsLoadingSpinner, #randomSpinner, #AdviceSpinner {
 	margin-left: auto;
  	 margin-right: auto;
   }
