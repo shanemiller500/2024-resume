@@ -36,11 +36,18 @@
 	<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="CSS/main.css" />
 
-	<!-- CryptoJS for MD5 hashing -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+	<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Typeahead CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.css" rel="stylesheet">
+<!-- Bootstrap JS and Typeahead JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
 	<!-- Custom Style -->
 	<style>
@@ -81,7 +88,7 @@
 			</div>
 			<div class="content">
 				<div class="inner">
-					<h1>My Playground</h1>
+					<h1>My Portfolio</h1>
 					<p>I've been exploring some JavaScript projects using free APIs. It's a work in progress</p>
 
 				</div>
@@ -290,12 +297,37 @@
 			<!-- Exchange -->
 			<article id="exchangeRates">
 				<h2 class="major">Crypto prices</h2>
-				<p>The latest crypto prices search any crypto to narrow down your search.</p>
+				<p>The latest crypto prices in a heat map style display.</p>
 					<div class="container">
-						<div class="mt-4">
-									
+						<div id="cryptoContainer" class="container mt-5">
+							<div class="row">
+								<div id="cryptoSearchInput" class="col-md-6">
+									<input type="text" id="cryptoSearchInputField" class="form-control mb-3" placeholder="Search Crypto">
+									<button id="cryptoSearchButton" onclick="document.getElementById('cryptoResultsModal').style.display='block'">Search</button>
+								</div>  
+							</div>
+							<br>
+							<h2>Top Movers and losers</h2>
+							<div class="row">
+								<div id="cryptoTopGainers" class="col-md-6"></div>
+								<div id="cryptoTopLosers" class="col-md-6"></div>
+							</div>
+							<br>
+							<h2>All crypto</h2>
+							<div id="cryptoResultsContainer" class="row"></div>
 						</div>
-						<div id="cryptoResults" class="row mt-4"></div>
+						<br><br>
+						
+						<!-- Results Modal -->
+						<div id="cryptoResultsModal" class="w3-modal">
+						 <div class="w3-modal-content">
+							<div class="w3-container">
+							<span onclick="document.getElementById('cryptoResultsModal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+							
+							<div id="cryptoResultsContainerModal" class="w3-modal-body"></div>
+							</div>
+						 </div>
+						</div>
 					</div>
 			</article>
 

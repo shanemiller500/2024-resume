@@ -147,7 +147,6 @@
 	  transform: rotate(360deg);
 	}
   }
-  
 
 #marsSolInput,#searchCrypto {
 	color: #ccc;
@@ -168,6 +167,17 @@
  	 margin-left: auto;
  	 margin-right: auto;
   }
+  
+
+.w3-modal-content {
+    margin: auto;
+    background-color: #0a0a0a;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 50%;
+	margin-top:11%
+}
   
   #marsLoadingSpinner, #randomSpinner {
 	margin-left: auto;
