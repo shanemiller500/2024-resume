@@ -61,21 +61,7 @@
 	</style>
 
 	<!-- Custom JavaScript -->
-	<script>
-		var API_KEY = config.API_KEY;
-
-		// Construct the Google Maps API script URL with the API_KEY variable
-		var scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
-
-		// Create a new script element
-		var scriptElement = document.createElement('script');
-
-		// Set the src attribute of the script element to the constructed URL
-		scriptElement.src = scriptUrl;
-
-		// Append the script element to the document's head to load the Google Maps API
-		document.head.appendChild(scriptElement);
-	</script>
+	
 </head>
 
 <body class="is-preload">
@@ -92,13 +78,13 @@
 				<div class="inner">
 					<h1>My Portfolio</h1>
 					<p>I've been exploring some JavaScript projects using free APIs. It's a work in progress</p>
-
 				</div>
 			</div>
 			<nav>
 				<ul>
 					<li><a href="#flight">Flight Search</a></li>
-					<li><a href="#places">Places Project</a></li>
+					<!-- <li><a href="#places">Places Project</a></li> -->
+					<li><a href="#stockQuotes">Stock market data</a></li>
 					<li><a href="#country">Country Search</a></li>
 					<li><a href="#marvel">Marvel Search</a></li>
 					<li><a href="#random">Bored?</a></li>
@@ -112,9 +98,6 @@
 					<li><a href="#advice">Solid Advice Search</a></li>
 					<li><a href="#trump">Did he really just say that?</a></li>
 					<li><a href="#mars">Mars photos</a></li>
-
-
-
 				</ul>
 				<br>
 				<ul>
@@ -124,6 +107,7 @@
 					<li><a href="#ISS">Track the ISS</a></li>
 					<li><a href="#nasa">NASA photo of the day</a></li>
 				</ul>
+				<br>
 
 			</nav>
 			<span style="text-decoration:none; " href="#" class="close"><i class="fas fa-times"></i></span>
@@ -157,33 +141,98 @@
 				<div id="flightResults"></div>
 			</article>
 
-			<!-- Places -->
-			<article id="places">
-				<h2 class="major">Google places</h2>
-				<p>A search that will pick up the top bars/restaurants, Top Golf Courses & top Activities for you & your
-					children. (A work in progress.) </p>
-				<input placeholder="Location" type="text" id="searchInput">
-				<label for="checkbox">
-					<button id="searchBtn" type="button">Search PLaces</button>
-					<button id="clearButton">Clear Results</button>
-					<div id="map"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-sm">
-								<div id="address"></div>
-							</div>
-							<div class="col-sm">
-								<div id="bar"></div>
-								<div id="restaurant"></div>
-							</div>
-							<div class="col-sm">
-								<div id="golfResults"></div>
-							</div>
+			<!-- stock quotes -->
+			<article id="stockQuotes" >	
+				<!-- Tab navigation -->
+				<ul class="tab-links">
+					<li class="tab-link" onclick="openTab('app1')">Stock Quote</li>
+					<li class="tab-link" onclick="openTab('app2')">IPO Calendar</li>
+					<li class="tab-link" onclick="openTab('app3')">Earnings Info</li>
+					<li class="tab-link" onclick="openTab('app4')">News Search</li>
+				</ul>
+				<br><br>
+				<!-- Tab content -->
+				<div id="app1" class="tab active">
+					<h2 class="major">Stock quotes</h2>
+					<br>
+					<p>Search for (almost) any ticker or symbol for common stocks traded on US exchanges. <em>this is a work in progress</em></p>
+				<div class="container mt-5">
+					<input id="stockInput" class="form-control white" type="text" placeholder="Search for a stock symbol">
+							<button id="stockSearchBtn" class=" mt-2">Search</button>
+					<div class="row">
+						<div class="col-md-6">
+							<br><br>
+							<div id="randomSpinner" class="lds-ripple" style="display: none;"><div></div><div></div></div>
 						</div>
-						<div class="col-sm">
-							<div id="Kid"></div>
-							<div id="freeNearby"></div>
-			</article>
+						<div class="col-md-6">
+							<div id="stockData"></div>
+						</div>
+					</div>
+					<div class="mt-3">
+						<div id="stockNewsResults"></div>
+						<nav aria-label="Page navigation">
+							<ul id="stockPagination" class="pagination justify-content-center"></ul>
+						</nav>
+					</div>
+				</div>
+  </div>
+
+				<div id="app2" class="tab">
+					<div class="container">
+						<h2 class="major">IPO Calendar for 2024</h2>
+						<input type="text" id="searchInput" placeholder="Search by event name">
+						<br><br>
+						<div id="ipoCalendar" class="row">
+							<!-- IPO calendar will be populated here -->
+							<div id="noDataMessage" style="display: none;">No data found</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="app3" class="tab">
+					<div class="container">
+						<h2 class="major">Earnings Calendar</h2>
+						<br>
+						<p>Search latest earnings the free API has to offer.</p>
+						<br>
+						<input id="earningsSearchInput" class="form-control" type="text" placeholder="Search by ticker...">
+						<br><br>
+						<table id="earningsTable" class="table">
+							<thead>
+								<tr>
+									<th>Company</th>
+									<th>Date</th>
+									<th>EPS Estimate</th>
+									<th>Actual EPS</th>
+									<th>Surprise</th>
+									<th>Quarter</th>
+								</tr>
+							</thead>
+							<tbody id="earningsBody">
+								<!-- Table rows will be dynamically added here -->
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+				<div id="app4" class="tab">
+					<div class="container mt-5">
+						<h2 class="major">News Search</h2>
+						
+							<div class="input-group mb-3">
+							  <input type="text" id="searchNewsTabStockInput" class="form-control" placeholder="Enter stock symbol">
+							  <br>
+							  <button id="searchNewsTabBtn">Search</button>
+							</div>
+							<div id="searchNewsTabNewsResults" class="row"></div>
+						  </div>
+						
+					
+				</div>
+</article>
+			
 
 			<!-- Country -->
 			<article id="country">
@@ -224,12 +273,11 @@
 					<div id="customResults" class="row"></div>
 			</article>
 
-			<!-- Random -->
+			<!-- Bored -->
 			<article id="random">
 				<h2 class="major">Random Activity</h2>
 				<div id="randomSpinner" class="lds-ripple" style="display: none;"><div></div><div></div></div>
-				<p id="smlTxt">Need something to do? Well find something below for you!  </p> <br>
-				
+				<p id="smlTxt">Need something to do? Well find something below for you!  </p> <br>		
 				<br>
 				<p id="activity"></p>
 				<p id="type"></p>
@@ -240,6 +288,16 @@
 				<br>
 				<button id="getActivityButton">Get New Activity</button>
 			</article>
+
+					<!-- Chuck -->
+					<article id="chuck">
+						<h2 class="major">chuck Norris Quotes</h2>
+						<br>
+						<div id="roundhouseSpinner" class="shuriken-4" style="display: none;"><div></div><div></div></div>
+						<div id="jokeContainer"></div>
+						<br><br><br>	
+						<button id="getJokeButton">Get New Quote</button>
+					</article>
 
 			<!-- Comic -->
 			<article id="comic">
@@ -259,17 +317,7 @@
 					<div id="comicResults" class="row"></div>
 				</div>
 			</article>
-
-
-			<!-- Chuck -->
-			<article id="chuck">
-				<h2 class="major">chuck Norris Quotes</h2>
-				<br>
-				<div id="roundhouseSpinner" class="shuriken-4" style="display: none;"><div></div><div></div></div>
-				<div id="jokeContainer"></div>
-				<br><br><br>	
-				<button id="getJokeButton">Get New Quote</button>
-			</article>
+	
 
 			<!-- Advice -->
 			<article id="advice">
@@ -341,7 +389,7 @@
 				<h2 class="major">Artworks from Institute of Chicago</h2>
 				<p>They have an open API with cool stuff, so here it is!</p>
 				<br>
-				<!-- Bootstrap Carousel for Artworks -->
+				
 				<div id="artworksCarousel" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-indicators"></div>
 					<div class="carousel-inner"></div>
@@ -381,6 +429,7 @@
 					<div id="lastSevenDaysContainer" class="d-flex flex-wrap justify-content-center"></div>
 				</div>
 			</article>
+	
 
 			<!-- Mars -->
 			<article id="mars">
@@ -391,35 +440,44 @@
 					<input type="text" id="marsSolInput" class="form-control" placeholder=" E.G 420"> <br>
 					<button id="marsSearchBtn" class="">Search</button>
 					<!-- <div class="mt-3" style="display: none;"> -->
-						<div  id="marsLoadingSpinner" class="lds-ripple mt-3"  style="display: none;"><div></div><div></div></div>
-						
-						
+						<div  id="marsLoadingSpinner" class="lds-ripple mt-3"  style="display: none;"><div></div><div></div></div>			
 					</div>
 					<div id="marsPhotoContainer" class="row mt-3"></div>
 				</div>
 				</div>
 			</article>
 
+			<!-- Places -->
+			<!-- <article id="places">
+				<h2 class="major">Google places</h2>
+				<p>A search that will pick up the top bars/restaurants, Top Golf Courses & top Activities for you & your
+					children. (A work in progress.) </p>
+				<input placeholder="Location" type="text" id="searchInput">
+				<label for="checkbox">
+					<button id="searchBtn" type="button">Search PLaces</button>
+					<button id="clearButton">Clear Results</button>
+					<div id="map"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm">
+								<div id="address"></div>
+							</div>
+							<div class="col-sm">
+								<div id="bar"></div>
+								<div id="restaurant"></div>
+							</div>
+							<div class="col-sm">
+								<div id="golfResults"></div>
+							</div>
+						</div>
+						<div class="col-sm">
+							<div id="Kid"></div>
+							<div id="freeNearby"></div>
+			</article> -->
+	
+	
 
-							<!-- Next
-							<article id="after">
-								<h2 class="major">Coming soon</h2>
-								<p>My next project will appear here soon!</p>
-							</article> -->
 
-							<!-- Next
-							<article id="after">
-								<h2 class="major">Coming soon</h2>
-								<p>My next project will appear here soon!</p>
-							</article> -->
-
-							<!-- Next
-							<article id="after">
-								<h2 class="major">Coming soon</h2>
-								<p>My next project will appear here soon!</p>
-							</article> -->
-
-		</div>
 		<!-- Scripts -->
 		<script src="scripts/main.js"></script>
 		<script src="scripts/flight.js"></script>
@@ -434,6 +492,7 @@
 		<script src="scripts/artWork.js"></script>
 		<script src="scripts/trump.js"></script>
 		<script src="scripts/nasa.js"></script>
+		<script src="scripts/stocks.js" ></script>
 
 
 </body>

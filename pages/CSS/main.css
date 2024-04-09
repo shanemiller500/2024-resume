@@ -26,7 +26,9 @@
 			margin-bottom: 5px;
 		  }
 
-
+.white {
+	color: white;
+}
 
 
 /* Loader styles */
@@ -44,11 +46,6 @@
 	  transform: rotate(360deg);
 	}
   }
-
-
-
-
-
 
 
   /* art hover effect */
@@ -168,6 +165,33 @@
  	 margin-right: auto;
   }
   
+    /* Basic styles for tabs */
+	.tab {
+		display: none;
+	  }
+	
+	  /* Styles for active tab */
+	  .active {
+		display: block;
+	  }
+	
+	  /* Styles for tab navigation */
+	  .tab-links {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	  }
+	
+	  .tab-link {
+		display: inline-block;
+		padding: 10px 20px;
+		background-color: #0f0f0f79;
+		cursor: pointer;
+	  }
+	
+	  .tab-link:hover {
+		background-color: #7777770a;
+	  }
 
 .w3-modal-content {
     margin: auto;
@@ -301,7 +325,7 @@
 			width: 25rem;
 		 }
 
-		 #searchInputCountry {
+		 #searchInputCountry,#stockInput,#earningsSearchInput,#searchNewsTabStockInput {
 			color: #ccc;
 		 }
 	
@@ -321,6 +345,36 @@
 		  #quote-container {
 			text-align: center;
 		  }
+
+		  .aTypeButton {
+    padding-bottom: 15px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 0;
+    box-shadow: inset 0 0 0 1px #ffffff;
+    color: #ffffff !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 300;
+    height: 2.75rem;
+    letter-spacing: 0.2rem;
+    line-height: 2.75rem;
+    outline: 0;
+    padding: 0 1.25rem 0 1.35rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
 
 
 html, body, div, span, applet, object,
@@ -365,6 +419,16 @@ blockquote, q {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+
+
+}
+
+.table>:not(caption)>*>* {
+    padding: .5rem .5rem;
+    color: var(--bs-table-color-state, #f9f9f9);
+    background-color: #1b1f22;
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state,var(--bs-table-bg-type,var(--bs-table-accent-bg)));
 }
 
 body {
@@ -505,13 +569,21 @@ input, select, textarea {
 		/* width: min-content; */
 	}
 
+	.sizingCol {
+		width: 330px;
+	}
+
 	#customSearchButton {
 		margin-top: 10px;
 		margin-left: 10px;
 	}
 
 	p {
-		margin: 2px;
+		margin: 2px;	
+	}
+
+	p.card-text.mb-2, #newsSummaryColor {
+		color: white !important ;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
