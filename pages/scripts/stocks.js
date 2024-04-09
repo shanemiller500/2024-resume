@@ -64,16 +64,14 @@
                                 var stockInfo = `
                                 <div class="row">
                                 <div class="col-xs-6">
-                                <h2 style="color: ${priceColor}">${description} - (${stockSymbol})
-                                <h2 style="color: ${priceColor}">$${quoteData.l} <i class="${iconClass}"></i></h2>
+                                <h2 style="color: ${priceColor}">${description} - (${stockSymbol}) </h2>
+                                <h2 style="color: ${priceColor}">$${quoteData.l} <i class="${iconClass}"></i> &nbsp;&nbsp;&nbsp;&nbsp; <img src="${logo}" alt="Stock Logo" style="max-width: 90px; max-height: 200px;"></h2>
                                   
                                 </div>
                                 
                               </div>
                              
-                                <img src="${logo}" alt="Stock Logo" style="max-width: 200px; max-height: 200px;"></h2>
-                                
-                                    
+                              
                                     <table class="table table-striped">
                                         <tr>
                                             <td style="color: ${priceColor}">Current Price: </td>

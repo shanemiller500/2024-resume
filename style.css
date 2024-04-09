@@ -278,6 +278,8 @@ ul li:nth-child(6) a:before {
   z-index: 9999; /* Ensure the spinner is above other content */
 }
 
+
+
 /* Semi-transparent overlay to hide HTML content */
 .overlay {
   position: fixed;
