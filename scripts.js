@@ -68,3 +68,15 @@ $(document).ready(function() {
         $(this).removeClass('animate__animated animate__pulse pulse-effect');
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var spinner = document.getElementById('randomSpinner');
+    spinner.style.display = 'block'; // Show the spinner
+
+    // Hide the spinner and overlay after 3 seconds (simulating loading completion)
+    setTimeout(function () {
+      spinner.style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+    }, 4000); // 3 seconds in milliseconds
+  });

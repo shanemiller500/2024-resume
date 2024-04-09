@@ -81,6 +81,14 @@ h1.clear {
   color: #000;
 }
 
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  letter-spacing: 0.5rem;
+  font-family: "Courier New", monospace;
+  font-weight: bolder;
+}
+
 h3 {
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -99,6 +107,8 @@ h3 {
   background-color:white;
   text-align:center;
   padding:50px 80px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .clear {
@@ -245,3 +255,52 @@ ul li:nth-child(6) a:before {
   color: #fff;
 }
 
+
+.shuriken-41 {
+  width: calc(80px * 0.707);
+  height: calc(80px * 0.707);
+  background: white;
+  clip-path: polygon(0 0, 50% 15%, 100% 0, 85% 50%, 100% 100%, 50% 85%, 0 100%, 15% 50%);
+  -webkit-mask:
+    radial-gradient(circle closest-side, #0000 92%, #000) top / 100% 33.4%,
+    radial-gradient(circle closest-side, #0000 92%, #000) left / 33.4% 33.4%,
+    radial-gradient(circle 5px, #0000 92%, #000) center / 33.3% 33.3%,
+    radial-gradient(circle closest-side, #0000 92%, #000) right / 33.4% 33.4%,
+    radial-gradient(circle closest-side, #0000 92%, #000) bottom / 100% 33.4%;
+  -webkit-mask-repeat: no-repeat;
+  animation: bounceAndSpin 4s ease-out infinite; /* Combined bounce and spin animation */
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed; /* Added for bouncing effect */
+  left: 50%; /* Start position in the middle of the screen */
+  top: 50%;
+  transform: translate(-50%, -50%); /* Center the spinner */
+  z-index: 9999; /* Ensure the spinner is above other content */
+}
+
+/* Semi-transparent overlay to hide HTML content */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1b1f22; /* Adjust opacity as needed */
+  z-index: 999; /* Ensure the overlay is below the spinner */
+}
+
+/* Keyframe animation for bouncing around the screen and spinning */
+@keyframes bounceAndSpin {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg); /* Start and end position */
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(0.8) rotate(180deg); /* Bounce in and spin */
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(360deg); /* Bounce out and spin */
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(0.9) rotate(540deg); /* Bounce in and spin */
+  }
+}
