@@ -9,8 +9,11 @@ function refreshQuote() {
     } else if (clickCount === 5) {
         alert('Seriously, maybe take a break? Do you have click habit abuse syndrome?'); // Alert on 5 clicks
     } else if (clickCount === 6) {
-        // Attempt to close the window on the 6th click
-        window.close();
+        alert("Go ride a bike, climb a mountain, you are so bored you keep clicking, I'm going to do us all a favor & shut down your computer for you!");
+        
+            window.open('', '_self', '');
+            window.close();
+        
     }
 
 
