@@ -8,30 +8,38 @@ function refreshQuote() {
         alert('At this rate, you might break the internet with your clicking prowess!'); // Alert on 4 clicks
     } else if (clickCount === 5) {
         alert('Seriously, maybe take a break? Do you have click habit abuse syndrome?'); // Alert on 5 clicks
-    } else if (clickCount === 6) {
-        alert("Go ride a bike, climb a mountain, you are so bored you keep clicking, I'm going to do us all a favor & shut down your computer for you!");
-        
-            window.open('', '_self', '');
-            window.close();
-        
     }
-
-
-
-    document.getElementById('activity').style.display = 'none';
-    document.getElementById('type').style.display = 'none';
-    document.getElementById('participants').style.display = 'none';
-    document.getElementById('link').style.display = 'none';
-    document.getElementById('smlTxt').style.display = 'none';
-    // Show spinner
-    document.getElementById('randomSpinner').style.display = 'block';
-    document.getElementById('warned').style.display = 'block';
-
-    // Fetch a random quote after 2 seconds
-    setTimeout(() => {
-        getActivity();
-    }, 2000);
 }
+
+function handleClick() {
+    clickCount++;
+
+    if (clickCount < 6) {
+
+    } else if (clickCount === 6) {
+        alert("Go ride a bike, climb a mountain, you are so bored you keep clicking, I'm shutting down");
+        closeBrowser();
+    }
+}
+
+function closeBrowser() {
+    window.open('', '_self', '');
+    window.close();
+}
+
+document.getElementById('activity').style.display = 'none';
+document.getElementById('type').style.display = 'none';
+document.getElementById('participants').style.display = 'none';
+document.getElementById('link').style.display = 'none';
+document.getElementById('smlTxt').style.display = 'none';
+// Show spinner
+document.getElementById('randomSpinner').style.display = 'block';
+document.getElementById('warned').style.display = 'block';
+
+// Fetch a random quote after 2 seconds
+setTimeout(() => {
+    getActivity();
+}, 2000);
 
 function getActivity() {
     // Make a fetch call to the API
@@ -68,3 +76,4 @@ getActivity();
 
 // Add event listener to the button
 document.getElementById('getActivityButton').addEventListener('click', refreshQuote);
+document.getElementById('getActivityButton').addEventListener('click', handleClick);
