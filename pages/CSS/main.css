@@ -540,6 +540,7 @@ input, select, textarea {
 				font-size: 10pt;
 			}
 
+
 		}
 
 	body, input, select, textarea {
@@ -574,6 +575,15 @@ input, select, textarea {
 		width: 159px;
 		height: 127px;
 	}
+
+
+
+	.cardFont {
+		color: white;
+
+	}
+
+
      
 	.trade-content {
 		color: white;
@@ -588,6 +598,7 @@ input, select, textarea {
 	strong {
 		color: #000000;
 	}
+	
 
 	em, i {
 		font-style: italic;
@@ -812,7 +823,9 @@ input, select, textarea {
 						width: calc(100% - 1.5rem);
 					}
 
-		}
+				}
+			
+
 
 	label {
 		color: #ffffff;
@@ -1137,6 +1150,36 @@ input, select, textarea {
 			.image.main {
 				margin: 1.5rem 0;
 			}
+
+			.mb-5 {
+				margin-bottom: 1px !important;
+				width: 105px;
+				height: 85px;
+			}
+
+			.trade-content {
+				
+				font-size: 7px;
+			}
+
+			.cardFont {
+			
+			font-size: 7px;
+			}
+
+			.rounded {
+			padding-top: -1px;
+			font-size: 7px;
+
+}
+
+.tab-link {
+    margin: 2px;
+    display: inline-block;
+    padding: 13px 17px;
+
+    font-size: 12px;
+}
 
 		}
 

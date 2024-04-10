@@ -147,6 +147,12 @@ $(document).ready(function () {
                                 </table>
                             `;
                             $('#stockData').html(stockInfo);
+
+                            function formatDate(timestamp) {
+                                var date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+                                var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+                                return date.toLocaleDateString('en-US', options);
+                              }
     
                             $.get('https://finnhub.io/api/v1/company-news', {
                                 symbol: selectedSymbol,
@@ -166,8 +172,10 @@ $(document).ready(function () {
                                             <div class="card mb-3">
                                                 <div class="card-body">
                                                     <h5 class="card-title">${newsItem.headline}</h5>
+                                                    <dd style='color:white;' >As of: ${formatDate(newsItem.datetime)}</dd> 
                                                     ${newsItem.image !== '' ? `<img src="${newsItem.image}" style="max-width: 170px; max-height: 200px; float: right;" alt="News Image">` : ''}
                                                     <p class="card-text" id="newsSummaryColor">${newsItem.summary}</p>
+                                                    <dd style='color:white;' >Source: ${newsItem.source}</dd> 
                                                     <br>
                                                     <a class="aTypeButton" href="${newsItem.url}" target="_blank">Read More</a>
                                                 </div>
@@ -509,7 +517,7 @@ $(document).ready(function() {
 // +++++++++++++++++++++++++++++++++++++++
 
 
-// Live streaming top 20 quotes 
+// Live streaming top quotes 
 
 
 // +++++++++++++++++++++++++++++++++++++++
@@ -519,11 +527,34 @@ const socket = new WebSocket('wss://ws.finnhub.io?token=coatnm1r01qro9kpiodgcoat
 
 console.info('1. New websocket created.');
 
+
+function formatDate(timestamp) {
+    const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZoneName: 'short' };
+    return date.toLocaleString('en-US', options);
+}
 // Initialize object to store trade information for each symbol
 const tradeInfoMap = {};
 
-// Connection opened -> Subscribe to multiple symbols
-socket.addEventListener('open', function (event) {
+// Function to check market status
+// Function to check market status
+function checkMarketStatus() {
+    fetch('https://finnhub.io/api/v1/stock/market-status?exchange=US&token=coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0')
+      .then(response => response.json())
+      .then(data => {
+        const marketStatus = document.getElementById('marketStatus');
+        if (data.isOpen) {
+          marketStatus.textContent = `Market is open. Current time: ${formatDate(data.t)}`;
+          subscribeToSymbols();
+        } else {
+          marketStatus.textContent = 'Market is closed.';
+        }
+      })
+      .catch(error => console.error('Error checking market status:', error));
+  }
+
+// Subscribe to symbols if market is open
+function subscribeToSymbols() {
   const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'TM', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'PM', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX'];
   
   // Subscribe to each symbol
@@ -533,6 +564,12 @@ socket.addEventListener('open', function (event) {
   });
 
   console.info('2. Subscribed to symbols.');
+}
+
+// Connection opened -> Check market status and subscribe to symbols if market is open
+socket.addEventListener('open', function (event) {
+  console.info('Socket connection opened');
+  checkMarketStatus();
 });
 
 // Listen for messages from the websocket stream...
@@ -575,7 +612,6 @@ socket.addEventListener('message', function (event) {
   }
 });
 
-
 // Function to update the trade info display for all symbols
 function updateTradeInfoDisplay(symbol, prevPrice) {
   const tradeInfoGrid = document.getElementById('tradeInfoGrid');
@@ -590,7 +626,7 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
     tradeInfoGrid.appendChild(tradeInfoElement);
   }
 
-  // Create or update the trade info card
+  // Create the card
   const card = document.createElement('div');
   card.classList.add('card');
   card.classList.add('h-100'); // Make the card fill the height
@@ -598,9 +634,10 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body');
 
-  const cardTitle = document.createElement('h5');
-  cardTitle.classList.add('card-title');
-  cardTitle.innerText = `${symbol}`;
+  // Create combined symbol and market status element
+  const combinedInfo = document.createElement('h5');
+  combinedInfo.classList.add('cardFont');
+  combinedInfo.innerText = `${symbol} `;
 
   const tradeContent = document.createElement('div');
   tradeContent.classList.add('trade-content');
@@ -609,16 +646,18 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
   tradeContent.classList.add('rounded');
   tradeContent.innerText = tradeInfoMap[symbol].info;
 
-  cardBody.appendChild(cardTitle);
+  // Append elements to card body
+  cardBody.appendChild(combinedInfo);
   cardBody.appendChild(tradeContent);
   card.appendChild(cardBody);
+
+  // Update trade info element
   tradeInfoElement.innerHTML = ''; // Clear existing content
   tradeInfoElement.appendChild(card);
 
   // Update the background color of the trade info card
   updateTradeColor(card, prevPrice, tradeInfoMap[symbol].price);
 }
-
 // Function to update the background color of the trade info card based on price movement
 function updateTradeColor(card, prevPrice, currentPrice) {
   if (prevPrice !== null && currentPrice !== null) {
