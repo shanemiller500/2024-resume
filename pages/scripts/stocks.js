@@ -524,7 +524,7 @@ const tradeInfoMap = {};
 
 // Connection opened -> Subscribe to multiple symbols
 socket.addEventListener('open', function (event) {
-  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU', 'AMD', 'IBM'];
+  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'TM', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'PM', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX'];
   
   // Subscribe to each symbol
   symbols.forEach(symbol => {

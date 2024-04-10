@@ -571,10 +571,13 @@ input, select, textarea {
 
 	.mb-5 {
 		margin-bottom: 2px !important;
+		width: 159px;
+		height: 127px;
 	}
      
 	.trade-content {
 		color: white;
+		font-size: 12px;
 	}
 
 	.typeahead .dropdown-menu {
