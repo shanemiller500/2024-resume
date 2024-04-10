@@ -149,7 +149,7 @@
 					<li class="tab-link" onclick="openTab('app2')">IPO Calendar</li>
 					<li class="tab-link" onclick="openTab('app3')">Earnings Info</li>
 					<li class="tab-link" onclick="openTab('app4')">News Search</li>
-					<!-- <li class="tab-link" onclick="openTab('app5')">Live stream quotes</li> -->
+					<li class="tab-link" onclick="openTab('app5')">Live stream quotes</li>
 				</ul>
 				<br><br>
 				<!-- Tab content -->
@@ -234,9 +234,11 @@
 						<h2 class="major">Top 20 Stock Tickers</h2>
 						<br>
 						
-						<div class="row row-cols-1 row-cols-md-4 g-4" id="stockList">
-						  <!-- Ticker boxes will be dynamically added here -->
-						</div>
+						<div class="container mt-5" id="tradeInfoContainer">
+							<!-- Trade information for each symbol will be dynamically added here -->
+							<div class="row row-cols-1 row-cols-md-4 g-3" id="tradeInfoGrid"></div>
+						  </div>
+						
 					  </div>
 				</div>
 </article>

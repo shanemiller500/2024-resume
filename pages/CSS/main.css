@@ -569,6 +569,10 @@ input, select, textarea {
 		font-weight: 600;
 	}
 
+	.mb-5 {
+		margin-bottom: 1rem !important;
+	}
+
 
 	.typeahead .dropdown-menu {
 		color: white;

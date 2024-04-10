@@ -515,118 +515,117 @@ $(document).ready(function() {
 // +++++++++++++++++++++++++++++++++++++++
 
 
-// let loadCount = 0; // Track the number of loads
+const socket = new WebSocket('wss://ws.finnhub.io?token=coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0');
 
-// function connectToWebSocket() {
-//   const apiKey = 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0';
-//   const websocket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
+console.info('1. New websocket created.');
 
-//   websocket.onopen = () => {
-//     console.log('WebSocket connection opened.');
-//     showLoader(); // Show the spinner when WebSocket is opened
+// Initialize object to store trade information for each symbol
+const tradeInfoMap = {};
 
-//     const message = JSON.stringify({ type: 'subscribe', symbol: 'AAPL,MSFT,AMZN,GOOGL,META,TSLA,NVDA,JPM,INTC,V,JNJ,PG,UNH,MA,HD,DIS,PYPL,BAC,GOOG,ADBE', });
-//     websocket.send(message);
-//   };
-
+// Connection opened -> Subscribe to multiple symbols
+socket.addEventListener('open', function (event) {
+  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU'];
   
-// websocket.onmessage = (event) => {
-//     console.log('WebSocket data received:', event.data);
-// };
+  // Subscribe to each symbol
+  symbols.forEach(symbol => {
+    socket.send(JSON.stringify({'type':'subscribe', 'symbol': symbol}));
+    console.info(`Subscribed to ${symbol}`);
+  });
 
-//   websocket.onmessage = (event) => {
-//     const responseData = JSON.parse(event.data);
+  console.info('2. Subscribed to symbols.');
+});
 
-//     // Check if responseData contains the expected structure
-//     if (responseData && responseData.data && Array.isArray(responseData.data)) {
-//       const tradesData = responseData.data;
+// Listen for messages from the websocket stream...
+socket.addEventListener('message', function (event) {
+  console.clear();
+  console.info('1. New websocket created.');
+  console.info('2. Subscribed to symbols.');
+  console.info('3. Websocket streaming.');
 
-//       // Assuming you want to process each trade individually
-//       for (const trade of tradesData) {
-//         const symbol = trade.s;
-//         const price = trade.p;
-//         const timestamp = trade.t;
-//         const volume = trade.v;
+  // stream response...
+  let response = JSON.parse(event.data);
 
-//         // Now you can use this data as needed, such as displaying it on the webpage
-//         console.log(`Received trade data - Symbol: ${symbol}, Price: ${price}, Timestamp: ${timestamp}, Volume: ${volume}`);
+  // Determine response type.
+  switch(response.type) {
+    // Just a Websocket server ping.
+    case 'ping':
+      // ping.
+      console.warn('Occasional server', response.type + '.');
+      break;
+    case 'trade':
+      // type = trade. Obtain nodes.
+      const symbol = response.data[0].s;
+      const tradePrice = parseFloat(response.data[0].p);
+      const tradeInfo =  symbol + ' $' + tradePrice.toFixed(2);
 
-//         // Here you can perform further processing or display the data on the webpage
-//         // Example: addToTradeHistory(symbol, price, timestamp, volume);
-//       }
+      // Update trade information if timestamp is newer
+      if (!tradeInfoMap.hasOwnProperty(symbol) || response.data[0].t > tradeInfoMap[symbol].timestamp) {
+        const prevTradePrice = tradeInfoMap[symbol] ? tradeInfoMap[symbol].price : null;
+        tradeInfoMap[symbol] = {
+          timestamp: response.data[0].t,
+          price: tradePrice,
+          info: tradeInfo
+        };
+        updateTradeInfoDisplay(symbol, prevTradePrice);
+      }
+      break;
+    default:
+      // anything else we haven't caught yet.
+      console.log(response);
+  }
+});
 
-//       // Display stock data on the webpage after a fake spin for 4 seconds
-//       setTimeout(() => {
-//         displayStockData(responseData); // Assuming you want to display the entire response data
-//       }, 4000);
 
-//       // Increment loadCount
-//       loadCount++;
+// Function to update the trade info display for all symbols
+function updateTradeInfoDisplay(symbol, prevPrice) {
+  const tradeInfoGrid = document.getElementById('tradeInfoGrid');
 
-//       // Check if loadCount is 2, stop the spinner
-//       if (loadCount === 2) {
-//         hideLoader();
-//       }
-//     } else {
-//       console.error('Invalid data structure received from WebSocket:', responseData);
-//     }
-//   };
+  // Find or create the trade info element for the symbol
+  let tradeInfoElement = document.getElementById(`tradeInfo_${symbol}`);
+  if (!tradeInfoElement) {
+    tradeInfoElement = document.createElement('div');
+    tradeInfoElement.classList.add('col');
+    tradeInfoElement.classList.add('mb-5'); // Add margin between cards
+    tradeInfoElement.id = `tradeInfo_${symbol}`;
+    tradeInfoGrid.appendChild(tradeInfoElement);
+  }
 
-//   websocket.onerror = (error) => {
-//     console.error('WebSocket error:', error);
-//     hideLoader(); // Hide the spinner on error
-//   };
+  // Create or update the trade info card
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.classList.add('h-100'); // Make the card fill the height
 
-//   websocket.onclose = () => {
-//     console.log('WebSocket connection closed.');
-//     hideLoader(); // Hide the spinner on close
-//   };
-// }
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
 
-// function displayStockData(data) {
-//   const stockListElement = $('#stockList');
-//   stockListElement.empty(); // Clear existing list items
+  const cardTitle = document.createElement('h5');
+  cardTitle.classList.add('card-title');
+  cardTitle.innerText = `${symbol} Trade Information`;
 
-//   const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'META', 'TSLA', 'NVDA', 'BRK.A', 'JNJ', 'V', 'JPM', 'PG', 'UNH', 'MA', 'HD', 'DIS', 'PYPL', 'BAC', 'GOOG', 'ADBE'];
+  const tradeContent = document.createElement('div');
+  tradeContent.classList.add('trade-content');
+  tradeContent.classList.add('mb-3');
+  tradeContent.classList.add('p-3');
+  tradeContent.classList.add('rounded');
+  tradeContent.innerText = tradeInfoMap[symbol].info;
 
-//   for (const symbol of symbols) {
-//     const stockData = data[symbol];
-//     if (stockData) {
-//       const currentPrice = stockData.c;
-//       const previousClose = stockData.pc;
-//       const percentageChange = ((currentPrice - previousClose) / previousClose) * 100;
-//       const marketStatus = stockData.s; // Assuming 's' field indicates market status
-      
-//       let priceContent;
-//       if (marketStatus === 'open') {
-//         priceContent = `Price: ${currentPrice}<br>% Change: ${percentageChange.toFixed(2)}%`;
-//       } else if (marketStatus === 'closed') {
-//         priceContent = 'Market Closed';
-//       } else {
-//         priceContent = 'Data Unavailable';
-//       }
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(tradeContent);
+  card.appendChild(cardBody);
+  tradeInfoElement.innerHTML = ''; // Clear existing content
+  tradeInfoElement.appendChild(card);
 
-//       const boxContent = `<div class="col">
-//                             <div class="p-3 border bg-light">${symbol}<br>${priceContent}</div>
-//                           </div>`;
-//       stockListElement.append(boxContent);
-//     } else {
-//       const boxContent = `<div class="col">
-//                             <div class="p-3 border bg-light">${symbol}<br>Price: --<br>% Change: --</div>
-//                           </div>`;
-//       stockListElement.append(boxContent);
-//     }
-//   }
-// }
+  // Update the background color of the trade info card
+  updateTradeColor(card, prevPrice, tradeInfoMap[symbol].price);
+}
 
-// function showLoader() {
-//   $('.stock-loader').show();
-// }
-
-// function hideLoader() {
-//   $('.stock-loader').hide();
-// }
-
-// // Call the function to establish the WebSocket connection
-// connectToWebSocket();
-
+// Function to update the background color of the trade info card based on price movement
+function updateTradeColor(card, prevPrice, currentPrice) {
+  if (prevPrice !== null && currentPrice !== null) {
+    if (currentPrice > prevPrice) {
+      card.style.backgroundColor = 'green'; // Price is up
+    } else if (currentPrice < prevPrice) {
+      card.style.backgroundColor = 'red'; // Price is down
+    }
+  }
+}
