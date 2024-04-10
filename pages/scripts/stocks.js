@@ -556,7 +556,7 @@ socket.addEventListener('message', function (event) {
       // type = trade. Obtain nodes.
       const symbol = response.data[0].s;
       const tradePrice = parseFloat(response.data[0].p);
-      const tradeInfo =  symbol + ' $' + tradePrice.toFixed(2);
+      const tradeInfo = '' + ' $' + tradePrice.toFixed(2);
 
       // Update trade information if timestamp is newer
       if (!tradeInfoMap.hasOwnProperty(symbol) || response.data[0].t > tradeInfoMap[symbol].timestamp) {
@@ -600,7 +600,7 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
 
   const cardTitle = document.createElement('h5');
   cardTitle.classList.add('card-title');
-  cardTitle.innerText = `${symbol} Trade Information`;
+  cardTitle.innerText = `${symbol}`;
 
   const tradeContent = document.createElement('div');
   tradeContent.classList.add('trade-content');
