@@ -572,7 +572,10 @@ input, select, textarea {
 	.mb-5 {
 		margin-bottom: 1rem !important;
 	}
-
+     
+	.trade-content {
+		color: white;
+	}
 
 	.typeahead .dropdown-menu {
 		color: white;
