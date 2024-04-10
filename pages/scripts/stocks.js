@@ -422,92 +422,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 $(document).ready(function() {
-    // Initialize typeahead on the stockInput field
-    $('#searchNewsTabStockInput').typeahead({
-      source: function(query, process) {
-        $.get('https://finnhub.io/api/v1/news', {
-          category: 'general',
-          token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
-        }, function(data) {
-          var symbols = data.map(function(item) {
-            return item.related;
-          });
-          return process(symbols);
-        });
-      }
+  // Function to fetch and display news based on user input
+  function searchNews() {
+    var selectedSymbol = $('#searchNewsTabStockInput').val();
+    $.get('https://finnhub.io/api/v1/company-news', {
+      symbol: selectedSymbol,
+      from: new Date(Date.now() - 86400000).toISOString().slice(0, 10),
+      to: new Date().toISOString().slice(0, 10),
+      token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+    }, function(data) {
+      displayNews(data);
     });
-  
-    // Function to fetch and display news based on user input
-    function searchNews() {
-      var selectedSymbol = $('#searchNewsTabStockInput').val();
-      $.get('https://finnhub.io/api/v1/company-news', {
-        symbol: selectedSymbol,
-        from: new Date(Date.now() - 86400000).toISOString().slice(0, 10),
-        to: new Date().toISOString().slice(0, 10),
-        token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
-      }, function(data) {
-        displayNews(data);
-      });
-    }
-  
-    // Call searchNews() when search button is clicked
-    $('#searchNewsTabBtn').on('click', function() {
+  }
+
+  // Call searchNews() when search button is clicked
+  $('#searchNewsTabBtn').on('click', function() {
+    searchNews();
+  });
+
+  // Call searchNews() when Enter key is pressed in the input field
+  $('#searchNewsTabStockInput').keypress(function(event) {
+    if (event.which == 13) {
       searchNews();
-    });
-  
-    // Call searchNews() when Enter key is pressed in the input field
-    $('#searchNewsTabStockInput').keypress(function(event) {
-      if (event.which == 13) {
-        searchNews();
-      }
-    });
-  
-    function displayNews(newsData) {
-      var newsResults = $('#searchNewsTabNewsResults');
-      newsResults.empty();
-      if (newsData && newsData.length > 0) {
-        newsData.forEach(function(news) {
-          var newsItem = $('<div class="col-md-6 mb-6"></div>');
-          var newsCard = $('<div class="card"></div>');
-          var cardBody = $('<div class="card-body"></div>');
-  
-          var category = $('<h5 class="card-title">' + news.category + '</h5>');
-          var datetime = $('<p class="card-text white">Released: ' + formatDate(news.datetime) + '</p>');
-          var related = $('<p class="card-text white">Related: ' + news.related + '</p>');
-          var source = $('<p class="card-text white">Source: ' + news.source + '</p>');
-          var summary = $('<p class="card-text white">Summary: ' + news.summary + '</p> <br>');
-          var url = $('<a class="aTypeButton" href="' + news.url + '" target="_blank">Read More</a>');
-  
-          cardBody.append(category);
-          cardBody.append(datetime);
-          cardBody.append(related);
-          cardBody.append(source);
-          cardBody.append(summary);
-          cardBody.append(url);
-  
-          if (news.image && news.image !== "") {
-            var image = $('<img class="card-img-top" src="' + news.image + '" alt="News Image">');
-            newsCard.append(image);
-          }
-  
-          newsCard.append(cardBody);
-          newsItem.append(newsCard);
-  
-          newsResults.append(newsItem);
-        });
-      } else {
-        newsResults.append('<p class="col-md-12">No news found for the selected symbol.</p>');
-      }
-    }
-  
-    // Function to format Unix timestamp to a date string
-    function formatDate(timestamp) {
-      var date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
-      var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-      return date.toLocaleDateString('en-US', options);
     }
   });
 
+  // Function to format Unix timestamp to a date string
+  function formatDate(timestamp) {
+    var date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  // Function to display news data
+  function displayNews(newsData) {
+    var newsResults = $('#searchNewsTabNewsResults');
+    newsResults.empty();
+    if (newsData && newsData.length > 0) {
+      newsData.forEach(function(news) {
+        var newsItem = $('<div class="col-md-6 mb-6"></div>');
+        var newsCard = $('<div class="card"></div>');
+        var cardBody = $('<div class="card-body"></div>');
+
+        var category = $('<h5 class="card-title white">' + news.category + '</h5>');
+        var datetime = $('<p class="card-text white">Released: ' + formatDate(news.datetime) + '</p>');
+        var related = $('<p class="card-text white">Related: ' + news.related + '</p>');
+        var source = $('<p class="card-text white">Source: ' + news.source + '</p>');
+        var summary = $('<p class="card-text white">Summary: ' + news.summary + '</p> <br>');
+        var url = $('<a class="aTypeButton" href="' + news.url + '" target="_blank">Read More</a>');
+
+        cardBody.append(category);
+        cardBody.append(datetime);
+        cardBody.append(related);
+        cardBody.append(source);
+        cardBody.append(summary);
+        cardBody.append(url);
+
+        if (news.image && news.image !== "") {
+          var image = $('<img class="card-img-top" src="' + news.image + '" alt="News Image">');
+          newsCard.append(image);
+        }
+
+        newsCard.append(cardBody);
+        newsItem.append(newsCard);
+
+        newsResults.append(newsItem);
+      });
+    } else {
+      newsResults.append('<p class="col-md-12">No news found for the selected symbol.</p>');
+    }
+  }
+
+  // Fetch and display all news on page load
+  $.get('https://finnhub.io/api/v1/news', {
+    category: 'general',
+    token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+  }, function(data) {
+    displayNews(data);
+  });
+});
 
 
 
