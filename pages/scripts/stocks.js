@@ -534,7 +534,8 @@ function checkMarketStatus() {
           marketStatus.textContent = `Market is open. Current time: ${formatDate(data.t)}`;
           subscribeToSymbols();
         } else {
-          marketStatus.textContent = 'Market is closed.';
+          marketStatus.textContent = "The markets are now closed. Check back during market hours for the latest updates!";
+          marketStatus.classList.add('alert', 'alert-danger');
         }
       })
       .catch(error => console.error('Error checking market status:', error));
