@@ -33,7 +33,7 @@ function getNASAData(apiKey) {
       date.setDate(today.getDate() - i);
       const formattedDate = formatDate(date);
 
-      const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${formattedDate}`;
+      const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
       fetch(apiUrl)
         .then(response => response.json())
