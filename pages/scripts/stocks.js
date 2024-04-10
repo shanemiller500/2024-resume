@@ -95,7 +95,7 @@ $(document).ready(function () {
                             var fiftyTwoWeekLowDate = metricData.metric['52WeekLowDate'];
                             var marketCapitalization = metricData.metric['marketCapitalization'];
                             var epsTTM = metricData.metric['epsTTM'];
-                            var isOpenText = marketStatusData.isOpen ? 'Open' : 'Market closed';
+                            var isOpenText = marketStatusData.isOpen ? 'Market Open' : 'Market closed';
                      
                             
 
@@ -524,7 +524,7 @@ const tradeInfoMap = {};
 
 // Connection opened -> Subscribe to multiple symbols
 socket.addEventListener('open', function (event) {
-  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU'];
+  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU', 'AMD', 'IBM'];
   
   // Subscribe to each symbol
   symbols.forEach(symbol => {
