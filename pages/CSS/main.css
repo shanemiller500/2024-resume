@@ -540,7 +540,6 @@ input, select, textarea {
 				font-size: 10pt;
 			}
 
-
 		}
 
 	body, input, select, textarea {
@@ -1153,7 +1152,7 @@ input, select, textarea {
 
 			.mb-5 {
 				margin-bottom: 1px !important;
-				width: 105px;
+				width: 102px !important;
 				height: 85px;
 			}
 
