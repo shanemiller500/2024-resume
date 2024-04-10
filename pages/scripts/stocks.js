@@ -81,7 +81,7 @@ $(document).ready(function () {
     
                             // Check if description or stockSymbol is null
                             if (!description || !stockSymbol) {
-                                alert("What the hell even is that?? Just kidding, its likely invalid or not available  in this universe");
+                                alert("WHAT THE HELL EVEN IS THAT?? Just kidding, its likely invalid or not available in this universe");
                                 $('#randomSpinner').hide(); // Hide spinner
                                 return; // Stop further execution
                             }
@@ -172,7 +172,7 @@ $(document).ready(function () {
                                             <div class="card mb-3">
                                                 <div class="card-body">
                                                     <h5 class="card-title">${newsItem.headline}</h5>
-                                                    <dd style='color:white;' >As of: ${formatDate(newsItem.datetime)}</dd> 
+                                                    <dd style='color:white;' >Release date: ${formatDate(newsItem.datetime)}</dd> 
                                                     ${newsItem.image !== '' ? `<img src="${newsItem.image}" style="max-width: 170px; max-height: 200px; float: right;" alt="News Image">` : ''}
                                                     <p class="card-text" id="newsSummaryColor">${newsItem.summary}</p>
                                                     <dd style='color:white;' >Source: ${newsItem.source}</dd> 
