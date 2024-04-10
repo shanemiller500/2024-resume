@@ -29,6 +29,12 @@ $(document).ready(function () {
         }
     });
 
+    function formatDate(timestamp) {
+        const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+        const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZoneName: 'short' };
+        return date.toLocaleString('en-US', options);
+    }
+
     // Function to format supply value
     function formatSupplyValue(supplyValue) {
         // Convert the supply value to a number
@@ -49,10 +55,10 @@ $(document).ready(function () {
 
     $('#stockSearchBtn').on('click', function () {
         var selectedSymbol = stockInput.val();
-
+    
         if (selectedSymbol) {
             $('#randomSpinner').show(); // Show spinner
-
+    
             $.get('https://finnhub.io/api/v1/quote', {
                 symbol: selectedSymbol,
                 token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
@@ -66,123 +72,120 @@ $(document).ready(function () {
                         metric: 'all',
                         token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
                     }, function (metricData) {
-                        var description = profileData.name;
-                        var stockSymbol = profileData.ticker;
-
-                        // Check if description or stockSymbol is null
-                        if (!description || !stockSymbol) {
-                            alert("What the hell even is that?? Just kidding, its likely invalid or not available  in this universe");
-                            $('#randomSpinner').hide(); // Hide spinner
-                            return; // Stop further execution
-                        }
-
-                        var logo = profileData.logo;
-                        var priceColor = quoteData.c > quoteData.o ? 'green' : 'red';
-                        var iconClass = parseFloat(quoteData.c > quoteData.o ? 1 : -1) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
-                        var fiftyTwoWeekHigh = metricData.metric['52WeekHigh'];
-                        var fiftyTwoWeekHighDate = metricData.metric['52WeekHighDate'];
-                        var fiftyTwoWeekLow = metricData.metric['52WeekLow'];
-                        var fiftyTwoWeekLowDate = metricData.metric['52WeekLowDate'];
-                        var marketCapitalization = metricData.metric['marketCapitalization'];
-                        var epsTTM = metricData.metric['epsTTM'];
-
-                        var stockInfo = `
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <h2 style="color: ${priceColor}">${description} - (${stockSymbol}) </h2>
-                                    <dd style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} | ${formatSupplyValue(quoteData.dp)}%  <i class="${iconClass}"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="${logo}" alt="Stock Logo" style="max-width: 100px; max-height: 200px;"></dd>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <table class="table table-striped">
-                                <tr>
-                                    <td style="color: ${priceColor}">Current Price: </td>
-                                    <td style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} <i class="${iconClass}"></i></span></td>
-                                    <td>Open Price</td>
-                                    <td>$${formatSupplyValue(quoteData.o)}</td>
-                                </tr>
-                                <tr>
-                                    <td>High Price</td>
-                                    <td>$${formatSupplyValue(quoteData.h)}</td>
-                                    <td>Low Price</td>
-                                    <td>$${formatSupplyValue(quoteData.l)}</td>
-                                </tr>
-                                <tr>
-                                    <td>52 Week High</td>
-                                    <td>$${formatSupplyValue(fiftyTwoWeekHigh)}</td>
-                                    <td>Date</td>
-                                    <td>${fiftyTwoWeekHighDate}</td>
-                                </tr>
-                                <tr>
-                                    <td>52 Week Low</td>
-                                    <td>$${formatSupplyValue(fiftyTwoWeekLow)}</td>
-                                    <td>Date</td>
-                                    <td>${fiftyTwoWeekLowDate}</td>
-                                </tr>
-                                <tr>
-                                    <td>Market Capitalization</td>
-                                    <td>$${formatSupplyValue(marketCapitalization)}</td>
-                                    <td> EPS TTM:</td>
-                                    <td>$${formatSupplyValue(epsTTM)}</td>
-                                </tr>
-                            </table>
-                        `;
-                        $('#stockData').html(stockInfo);
-
-                        // Fetch news for the selected symbol
-                        $.get('https://finnhub.io/api/v1/company-news', {
-                            symbol: selectedSymbol,
-                            from: new Date().toISOString().slice(0, 10),
-                            to: new Date().toISOString().slice(0, 10),
-                            token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
-                        }, function (newsData) {
-                            var newsHtml = '';
-                            if (newsData && newsData.length > 0) {
-                                var startIndex = (currentPage - 1) * pageSize;
-                                var endIndex = startIndex + pageSize;
-                                var paginatedData = newsData.slice(startIndex, endIndex);
-
-                                paginatedData.forEach(function (newsItem) {
-                                    newsHtml += `
-                                        <h3>Latest News</h3>
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${newsItem.headline}</h5>
-                                                <p class="card-text" id="newsSummaryColor">${newsItem.summary}</p>
-                                                <br>
-                                                <a class="btn btn-primary" href="${newsItem.url}" target="_blank">Read More</a>
-                                            </div>
-                                        </div>`;
-                                });
-
-                                var totalPages = Math.ceil(newsData.length / pageSize);
-                                var paginationHtml = '';
-                                for (var i = 1; i <= totalPages; i++) {
-                                    paginationHtml += `<li class="page-item ${currentPage === i ? 'active' : ''}">
-                                        <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-                                    </li>`;
-                                }
-
-                                $('#stockPagination').html(paginationHtml);
-                            } else {
-                                newsHtml = '<p>No news found for today.</p>';
-                                $('#stockPagination').html('');
+                        $.get('https://finnhub.io/api/v1/stock/market-status', {
+                            exchange: 'US',
+                            token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+                        }, function (marketStatusData) {
+                            var description = profileData.name;
+                            var stockSymbol = profileData.ticker;
+    
+                            // Check if description or stockSymbol is null
+                            if (!description || !stockSymbol) {
+                                alert("What the hell even is that?? Just kidding, its likely invalid or not available  in this universe");
+                                $('#randomSpinner').hide(); // Hide spinner
+                                return; // Stop further execution
                             }
+    
+                            var logo = profileData.logo;
+                            var priceColor = quoteData.c > quoteData.o ? 'green' : 'red';
+                            var iconClass = parseFloat(quoteData.c > quoteData.o ? 1 : -1) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
+                            var fiftyTwoWeekHigh = metricData.metric['52WeekHigh'];
+                            var fiftyTwoWeekHighDate = metricData.metric['52WeekHighDate'];
+                            var fiftyTwoWeekLow = metricData.metric['52WeekLow'];
+                            var fiftyTwoWeekLowDate = metricData.metric['52WeekLowDate'];
+                            var marketCapitalization = metricData.metric['marketCapitalization'];
+                            var epsTTM = metricData.metric['epsTTM'];
+                            var isOpenText = marketStatusData.isOpen ? 'Open' : 'Market closed';
+                     
+                            
 
-                            $('#stockNewsResults').html(newsHtml);
-                            $('#randomSpinner').hide(); // Hide spinner after data is loaded
+    
+                            var stockInfo = `
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h2>${description} - (${stockSymbol})  <img src="${logo}" alt="Stock Logo" style="max-width: 200px; max-height: 200px; float: right;"></h2>
+                                        <h2 style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} | ${formatSupplyValue(quoteData.dp)}%  <i class="${iconClass}"></i></h2>
+                                        <br><br>
+                                        <dd>${isOpenText} | As of: ${formatDate(marketStatusData.t)}</dd>
+                                        <dd>Exchange: ${marketStatusData.exchange}</dd>
+                                        <br>
+                                    </div>
+                                </div>
+    
+                                <table class="table table-striped">
+                                    <tr>
+                                        <td style="color: ${priceColor}">Current Price: </td>
+                                        <td style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} <i class="${iconClass}"></i></span></td>
+                                        <td>Open Price</td>
+                                        <td>$${formatSupplyValue(quoteData.o)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High Price</td>
+                                        <td>$${formatSupplyValue(quoteData.h)}</td>
+                                        <td>Low Price</td>
+                                        <td>$${formatSupplyValue(quoteData.l)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>52 Week High</td>
+                                        <td>$${formatSupplyValue(fiftyTwoWeekHigh)}</td>
+                                        <td>Date</td>
+                                        <td>${fiftyTwoWeekHighDate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>52 Week Low</td>
+                                        <td>$${formatSupplyValue(fiftyTwoWeekLow)}</td>
+                                        <td>Date</td>
+                                        <td>${fiftyTwoWeekLowDate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Market Cap</td>
+                                        <td>$${formatSupplyValue(marketCapitalization)}</td>
+                                        <td> EPS TTM:</td>
+                                        <td>$${formatSupplyValue(epsTTM)}</td>
+                                    </tr>
+        
+                                </table>
+                            `;
+                            $('#stockData').html(stockInfo);
+    
+                            $.get('https://finnhub.io/api/v1/company-news', {
+                                symbol: selectedSymbol,
+                                from: new Date(Date.now() - 86400000).toISOString().slice(0, 10), // 86400000 milliseconds = 1 day
+                                to: new Date().toISOString().slice(0, 10),
+                                token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+                            }, function (newsData) {
+                                var newsHtml = '';
+                                if (newsData && newsData.length > 0) {
+                                    var startIndex = (currentPage - 1) * pageSize;
+                                    var endIndex = startIndex + pageSize;
+                                    var paginatedData = newsData.slice(startIndex, endIndex);
+                            
+                                    paginatedData.forEach(function (newsItem, index) {
+                                        newsHtml += `
+                                        ${index === 0 ? '<h3>Latest News</h3>' : ''} 
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${newsItem.headline}</h5>
+                                                    ${newsItem.image !== '' ? `<img src="${newsItem.image}" style="max-width: 170px; max-height: 200px; float: right;" alt="News Image">` : ''}
+                                                    <p class="card-text" id="newsSummaryColor">${newsItem.summary}</p>
+                                                    <br>
+                                                    <a class="aTypeButton" href="${newsItem.url}" target="_blank">Read More</a>
+                                                </div>
+                                            </div>`;
+                                    });
+                                } else {
+                                    newsHtml = '<p>No news found for today.</p>';
+                                }
+                            
+                                $('#stockNewsResults').html(newsHtml);
+                                $('#randomSpinner').hide(); // Hide spinner after data is loaded
+                            });
                         });
                     });
                 });
             });
         }
     });
-
-    function changePage(page) {
-        currentPage = page;
-        $('#stockSearchBtn').trigger('click');
-    }
 
     // Event listener for Enter key press
     stockInput.on('keydown', function (event) {
@@ -191,7 +194,6 @@ $(document).ready(function () {
         }
     });
 });
-
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -432,7 +434,7 @@ $(document).ready(function() {
       var selectedSymbol = $('#searchNewsTabStockInput').val();
       $.get('https://finnhub.io/api/v1/company-news', {
         symbol: selectedSymbol,
-        from: new Date().toISOString().slice(0, 10),
+        from: new Date(Date.now() - 86400000).toISOString().slice(0, 10),
         to: new Date().toISOString().slice(0, 10),
         token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
       }, function(data) {
@@ -497,3 +499,134 @@ $(document).ready(function() {
       return date.toLocaleDateString('en-US', options);
     }
   });
+
+
+
+
+
+
+
+// +++++++++++++++++++++++++++++++++++++++
+
+
+// Live streaming top 20 quotes 
+
+
+// +++++++++++++++++++++++++++++++++++++++
+
+
+// let loadCount = 0; // Track the number of loads
+
+// function connectToWebSocket() {
+//   const apiKey = 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0';
+//   const websocket = new WebSocket(`wss://ws.finnhub.io?token=${apiKey}`);
+
+//   websocket.onopen = () => {
+//     console.log('WebSocket connection opened.');
+//     showLoader(); // Show the spinner when WebSocket is opened
+
+//     const message = JSON.stringify({ type: 'subscribe', symbol: 'AAPL,MSFT,AMZN,GOOGL,META,TSLA,NVDA,JPM,INTC,V,JNJ,PG,UNH,MA,HD,DIS,PYPL,BAC,GOOG,ADBE', });
+//     websocket.send(message);
+//   };
+
+  
+// websocket.onmessage = (event) => {
+//     console.log('WebSocket data received:', event.data);
+// };
+
+//   websocket.onmessage = (event) => {
+//     const responseData = JSON.parse(event.data);
+
+//     // Check if responseData contains the expected structure
+//     if (responseData && responseData.data && Array.isArray(responseData.data)) {
+//       const tradesData = responseData.data;
+
+//       // Assuming you want to process each trade individually
+//       for (const trade of tradesData) {
+//         const symbol = trade.s;
+//         const price = trade.p;
+//         const timestamp = trade.t;
+//         const volume = trade.v;
+
+//         // Now you can use this data as needed, such as displaying it on the webpage
+//         console.log(`Received trade data - Symbol: ${symbol}, Price: ${price}, Timestamp: ${timestamp}, Volume: ${volume}`);
+
+//         // Here you can perform further processing or display the data on the webpage
+//         // Example: addToTradeHistory(symbol, price, timestamp, volume);
+//       }
+
+//       // Display stock data on the webpage after a fake spin for 4 seconds
+//       setTimeout(() => {
+//         displayStockData(responseData); // Assuming you want to display the entire response data
+//       }, 4000);
+
+//       // Increment loadCount
+//       loadCount++;
+
+//       // Check if loadCount is 2, stop the spinner
+//       if (loadCount === 2) {
+//         hideLoader();
+//       }
+//     } else {
+//       console.error('Invalid data structure received from WebSocket:', responseData);
+//     }
+//   };
+
+//   websocket.onerror = (error) => {
+//     console.error('WebSocket error:', error);
+//     hideLoader(); // Hide the spinner on error
+//   };
+
+//   websocket.onclose = () => {
+//     console.log('WebSocket connection closed.');
+//     hideLoader(); // Hide the spinner on close
+//   };
+// }
+
+// function displayStockData(data) {
+//   const stockListElement = $('#stockList');
+//   stockListElement.empty(); // Clear existing list items
+
+//   const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'META', 'TSLA', 'NVDA', 'BRK.A', 'JNJ', 'V', 'JPM', 'PG', 'UNH', 'MA', 'HD', 'DIS', 'PYPL', 'BAC', 'GOOG', 'ADBE'];
+
+//   for (const symbol of symbols) {
+//     const stockData = data[symbol];
+//     if (stockData) {
+//       const currentPrice = stockData.c;
+//       const previousClose = stockData.pc;
+//       const percentageChange = ((currentPrice - previousClose) / previousClose) * 100;
+//       const marketStatus = stockData.s; // Assuming 's' field indicates market status
+      
+//       let priceContent;
+//       if (marketStatus === 'open') {
+//         priceContent = `Price: ${currentPrice}<br>% Change: ${percentageChange.toFixed(2)}%`;
+//       } else if (marketStatus === 'closed') {
+//         priceContent = 'Market Closed';
+//       } else {
+//         priceContent = 'Data Unavailable';
+//       }
+
+//       const boxContent = `<div class="col">
+//                             <div class="p-3 border bg-light">${symbol}<br>${priceContent}</div>
+//                           </div>`;
+//       stockListElement.append(boxContent);
+//     } else {
+//       const boxContent = `<div class="col">
+//                             <div class="p-3 border bg-light">${symbol}<br>Price: --<br>% Change: --</div>
+//                           </div>`;
+//       stockListElement.append(boxContent);
+//     }
+//   }
+// }
+
+// function showLoader() {
+//   $('.stock-loader').show();
+// }
+
+// function hideLoader() {
+//   $('.stock-loader').hide();
+// }
+
+// // Call the function to establish the WebSocket connection
+// connectToWebSocket();
+
