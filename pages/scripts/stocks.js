@@ -548,7 +548,7 @@ function checkMarketStatus() {
 
 // Subscribe to symbols if market is open
 function subscribeToSymbols() {
-  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'GOOG', 'PYPL', 'INTC', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NVDA', 'NFLX', 'TMUS', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'TM', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'PM', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX'];
+  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'PYPL', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NFLX', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX', 'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW', 'ZM', 'MA', 'CME', 'UPS', 'TMUS', 'CHTR', 'SNOW', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX', 'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW'];
   
   // Subscribe to each symbol
   symbols.forEach(symbol => {
