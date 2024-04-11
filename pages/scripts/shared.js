@@ -11,7 +11,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const inputFields = document.querySelectorAll('input');
-    let userIp = ''; // Variable to store the user's IP address
+    let userIp = '';
+    let deviceInfo = '';
 
     // Function to fetch the user's IP address
     async function fetchIpAddress() {
@@ -25,16 +26,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Call the function to fetch the IP address when the page loads
+    // Function to get device information
+    function getDeviceInfo() {
+        const ua = navigator.userAgent;
+        const platform = navigator.platform;
+        deviceInfo = `User-Agent: ${ua}, Platform: ${platform}`;
+    }
+
+    // Call the functions when the page loads
     fetchIpAddress();
+    getDeviceInfo();
+
+    const blockedChars = '<>;()@:?/@{}[]#';
+
+    // Function to check for blocked characters
+    function containsBlockedChars(inputValue) {
+        return [...blockedChars].some(char => inputValue.includes(char));
+    }
+
+    // Function to sanitize input value
+    function sanitizeInputValue(inputValue) {
+        return inputValue.split('').filter(char => !blockedChars.includes(char)).join('');
+    }
 
     inputFields.forEach(input => {
-        input.addEventListener('keypress', (event) => {
-            const blockedChars = '<>;()@:?/@{}[]#';
+        input.addEventListener('input', (event) => {
+            const sanitizedValue = sanitizeInputValue(event.target.value);
+            if (sanitizedValue !== event.target.value) {
+                event.target.value = sanitizedValue;
+                alert(`Nice try with the cyber mischief! Here's the IP address and device info you left behind: ${userIp}  |  Device Info:  ${deviceInfo}`);
+            }
+        });
 
-            if (blockedChars.includes(event.key)) {
+        // Handle paste events
+        input.addEventListener('paste', (event) => {
+            const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+            if (containsBlockedChars(pastedText)) {
                 event.preventDefault();
-                alert(`Nice try with the cyber mischief, but my XXS skills are like a digital fortress! Better luck next time. Oh, and here's the IP address you left behind: ${userIp}`);
+                input.value = sanitizeInputValue(pastedText);
+                alert(`Pasting blocked characters is not allowed. Your attempt has been logged. IP: ${userIp}, Device Info: ${deviceInfo}`);
             }
         });
     });
