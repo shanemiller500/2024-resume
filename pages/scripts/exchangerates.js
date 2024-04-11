@@ -350,3 +350,129 @@ function formatSupplyValue(supplyValue) {
     fetchCryptoData();
 });
 
+
+
+
+
+
+
+// =====================================================
+
+
+
+//       FOR CRYPTO HEATMAP
+
+
+// ======================================================
+
+
+
+
+const cryptoSocket = new WebSocket('wss://ws.finnhub.io?token=coc0j5hr01qj8q79kpj0coc0j5hr01qj8q79kpjg');
+
+cryptoSocket.onopen = function(e) {
+    console.log("Connection established");
+    subscribeToCryptoSymbols();
+};
+
+cryptoSocket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+
+    if (data.type === 'trade') {
+        data.data.forEach((trade) => {
+            const symbolParts = trade.s.split(':');
+            const symbol = symbolParts[1].replace('USDT', '');
+            updateCryptoTradeInfoDisplay(symbol, trade.p);
+        });
+    }
+};
+
+cryptoSocket.onerror = function(error) {
+    console.log(`WebSocket error: ${error.message}`);
+};
+
+function subscribeToCryptoSymbols() {
+    const symbols = [
+        'BINANCE:BTCUSDT', 'BINANCE:ETHUSDT', 'BINANCE:BNBUSDT', 'BINANCE:XRPUSDT',
+        'BINANCE:ADAUSDT', 'BINANCE:SOLUSDT', 'BINANCE:DOTUSDT', 'BINANCE:DOGEUSDT',
+        'BINANCE:UNIUSDT', 'BINANCE:LTCUSDT', 'BINANCE:LINKUSDT', 'BINANCE:BCHUSDT',
+        'BINANCE:MATICUSDT', 'BINANCE:XLMUSDT', 'BINANCE:VETUSDT', 'BINANCE:ETCUSDT',
+        'BINANCE:TRXUSDT', 'BINANCE:FILUSDT', 'BINANCE:THETAUSDT', 'BINANCE:ICPUSDT',
+        'BINANCE:AaveUSDT', 'BINANCE:EOSUSDT', 'BINANCE:MKRUSDT', 'BINANCE:XTZUSDT',
+        'BINANCE:BSVUSDT', 'BINANCE:COMPUSDT', 'BINANCE:KSMUSDT', 'BINANCE:ZECUSDT',
+        'BINANCE:NEOUSDT', 'BINANCE:DASHUSDT', 'BINANCE:CHZUSDT', 'BINANCE:ZILUSDT',
+        'BINANCE:ENJUSDT', 'BINANCE:BATUSDT', 'BINANCE:SNXUSDT', 'BINANCE:QTUMUSDT',
+        'BINANCE:OMGUSDT', 'BINANCE:BTTUSDT', 'BINANCE:ONTUSDT', 'BINANCE:AAVEUSDT',
+        'BINANCE:ATOMUSDT', 'BINANCE:ALGOUSDT', 'BINANCE:FTTUSDT', 'BINANCE:MANAUSDT',
+        'BINANCE:WAVESUSDT', 'BINANCE:SUSHIUSDT', 'BINANCE:YFIUSDT', 'BINANCE:UMAUSDT',
+        'BINANCE:CRVUSDT', 'BINANCE:1INCHUSDT', 'BINANCE:SANDUSDT', 'BINANCE:GRTUSDT',
+        'BINANCE:AXSUSDT', 'BINANCE:LUNAUSDT', 'BINANCE:FTMUSDT', 'BINANCE:CAKEUSDT',
+        'BINANCE:RUNEUSDT', 'BINANCE:KLAYUSDT', 'BINANCE:STXUSDT', 'BINANCE:ARUSDT',
+        'BINANCE:XEMUSDT', 'BINANCE:IOTAUSDT', 'BINANCE:ICXUSDT', 'BINANCE:BORAUSDT',
+        'BINANCE:LRCUSDT', 'BINANCE:KAVAUSDT', 'BINANCE:ZRXUSDT', 'BINANCE:ANKRUSDT',
+        'BINANCE:RENUSDT', 'BINANCE:CELOUSDT', 'BINANCE:RVNUSDT', 'BINANCE:KNCUSDT',
+        'BINANCE:BALUSDT', 'BINANCE:SRMUSDT', 'BINANCE:HBARUSDT', 'BINANCE:OCEANUSDT',
+        'BINANCE:CTSIUSDT', 'BINANCE:BANDUSDT', 'BINANCE:NKNUSDT'
+    ];
+    symbols.forEach(symbol => {
+        cryptoSocket.send(JSON.stringify({ type: 'subscribe', symbol: symbol }));
+        console.log(`Subscribed to ${symbol}`);
+    });
+}
+
+function updateCryptoTradeInfoDisplay(fullSymbol, price) {
+    let symbol = fullSymbol;
+    if (fullSymbol.includes(':')) {
+        const parts = fullSymbol.split(':');
+        symbol = parts[1].replace('USDT', '');
+    }
+
+    const tradeInfoGrid = document.getElementById('tradeInfoGridCrypto');
+
+    let tradeInfoElement = document.getElementById(`tradeInfo_${symbol}`);
+    if (!tradeInfoElement) {
+        tradeInfoElement = document.createElement('div');
+        tradeInfoElement.style.display = 'inline-block';
+        tradeInfoElement.classList.add('row', 'blockCrypto');
+        tradeInfoElement.id = `tradeInfo_${symbol}`;
+        tradeInfoGrid.appendChild(tradeInfoElement);
+    }
+
+    let card = tradeInfoElement.querySelector('.card');
+    if (!card) {
+        card = document.createElement('div');
+        card.classList.add('card');
+        tradeInfoElement.appendChild(card);
+    }
+
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    const combinedInfo = document.createElement('h5');
+    combinedInfo.classList.add('card-title');
+    combinedInfo.innerText = symbol;
+
+    const tradeContent = document.createElement('div');
+    tradeContent.classList.add('trade-content', 'p-3', 'rounded');
+    tradeContent.innerText = `$${price.toFixed(2)}`;
+
+    cardBody.appendChild(combinedInfo);
+    cardBody.appendChild(tradeContent);
+
+    card.innerHTML = '';
+    card.appendChild(cardBody);
+
+    const prevPrice = parseFloat(tradeInfoElement.getAttribute('data-prev-price'));
+    updateCryptoTradeColor(card, prevPrice, price);
+    tradeInfoElement.setAttribute('data-prev-price', price.toString());
+}
+
+function updateCryptoTradeColor(card, prevPrice, currentPrice) {
+    if (prevPrice !== null && currentPrice > prevPrice) {
+        card.style.backgroundColor = '#4CAF50';
+    } else if (prevPrice !== null && currentPrice < prevPrice) {
+        card.style.backgroundColor = '#F44336';
+    } else {
+        card.style.backgroundColor = '';
+    }
+}

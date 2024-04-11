@@ -1,4 +1,6 @@
 
+
+
         #map {
             height: 300px;
             width: 100%;
@@ -187,6 +189,39 @@
 	100% { transform: rotate(1turn) }
   }
   
+
+  .tab1 {
+	display: none;
+  }
+
+  .blockCrypto {
+    padding: 9px;
+    padding-right: 50px;
+    padding-top: 9px;
+}
+
+  /* Styles for active tab */
+  .active1 {
+	display: block;
+  }
+
+  	  /* Styles for tab navigation */
+		.tab1-links {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		  }
+		
+		  .tab1-link {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #0f0f0f79;
+			cursor: pointer;
+		  }
+		
+		  .tab1-link:hover {
+			background-color: #7777770a;
+		  }
   
     /* Basic styles for tabs */
 	.tab {

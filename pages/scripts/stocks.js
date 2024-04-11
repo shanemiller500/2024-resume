@@ -20,7 +20,7 @@ $(document).ready(function () {
         source: function (query, syncResults, asyncResults) {
             $.get('https://finnhub.io/api/v1/search', {
                 q: query,
-                token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
             }, function (data) {
                 asyncResults(data.result.map(function (item) {
                     return item.symbol;
@@ -55,20 +55,20 @@ $(document).ready(function () {
     
             $.get('https://finnhub.io/api/v1/quote', {
                 symbol: selectedSymbol,
-                token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
             }, function (quoteData) {
                 $.get('https://finnhub.io/api/v1/stock/profile2', {
                     symbol: selectedSymbol,
-                    token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+                    token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
                 }, function (profileData) {
                     $.get('https://finnhub.io/api/v1/stock/metric', {
                         symbol: selectedSymbol,
                         metric: 'all',
-                        token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+                        token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
                     }, function (metricData) {
                         $.get('https://finnhub.io/api/v1/stock/market-status', {
                             exchange: 'US',
-                            token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+                            token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
                         }, function (marketStatusData) {
                            
                            // Check if description or stockSymbol is null
@@ -152,7 +152,7 @@ $(document).ready(function () {
                                 symbol: selectedSymbol,
                                 from: new Date(Date.now() - 86400000).toISOString().slice(0, 10), // 86400000 milliseconds = 1 day
                                 to: new Date().toISOString().slice(0, 10),
-                                token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+                                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
                             }, function (newsData) {
                                 var newsHtml = '';
                                 if (newsData && newsData.length > 0) {
@@ -219,9 +219,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function openTab1(tabName) {
+    var tabs = document.getElementsByClassName("tab1");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active1");
+    }
+    document.getElementById(tabName).classList.add("active1");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchIPOCalendar();
+    document.getElementById('searchInput').addEventListener('input', function () {
+        filterIPOCalendar(this.value.trim().toLowerCase());
+    });
+});
+
 async function fetchIPOCalendar() {
     try {
-        const response = await fetch('https://finnhub.io/api/v1/calendar/ipo?from=2024-01-01&to=2025-01-01&token=co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0');
+        const response = await fetch('https://finnhub.io/api/v1/calendar/ipo?from=2024-01-01&to=2025-01-01&token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg');
         const data = await response.json();
         if (data && data.ipoCalendar && data.ipoCalendar.length > 0) {
             renderIPOCalendar(data.ipoCalendar);
@@ -490,7 +505,7 @@ $(document).ready(function() {
   // Fetch and display all news on page load
   $.get('https://finnhub.io/api/v1/news', {
     category: 'general',
-    token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
+    token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
   }, function(data) {
     displayNews(data);
   });
@@ -510,7 +525,7 @@ $(document).ready(function() {
 // +++++++++++++++++++++++++++++++++++++++
 
 
-const socket = new WebSocket('wss://ws.finnhub.io?token=coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0');
+const socket = new WebSocket('wss://ws.finnhub.io?token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg');
 
 console.info('1. New websocket created.');
 
@@ -526,12 +541,13 @@ const tradeInfoMap = {};
 // Function to check market status
 // Function to check market status
 function checkMarketStatus() {
-    fetch('https://finnhub.io/api/v1/stock/market-status?exchange=US&token=coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0')
+    fetch('https://finnhub.io/api/v1/stock/market-status?exchange=US&token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg')
       .then(response => response.json())
       .then(data => {
         const marketStatus = document.getElementById('marketStatus');
         if (data.isOpen) {
-          marketStatus.textContent = `Market is open. Current time: ${formatDate(data.t)}`;
+          marketStatus.textContent = `Market is open | Current time: ${formatDate(data.t)}`;
+          marketStatus.classList.add('alert', 'alert-success');
           subscribeToSymbols();
         } else {
           marketStatus.textContent = "The markets are now closed. Check back during market hours for the latest updates!";
