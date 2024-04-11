@@ -353,9 +353,6 @@ function formatSupplyValue(supplyValue) {
 
 
 
-
-
-
 // =====================================================
 
 
@@ -433,7 +430,7 @@ function updateCryptoTradeInfoDisplay(fullSymbol, price) {
     if (!tradeInfoElement) {
         tradeInfoElement = document.createElement('div');
         tradeInfoElement.style.display = 'inline-block';
-        tradeInfoElement.classList.add('row', 'blockCrypto');
+        tradeInfoElement.classList.add('col', 'blockCrypto');
         tradeInfoElement.id = `tradeInfo_${symbol}`;
         tradeInfoGrid.appendChild(tradeInfoElement);
     }

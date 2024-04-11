@@ -204,28 +204,6 @@ $(document).ready(function () {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-function openTab(tabName) {
-    var tabs = document.getElementsByClassName("tab");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-    }
-    document.getElementById(tabName).classList.add("active");
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    fetchIPOCalendar();
-    document.getElementById('searchInput').addEventListener('input', function () {
-        filterIPOCalendar(this.value.trim().toLowerCase());
-    });
-});
-
-function openTab1(tabName) {
-    var tabs = document.getElementsByClassName("tab1");
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active1");
-    }
-    document.getElementById(tabName).classList.add("active1");
-}
 
 document.addEventListener('DOMContentLoaded', function () {
     fetchIPOCalendar();
@@ -337,13 +315,7 @@ function filterIPOCalendar(searchTerm) {
 
 
 
-function openTab(tabName) {
-    var tabs = document.getElementsByClassName("tab");
-    for (var i = 0; i < tabs.length; i++) {
-      tabs[i].classList.remove("active");
-    }
-    document.getElementById(tabName).classList.add("active");
-  }
+
   function formatSupplyValue(supplyValue) {
     // Convert the supply value to a number
     let supplyNumber = parseFloat(supplyValue);
