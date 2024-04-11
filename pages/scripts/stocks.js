@@ -70,10 +70,10 @@ $(document).ready(function () {
                             exchange: 'US',
                             token: 'coatnm1r01qro9kpiodgcoatnm1r01qro9kpioe0'
                         }, function (marketStatusData) {
+                           
+                           // Check if description or stockSymbol is null
                             var description = profileData.name;
                             var stockSymbol = profileData.ticker;
-    
-                            // Check if description or stockSymbol is null
                             if (!description || !stockSymbol) {
                                 alert("WHAT THE HELL EVEN IS THAT?? Just kidding, its likely invalid or not available in this universe");
                                 $('#randomSpinner').hide(); // Hide spinner
@@ -81,7 +81,7 @@ $(document).ready(function () {
                             }
     
                             var logo = profileData.logo;
-                            var priceColor = quoteData.c > quoteData.o ? 'green' : 'red';
+                            var priceColor = marketStatusData.isOpen ? (quoteData.c > quoteData.o ? 'green' : 'red') : '#494949';
                             var iconClass = parseFloat(quoteData.c > quoteData.o ? 1 : -1) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
                             var fiftyTwoWeekHigh = metricData.metric['52WeekHigh'];
                             var fiftyTwoWeekHighDate = metricData.metric['52WeekHighDate'];
@@ -109,7 +109,7 @@ $(document).ready(function () {
                                 <table class="table table-striped">
                                     <tr>
                                         <td style="color: ${priceColor}">Current Price: </td>
-                                        <td style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} <i class="${iconClass}"></i></span></td>
+                                        <td style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} | ${formatSupplyValue(quoteData.dp)}% <i class="${iconClass}"></i></span></td>
                                         <td>Open Price</td>
                                         <td>$${formatSupplyValue(quoteData.o)}</td>
                                     </tr>
