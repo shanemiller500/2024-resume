@@ -9,26 +9,36 @@
 // +++++++++++++++++++++++++++
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const inputFields = document.querySelectorAll('input');
+    let userIp = ''; // Variable to store the user's IP address
+
+    // Function to fetch the user's IP address
+    async function fetchIpAddress() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            userIp = data.ip;
+        } catch (error) {
+            console.error('Error fetching IP address:', error);
+            userIp = 'unknown'; // Fallback value in case of an error
+        }
+    }
+
+    // Call the function to fetch the IP address when the page loads
+    fetchIpAddress();
 
     inputFields.forEach(input => {
         input.addEventListener('keypress', (event) => {
-            // List of characters to block
-            const blockedChars = '<>;()@';
+            const blockedChars = '<>;()@:?/@{}[]#';
 
             if (blockedChars.includes(event.key)) {
-                // Prevent the character from being input
                 event.preventDefault();
-
-                // Show an alert message
-                alert("My XXS skills are strong...");
+                alert(`Nice try with the cyber mischief, but my XXS skills are like a digital fortress! Better luck next time. Oh, and here's the IP address you left behind: ${userIp}`);
             }
         });
     });
 });
-
 
 
 
