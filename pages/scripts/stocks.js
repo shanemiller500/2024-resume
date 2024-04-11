@@ -666,9 +666,9 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
 function updateTradeColor(card, prevPrice, currentPrice) {
   if (prevPrice !== null && currentPrice !== null) {
     if (currentPrice > prevPrice) {
-      card.style.backgroundColor = 'green'; // Price is up
+      card.style.backgroundColor = '#4CAF50'; // Price is up
     } else if (currentPrice < prevPrice) {
-      card.style.backgroundColor = 'red'; // Price is down
+      card.style.backgroundColor = '#F44336'; // Price is down
     }
   }
 }
