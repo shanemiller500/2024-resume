@@ -430,7 +430,7 @@ function updateCryptoTradeInfoDisplay(fullSymbol, price) {
     if (!tradeInfoElement) {
         tradeInfoElement = document.createElement('div');
         tradeInfoElement.style.display = 'inline-block';
-        tradeInfoElement.classList.add('col', 'blockCrypto');
+        tradeInfoElement.classList.add( 'mb-5', 'col', 'blockCrypto');
         tradeInfoElement.id = `tradeInfo_${symbol}`;
         tradeInfoGrid.appendChild(tradeInfoElement);
     }
@@ -438,7 +438,7 @@ function updateCryptoTradeInfoDisplay(fullSymbol, price) {
     let card = tradeInfoElement.querySelector('.card');
     if (!card) {
         card = document.createElement('div');
-        card.classList.add('card');
+        card.classList.add('card', 'h-100');
         tradeInfoElement.appendChild(card);
     }
 

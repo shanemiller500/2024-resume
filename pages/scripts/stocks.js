@@ -531,7 +531,13 @@ function checkMarketStatus() {
 
 // Subscribe to symbols if market is open
 function subscribeToSymbols() {
-  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'PYPL', 'ASML', 'ADBE', 'CMCSA', 'CSCO', 'PEP', 'NFLX', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX', 'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW', 'ZM', 'MA', 'CME', 'UPS', 'TMUS', 'CHTR', 'SNOW', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX', 'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW'];
+  const symbols = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'TSLA', 'FB', 'NVDA', 'PYPL', 'ASML', 'ADBE', 'CMCSA',
+   'CSCO', 'PEP', 'NFLX', 'AVGO', 'INTU', 'AMD', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T',
+    'NKE', 'NEE', 'DHR', 'ORCL', 'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON',
+     'MO', 'NVO', 'MMM', 'VRTX', 'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW', 'ZM', 'MA', 'CME', 'UPS', 'TMUS',
+      'CHTR', 'SNOW', 'IBM', 'TXN', 'QCOM', 'COST', 'ABBV', 'CRM', 'ACN', 'T', 'NKE', 'NEE', 'DHR', 'ORCL', 
+      'UNH', 'FIS', 'BMY', 'LLY', 'CVX', 'LIN', 'SBUX', 'HD', 'AMGN', 'MDT', 'HON', 'MO', 'NVO', 'MMM', 'VRTX',
+       'REGN', 'TMO', 'LMT', 'PYPL', 'SBUX', 'NOW'];
   
   // Subscribe to each symbol
   symbols.forEach(symbol => {
@@ -597,7 +603,7 @@ function updateTradeInfoDisplay(symbol, prevPrice) {
   if (!tradeInfoElement) {
     tradeInfoElement = document.createElement('div');
     tradeInfoElement.classList.add('col');
-    tradeInfoElement.classList.add('mb-5'); // Add margin between cards
+    tradeInfoElement.classList.add('mb-5', 'mb-52'); // Add margin between cards
     tradeInfoElement.id = `tradeInfo_${symbol}`;
     tradeInfoGrid.appendChild(tradeInfoElement);
   }

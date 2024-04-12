@@ -195,9 +195,12 @@
   }
 
   .blockCrypto {
-    padding: 9px;
-    padding-right: 50px;
+    padding-right: 9px;
     padding-top: 9px;
+}
+
+.mb-5 {
+    margin-bottom: 0rem!important;
 }
 
   /* Styles for active tab */
@@ -604,7 +607,7 @@ input, select, textarea {
 		font-weight: 600;
 	}
 
-	.mb-5 {
+	.mb-52 {
 		margin-bottom: 2px !important;
 		width: 159px;
 		height: 127px;
@@ -1185,7 +1188,7 @@ input, select, textarea {
 				margin: 1.5rem 0;
 			}
 
-			.mb-5 {
+			.mb-52 {
 				margin-bottom: 1px !important;
 				width: 102px !important;
 				height: 85px;
