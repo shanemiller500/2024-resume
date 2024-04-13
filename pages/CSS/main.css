@@ -194,6 +194,11 @@
 	display: none;
   }
 
+  
+  .MarvelTab {
+	display: none;
+  }
+
   .blockCrypto {
     padding-right: 9px;
     padding-top: 9px;
@@ -207,6 +212,29 @@
   .active1 {
 	display: block;
   }
+
+    /* Styles for active tab */
+	.characterActive {
+		display: block;
+	  }
+
+	    	  /* Styles for tab navigation */
+		.MarvelTab-links {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		  }
+		
+		  .MarvelTab-link {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #0f0f0f79;
+			cursor: pointer;
+		  }
+		
+		  .MarvelTab-link:hover {
+			background-color: #7777770a;
+		  }
 
   	  /* Styles for tab navigation */
 		.tab1-links {

@@ -93,3 +93,12 @@ function openTab1(tabName) {
     }
     document.getElementById(tabName).classList.add("active1");
 }
+
+
+function openTabMarvel(tabName) {
+    var tabs = document.getElementsByClassName("MarvelTab");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("characterActive");
+    }
+    document.getElementById(tabName).classList.add("characterActive");
+}
