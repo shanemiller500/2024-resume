@@ -15,6 +15,7 @@
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
    
 
 	<!-- Custom JavaScript config -->
@@ -103,7 +104,7 @@
 				<ul>
 					<li><a href="#exchangeRates">Crypto prices</a></li>
 					<li><a href="#art">Art Institute of Chicago</a></li>
-					<li><a href="#comic">Comic Book Search</a></li>
+					<!-- <li><a href="#comic">Comic Book Search</a></li> -->
 					<li><a href="#ISS">Track the ISS</a></li>
 					<li><a href="#nasa">NASA photo of the day</a></li>
 				</ul>
@@ -277,21 +278,49 @@
 
 			<!-- Marvel -->
 			<article id="marvel">
-				<h2 class="major">Marvel API search</h2>
-				<p>Search for your favorite marvel character </p>
-				<div class="container">
-					<div id="searchContainer" class="my-4">
-						<label for="searchInput">Search Character:</label>
-						<div class="input-group">
-							<input type="text" id="customSearchInput" class="form-control"
-								placeholder="Enter character name">
-							<div class="input-group-append">
-								<button id="customSearchButton">Search</button>
-							
+				<ul class="tab-links">
+					<li class="tab-link" onclick="openTabMarvel('character')">Search Marvel Character's</li>
+					<li class="tab-link" onclick="openTabMarvel('comic')">Search Marvel Comics</li>
+				</ul>
+				<br><br>
+				<div id="character" class="MarvelTab characterActive">
+					<h2 class="major">Marvel API search</h2>
+					<p>Search for your favorite Marvel character</p>
+					<div class="container">
+						<div id="searchContainer" class="my-4">
+							<label for="customSearchInput">Search Character:</label>
+							<div class="input-group">
+								<input type="text" id="customSearchInput" class="form-control"
+									   placeholder="Enter character name">
+								<div class="input-group-append">
+									<button id="customSearchButton" type="button">Search</button>
+								</div>
 							</div>
 						</div>
+						<div id="customResults" class="row"></div>
 					</div>
-					<div id="customResults" class="row"></div>
+				</div>
+
+				<div id="comic" class="MarvelTab">
+					<h2 class="major">Marvel Comic Book Search</h2>
+					<p>Search for comic books here!</p>
+					<div class="container">
+						<div class="row mb-4">
+							<div class="col-8">
+								<!-- Added a label for accessibility; you can visually hide this with CSS if needed -->
+								<label for="searchInputComic" class="visually-hidden">Enter a comic book name</label>
+								<input type="text" id="searchInputComic" class="form-control typeahead"
+									   placeholder="Enter a comic or something...">
+							</div>
+							<div class="col-4">
+								<!-- Added type="button" and accessibility label -->
+								<button type="button" onclick="searchComics()" aria-label="Search for comics">Search</button>
+							</div>
+						</div>
+						<div id="comicResults" class="row"></div>
+					</div>
+				</div>
+
 			</article>
 
 			<!-- Bored -->
@@ -321,24 +350,10 @@
 			</article>
 
 			<!-- Comic -->
-			<article id="comic">
-				<h2 class="major">Marvel Comic Book Search</h2>
-				<p>Search for comic books here!</p>
-				<br>
-				<div class="container">
-					<div class="row mb-4">
-						<div class="col-8">
-							<input type="text" id="searchInputComic" class="form-control typeahead"
-								placeholder="Enter a comic or something...">
-						</div>
-						<div class="col-4">
-							<button onclick="searchComics()">Search</button>
-						</div>
-					</div>
-					<div id="comicResults" class="row"></div>
-				</div>
+			<!-- <article id="comic">
+				
 			</article>
-	
+	 -->
 
 			<!-- Advice -->
 			<article id="advice">
@@ -376,8 +391,7 @@
 					<li class="tab-link" onclick="openTab1('streamCrypotQuotes')">Live stream heatmap</li>
 				</ul>
 				<br><br>
-
-				<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+				
 				<div id="cryptoPrice" class="tab1 active1">
 					<h2 class="major">Crypto prices</h2>
 					<p>The latest crypto top gainers and top losers, search for any crypto to get some more infomation.</p>
