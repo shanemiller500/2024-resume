@@ -1,10 +1,6 @@
-
 // ++++++++++++++++++++++++++++
 
-
-
 // FOR XXS 
-
 
 // +++++++++++++++++++++++++++
 
@@ -89,12 +85,6 @@ function openTab(tabName) {
     document.getElementById(tabName).classList.add("active");
   }
 
-document.addEventListener('DOMContentLoaded', function () {
-    fetchIPOCalendar();
-    document.getElementById('searchInput').addEventListener('input', function () {
-        filterIPOCalendar(this.value.trim().toLowerCase());
-    });
-});
 
 function openTab1(tabName) {
     var tabs = document.getElementsByClassName("tab1");

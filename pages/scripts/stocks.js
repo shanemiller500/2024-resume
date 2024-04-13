@@ -4,7 +4,8 @@
 
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 
+var API_Token = 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg';
+
 $(document).ready(function () {
     var stockInput = $('#stockInput');
     var currentPage = 1;
@@ -20,7 +21,7 @@ $(document).ready(function () {
         source: function (query, syncResults, asyncResults) {
             $.get('https://finnhub.io/api/v1/search', {
                 q: query,
-                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                token: API_Token
             }, function (data) {
                 asyncResults(data.result.map(function (item) {
                     return item.symbol;
@@ -49,26 +50,27 @@ $(document).ready(function () {
 
     $('#stockSearchBtn').on('click', function () {
         var selectedSymbol = stockInput.val();
+       
     
         if (selectedSymbol) {
             $('#randomSpinner').show(); // Show spinner
     
             $.get('https://finnhub.io/api/v1/quote', {
                 symbol: selectedSymbol,
-                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                token: API_Token
             }, function (quoteData) {
                 $.get('https://finnhub.io/api/v1/stock/profile2', {
                     symbol: selectedSymbol,
-                    token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                    token: API_Token
                 }, function (profileData) {
                     $.get('https://finnhub.io/api/v1/stock/metric', {
                         symbol: selectedSymbol,
                         metric: 'all',
-                        token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                        token: API_Token
                     }, function (metricData) {
                         $.get('https://finnhub.io/api/v1/stock/market-status', {
                             exchange: 'US',
-                            token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                            token: API_Token
                         }, function (marketStatusData) {
                            
                            // Check if description or stockSymbol is null
@@ -152,7 +154,7 @@ $(document).ready(function () {
                                 symbol: selectedSymbol,
                                 from: new Date(Date.now() - 86400000).toISOString().slice(0, 10), // 86400000 milliseconds = 1 day
                                 to: new Date().toISOString().slice(0, 10),
-                                token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+                                token: API_Token
                             }, function (newsData) {
                                 var newsHtml = '';
                                 if (newsData && newsData.length > 0) {
@@ -214,7 +216,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function fetchIPOCalendar() {
     try {
-        const response = await fetch('https://finnhub.io/api/v1/calendar/ipo?from=2024-01-01&to=2025-01-01&token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg');
+        const url = `https://finnhub.io/api/v1/calendar/ipo?from=2024-01-01&to=2025-01-01&token=${API_Token}`; 
+        const response = await fetch(url);
         const data = await response.json();
         if (data && data.ipoCalendar && data.ipoCalendar.length > 0) {
             renderIPOCalendar(data.ipoCalendar);
@@ -225,6 +228,13 @@ async function fetchIPOCalendar() {
         console.error('Error fetching IPO calendar:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    fetchIPOCalendar();
+    document.getElementById('searchInput').addEventListener('input', function () {
+        filterIPOCalendar(this.value.trim().toLowerCase());
+    });
+});
 
 function renderIPOCalendar(ipoEvents) {
     const ipoCalendarContainer = document.getElementById('ipoCalendar');
@@ -337,8 +347,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const earningsTable = document.getElementById('earningsTable');
     const earningsBody = document.getElementById('earningsBody');
 
-    // Make API request to Finnhub
-    fetch('https://finnhub.io/api/v1/calendar/earnings?from=2024-01-01&to=2024-04-31&token=co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0')
+    // Make API request to Finnhub using the token variable
+    fetch(`https://finnhub.io/api/v1/calendar/earnings?from=2024-01-01&to=2024-04-31&token=${API_Token}`)
+        
         .then(response => response.json())
         .then(data => {
             // Sort the earningsCalendar array by date, with today's date first
@@ -410,7 +421,7 @@ $(document).ready(function() {
       symbol: selectedSymbol,
       from: new Date(Date.now() - 86400000).toISOString().slice(0, 10),
       to: new Date().toISOString().slice(0, 10),
-      token: 'co9msqpr01qgj7bna0ngco9msqpr01qgj7bna0o0'
+      token: API_Token
     }, function(data) {
       displayNews(data);
     });
@@ -477,7 +488,7 @@ $(document).ready(function() {
   // Fetch and display all news on page load
   $.get('https://finnhub.io/api/v1/news', {
     category: 'general',
-    token: 'coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg'
+    token: API_Token
   }, function(data) {
     displayNews(data);
   });
@@ -497,7 +508,8 @@ $(document).ready(function() {
 // +++++++++++++++++++++++++++++++++++++++
 
 
-const socket = new WebSocket('wss://ws.finnhub.io?token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg');
+
+const socket = new WebSocket(`wss://ws.finnhub.io?token=${API_Token}`);
 
 console.info('1. New websocket created.');
 
@@ -510,10 +522,8 @@ function formatDate(timestamp) {
 // Initialize object to store trade information for each symbol
 const tradeInfoMap = {};
 
-// Function to check market status
-// Function to check market status
 function checkMarketStatus() {
-    fetch('https://finnhub.io/api/v1/stock/market-status?exchange=US&token=coc0gt1r01qj8q79koh0coc0gt1r01qj8q79kohg')
+    fetch(`https://finnhub.io/api/v1/stock/market-status?exchange=US&token=${API_Token}`)
       .then(response => response.json())
       .then(data => {
         const marketStatus = document.getElementById('marketStatus');
@@ -527,6 +537,12 @@ function checkMarketStatus() {
         }
       })
       .catch(error => console.error('Error checking market status:', error));
+  }
+  
+  // Additionally, ensure you have a function to format the timestamp returned from the API
+  function formatDate(timestamp) {
+    const date = new Date(timestamp * 1000); // assuming timestamp is in seconds
+    return date.toLocaleTimeString();
   }
 
 // Subscribe to symbols if market is open

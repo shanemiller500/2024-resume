@@ -362,10 +362,10 @@ function formatSupplyValue(supplyValue) {
 
 // ======================================================
 
+const API_TOKEN = 'coc0j5hr01qj8q79kpj0coc0j5hr01qj8q79kpjg'; 
 
 
-
-const cryptoSocket = new WebSocket('wss://ws.finnhub.io?token=coc0j5hr01qj8q79kpj0coc0j5hr01qj8q79kpjg');
+const cryptoSocket = new WebSocket(`wss://ws.finnhub.io?token=${API_TOKEN}`);
 
 cryptoSocket.onopen = function(e) {
     console.log("Connection established");
@@ -395,7 +395,7 @@ function subscribeToCryptoSymbols() {
         'BINANCE:UNIUSDT', 'BINANCE:LTCUSDT', 'BINANCE:LINKUSDT', 'BINANCE:BCHUSDT',
         'BINANCE:MATICUSDT', 'BINANCE:XLMUSDT', 'BINANCE:VETUSDT', 'BINANCE:ETCUSDT',
         'BINANCE:TRXUSDT', 'BINANCE:FILUSDT', 'BINANCE:THETAUSDT', 'BINANCE:ICPUSDT',
-        'BINANCE:AaveUSDT', 'BINANCE:EOSUSDT', 'BINANCE:MKRUSDT', 'BINANCE:XTZUSDT',
+        'BINANCE:AaveUSDT', 'BINANCE:XMRUSDT', 'BINANCE:MKRUSDT', 'BINANCE:XTZUSDT',
         'BINANCE:BSVUSDT', 'BINANCE:COMPUSDT', 'BINANCE:KSMUSDT', 'BINANCE:ZECUSDT',
         'BINANCE:NEOUSDT', 'BINANCE:DASHUSDT', 'BINANCE:CHZUSDT', 'BINANCE:ZILUSDT',
         'BINANCE:ENJUSDT', 'BINANCE:BATUSDT', 'BINANCE:SNXUSDT', 'BINANCE:QTUMUSDT',
@@ -409,7 +409,7 @@ function subscribeToCryptoSymbols() {
         'BINANCE:LRCUSDT', 'BINANCE:KAVAUSDT', 'BINANCE:ZRXUSDT', 'BINANCE:ANKRUSDT',
         'BINANCE:RENUSDT', 'BINANCE:CELOUSDT', 'BINANCE:RVNUSDT', 'BINANCE:KNCUSDT',
         'BINANCE:BALUSDT', 'BINANCE:SRMUSDT', 'BINANCE:HBARUSDT', 'BINANCE:OCEANUSDT',
-        'BINANCE:CTSIUSDT', 'BINANCE:BANDUSDT', 'BINANCE:NKNUSDT'
+        'BINANCE:CTSIUSDT', 'BINANCE:BANDUSDT', 'BINANCE:EOSUSDT'
     ];
     symbols.forEach(symbol => {
         cryptoSocket.send(JSON.stringify({ type: 'subscribe', symbol: symbol }));
