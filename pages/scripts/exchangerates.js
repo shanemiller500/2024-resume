@@ -216,8 +216,8 @@ function formatSupplyValue(supplyValue) {
             let html = `<div class="card cards col-md-4">
                             <div class="card-body ${changeClass}">
                                 <h5 class="card-title">${crypto.name} (${crypto.symbol})</h5>
-                                <p class="card-text"> Price: $ ${formatSupplyValue(parseFloat(crypto.priceUsd).toFixed(2))}   ${changeIcon}</p>
-                                <p class="card-text">24h % Change: <span>${formatSupplyValue(crypto.changePercent24Hr)}%</span></p>  
+                                <p class="card-text">$ ${formatSupplyValue(parseFloat(crypto.priceUsd).toFixed(2))}</p>
+                                <p class="card-text">${formatSupplyValue(crypto.changePercent24Hr)}%   ${changeIcon}</p>  
                             </div>
                         </div>`;
             $('#cryptoResultsContainer').append(html);
@@ -232,29 +232,29 @@ function formatSupplyValue(supplyValue) {
         $('#cryptoTopGainers').empty();
         $('#cryptoTopLosers').empty();
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
             let gainerHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
-                                        <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
-                                        <p class="card-text">24h % Change: <span>${formatSupplyValue(sortedByChange[i].changePercent24Hr)}%</span></p>  
+                                        <p class="card-text">$ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)} </p>
+                                        <p class="card-text">${formatSupplyValue(sortedByChange[i].changePercent24Hr)}%   ${changeIcon}</p>  
                                     </div>
                                 </div>`;
             $('#cryptoTopGainers').append(gainerHtml);
         }
 
-        for (let i = cryptoData.length - 1; i >= cryptoData.length - 10; i--) {
+        for (let i = cryptoData.length - 1; i >= cryptoData.length - 15; i--) {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
             let loserHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
-                                        <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
-                                        <p class="card-text">24h % Change: <span>${formatSupplyValue(sortedByChange[i].changePercent24Hr)}%</span></p>  
+                                        <p class="card-text"> $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)} </p>
+                                        <p class="card-text">${formatSupplyValue(sortedByChange[i].changePercent24Hr)}%   ${changeIcon}</p>  
                                     </div>
                                 </div>`;
             $('#cryptoTopLosers').append(loserHtml);
