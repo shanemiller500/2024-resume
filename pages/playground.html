@@ -148,15 +148,16 @@
 			<article id="stockQuotes">
 				<!-- Tab navigation -->
 				<ul class="tab-links">
+					<li class="tab-link" onclick="openTab('app5')">Live stream heatmap</li>
 					<li class="tab-link" onclick="openTab('app1')">Stock Quote</li>
 					<li class="tab-link" onclick="openTab('app2')">IPO Calendar</li>
 					<li class="tab-link" onclick="openTab('app3')">Earnings Info</li>
 					<li class="tab-link" onclick="openTab('app4')">News Search</li>
-					<li class="tab-link" onclick="openTab('app5')">Live stream heatmap</li>
+					
 				</ul>
 				<br><br>
 				<!-- QUOTES -->
-				<div id="app1" class="tab active">
+				<div id="app1" class="tab">
 					<h2 class="major">Stock quotes</h2>
 					<br>
 					<p>Search for (almost) any ticker / symbol for common stocks traded on US exchanges. <em>this is a
@@ -248,7 +249,7 @@
 				</div>
 
 				<!-- STREAM QUOTES -->
-				<div id="app5" class="tab">
+				<div id="app5" class="tab active">
 					<div class="container">
 						<h2 class="major">Top traded US stocks </h2>
 						<p>Experience my live streaming heat map showcasing the most actively traded stocks with
