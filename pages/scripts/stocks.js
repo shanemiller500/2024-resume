@@ -112,7 +112,7 @@ $(document).ready(function () {
                             var stockInfo = `
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <h2>${description} - (${stockSymbol})  <img src="${logo}" alt="Stock Logo" style="max-width: 200px; max-height: 200px; float: right;"></h2>
+                                        <h2>${description} - (${stockSymbol})  <img src="${logo}" class="altImages" alt="Stock Logo" style="max-width: 200px; max-height: 200px; float: right;"></h2>
                                         <h2 style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} | ${formatSupplyValue(quoteData.dp)}%  <i class="${iconClass}"></i></h2>
                                         <br><br>
                                         <dd>${isOpenText} | As of: ${formatDate(marketStatusData.t)}</dd>

@@ -55,6 +55,11 @@
     #header nav.use-middle:after {
         display: none;
     }
+
+    
+    .altImages {
+        max-width: 135px !important;
+    }
 }
 
 @media screen and (max-width: 736px) {
@@ -138,6 +143,10 @@
         width: 2.25rem;
         height: 2.25rem;
         background-size: 14px 14px;
+    }
+
+    .altImages {
+        max-width: 150px !important;
     }
 
 
@@ -317,6 +326,9 @@
     .card.cards {
         width: 83px;
     }
+    .altImages {
+        max-width: 100px !important;
+    }
 
 }
 
@@ -328,6 +340,10 @@
     }
     .card.cards {
         width: 83px;
+    }
+
+    .altImages {
+        max-width: 100px;
     }
 
 }
