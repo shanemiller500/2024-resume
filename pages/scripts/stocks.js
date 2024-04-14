@@ -48,6 +48,19 @@ $(document).ready(function () {
         }
     }
 
+    function formatDate(timestamp) {
+        var date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+        var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+      }
+
+      function formatDateWeirdValue(dateString) {
+        const date = new Date(dateString);
+        const options = { month: 'short', day: '2-digit', year: 'numeric' };
+        const formatted = date.toLocaleDateString('en-US', options);
+        return formatted.split(' ').join(' ');
+    }
+
     $('#stockSearchBtn').on('click', function () {
         var selectedSymbol = stockInput.val();
        
@@ -112,31 +125,31 @@ $(document).ready(function () {
                                     <tr>
                                         <td style="color: ${priceColor}">Current Price: </td>
                                         <td style="color: ${priceColor}">$${formatSupplyValue(quoteData.c)} | ${formatSupplyValue(quoteData.dp)}% <i class="${iconClass}"></i></span></td>
-                                        <td>Open Price</td>
+                                        <td class = "middleBar">Open Price</td>
                                         <td>$${formatSupplyValue(quoteData.o)}</td>
                                     </tr>
                                     <tr>
-                                        <td>High Price</td>
+                                        <td>High Price:</td>
                                         <td>$${formatSupplyValue(quoteData.h)}</td>
-                                        <td>Low Price</td>
+                                        <td class = "middleBar">Low Price:</td>
                                         <td>$${formatSupplyValue(quoteData.l)}</td>
                                     </tr>
                                     <tr>
-                                        <td>52 Week High</td>
+                                        <td>52 Week High:</td>
                                         <td>$${formatSupplyValue(fiftyTwoWeekHigh)}</td>
-                                        <td>Date</td>
-                                        <td>${fiftyTwoWeekHighDate}</td>
+                                        <td class = "middleBar">52 Week High Date:</td>
+                                        <td>${formatDateWeirdValue(fiftyTwoWeekHighDate)}</td>
                                     </tr>
                                     <tr>
-                                        <td>52 Week Low</td>
+                                        <td>52 Week Low:</td>
                                         <td>$${formatSupplyValue(fiftyTwoWeekLow)}</td>
-                                        <td>Date</td>
-                                        <td>${fiftyTwoWeekLowDate}</td>
+                                        <td class = "middleBar">52 Week Low Date:</td>
+                                        <td>${formatDateWeirdValue(fiftyTwoWeekLowDate)}</td>
                                     </tr>
                                     <tr>
-                                        <td>Market Cap</td>
+                                        <td>Market Cap:</td>
                                         <td>$${formatSupplyValue(marketCapitalization)}</td>
-                                        <td> EPS TTM:</td>
+                                        <td class = "middleBar"> EPS TTM:</td>
                                         <td>$${formatSupplyValue(epsTTM)}</td>
                                     </tr>
         
@@ -144,15 +157,12 @@ $(document).ready(function () {
                             `;
                             $('#stockData').html(stockInfo);
 
-                            function formatDate(timestamp) {
-                                var date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
-                                var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-                                return date.toLocaleDateString('en-US', options);
-                              }
-    
+                            
+                            // NEWS RESULTS FOR QUOTE
+
                             $.get('https://finnhub.io/api/v1/company-news', {
                                 symbol: selectedSymbol,
-                                from: new Date(Date.now() - 86400000).toISOString().slice(0, 10), // 86400000 milliseconds = 1 day
+                                from: new Date(Date.now() - 86400000).toISOString().slice(0, 10), // 86400000 milliseconds = 1 day worth of news for the quote.
                                 to: new Date().toISOString().slice(0, 10),
                                 token: API_Token
                             }, function (newsData) {

@@ -188,7 +188,18 @@
   @keyframes l3 { 
 	100% { transform: rotate(1turn) }
   }
+
+  .cryptoCard {
+	display: contents;
+  }
   
+  td:nth-child(2) {
+	border-right: solid 1px #ccc;
+  }
+
+  .middleBar {
+	padding-left: 30px !important;
+  }
 
   .tab1 {
 	display: none;
@@ -300,7 +311,6 @@
   @keyframes sh4 { 
 	100%{transform: rotate(1turn)}
   }
-  
 		  
 		#mapContainer {
 			padding-top: 10px;
@@ -310,6 +320,10 @@
 			padding-top: 10px;
 			
 			background: #71717121
+		}
+
+		.card.cards {
+			width: 200px;
 		}
 		#marvel .card p {
 			color: white;
@@ -399,6 +413,10 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+		}
+
+		.lefty {
+			margin-left: 10px !important;
 		}
 
 
@@ -684,6 +702,10 @@ input, select, textarea {
 
 	p {
 		margin: 2px;	
+	}
+
+	.card-text {
+		font-size: medium;
 	}
 
 	p.card-text.mb-2, #newsSummaryColor {
@@ -1381,6 +1403,8 @@ input, select, textarea {
 				width: 100% !important;
 			}
 
+			
+
 				ul.actions:not(.fixed) li {
 					-moz-flex-grow: 1;
 					-webkit-flex-grow: 1;
@@ -2039,6 +2063,7 @@ input, select, textarea {
 
 		@media screen and (max-width: 736px) {
 
+			
 			#header {
 				padding: 1.5rem 0;
 			}

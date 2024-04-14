@@ -58,7 +58,7 @@ $(document).ready(function () {
             cryptoData.forEach(function (crypto) {
                 let changeClass = parseFloat(crypto.changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
                 let changeIcon = parseFloat(crypto.changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
-                let html = `<div class="card col-md-4">
+                let html = `<div class="card cards col-md-4">
                                 <div class="card-body ${changeClass}">
                                     <h5 class="card-title">${crypto.name} (${crypto.symbol})</h5>
                                     <p class="card-text"> Price: $ ${parseFloat(crypto.priceUsd).toFixed(2)}   ${changeIcon}</p>
@@ -81,7 +81,7 @@ $(document).ready(function () {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
-            let gainerHtml = `<div class="card">
+            let gainerHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
                                         <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
@@ -95,7 +95,7 @@ $(document).ready(function () {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
-            let loserHtml = `<div class="card">
+            let loserHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
                                         <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
@@ -152,7 +152,7 @@ $(document).ready(function () {
         let iconClass = parseFloat(changePercent24Hr) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
     
         const resultHtml = `
-            <div class="w3-card w3-margin-bottom">
+            <div class="w3-card cards w3-margin-bottom">
                 <div class="w3-container ${changeClass}">
                     ${name} (${symbol})
                     <i class="${iconClass}"></i>
@@ -213,7 +213,7 @@ function formatSupplyValue(supplyValue) {
         cryptoData.forEach(function (crypto) {
             let changeClass = parseFloat(crypto.changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(crypto.changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
-            let html = `<div class="card col-md-4">
+            let html = `<div class="card cards col-md-4">
                             <div class="card-body ${changeClass}">
                                 <h5 class="card-title">${crypto.name} (${crypto.symbol})</h5>
                                 <p class="card-text"> Price: $ ${formatSupplyValue(parseFloat(crypto.priceUsd).toFixed(2))}   ${changeIcon}</p>
@@ -232,11 +232,11 @@ function formatSupplyValue(supplyValue) {
         $('#cryptoTopGainers').empty();
         $('#cryptoTopLosers').empty();
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
-            let gainerHtml = `<div class="card">
+            let gainerHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
                                         <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
@@ -246,11 +246,11 @@ function formatSupplyValue(supplyValue) {
             $('#cryptoTopGainers').append(gainerHtml);
         }
 
-        for (let i = cryptoData.length - 1; i >= cryptoData.length - 5; i--) {
+        for (let i = cryptoData.length - 1; i >= cryptoData.length - 10; i--) {
             let changeClass = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? 'text-success' : 'text-danger';
             let changeIcon = parseFloat(sortedByChange[i].changePercent24Hr) >= 0 ? '<i class="fas fa-angle-double-up"></i>' : '<i class="fas fa-angle-double-down"></i>';
 
-            let loserHtml = `<div class="card">
+            let loserHtml = `<div class="card cards">
                                     <div class="card-body ${changeClass}">
                                         <h5 class="card-title">${sortedByChange[i].name} (${sortedByChange[i].symbol})</h5>
                                         <p class="card-text"> Price: $ ${parseFloat(sortedByChange[i].priceUsd).toFixed(2)}   ${changeIcon}</p>
@@ -307,7 +307,7 @@ function formatSupplyValue(supplyValue) {
         let iconClass = parseFloat(changePercent24Hr) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
     
         const resultHtml = `
-            <div class="w3-card w3-margin-bottom">
+            <div class="w3-card cards w3-margin-bottom">
                 <div class="w3-container ${changeClass}">
                     ${name} (${symbol})
                     <i class="${iconClass}"></i>
@@ -438,7 +438,7 @@ function updateCryptoTradeInfoDisplay(fullSymbol, price) {
     let card = tradeInfoElement.querySelector('.card');
     if (!card) {
         card = document.createElement('div');
-        card.classList.add('card', 'h-100');
+        card.classList.add('card', 'cards', 'h-100');
         tradeInfoElement.appendChild(card);
     }
 
