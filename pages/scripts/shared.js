@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++
 
+// Stock tabs
 
 function openTab(tabName) {
     var tabs = document.getElementsByClassName("tab");
@@ -86,6 +87,8 @@ function openTab(tabName) {
   }
 
 
+//Crypto tabs
+
 function openTab1(tabName) {
     var tabs = document.getElementsByClassName("tab1");
     for (var i = 0; i < tabs.length; i++) {
@@ -94,6 +97,7 @@ function openTab1(tabName) {
     document.getElementById(tabName).classList.add("active1");
 }
 
+//Marvel Tabs
 
 function openTabMarvel(tabName) {
     var tabs = document.getElementsByClassName("MarvelTab");

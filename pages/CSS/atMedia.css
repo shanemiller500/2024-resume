@@ -1,0 +1,325 @@
+
+
+@media screen and (max-width: 1680px) {
+
+    html {
+        font-size: 12pt;
+    }
+
+    #wrapper {
+        padding: 3rem 2rem;
+    }
+
+    #mapISS {
+        height: 450px;
+        width: 630px;
+        margin-bottom: 20px;
+    }
+
+
+}
+
+@media screen and (max-width: 980px) {
+
+    #header {
+        padding: 1.5rem 0;
+    }
+
+        #header .content .inner {
+            padding: 2.5rem 0;
+        }
+
+        #header nav ul {
+            -moz-flex-direction: column;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 10rem;
+            max-width: 100%;
+        }
+
+            #header nav ul li {
+                border-left: 0;
+                border-top: solid 1px #ffffff;
+            }
+
+                #header nav ul li:first-child {
+                    border-top: 0;
+                }
+
+                #header nav ul li a {
+                    height: 3rem;
+                    line-height: 3rem;
+                    min-width: 0;
+                    width: 100%;
+                }
+
+        #header nav.use-middle:after {
+            display: none;
+        }
+}
+
+@media screen and (max-width: 736px) {
+
+    html {
+        font-size: 11pt;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        line-height: 1.4;
+    }
+
+    h2 {
+        font-size: 1.25em;
+        line-height: 1.5;
+    }
+
+    .image.main {
+        margin: 2rem 0;
+    }
+
+    #wrapper {
+        padding: 2rem 1rem;
+    }
+    
+    #mapISS {
+        height: 450px;
+        width: 430px;
+        margin-bottom: 20px;
+    }
+
+    #tweet-frame {
+        width: 282px
+    }
+
+    #header {
+        padding: 1.5rem 0;
+    }
+
+        #header .content .inner {
+            padding: 2.5rem 0;
+        }
+
+        #header nav ul {
+            -moz-flex-direction: column;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 10rem;
+            max-width: 100%;
+        }
+
+            #header nav ul li {
+                border-left: 0;
+                border-top: solid 1px #ffffff;
+            }
+
+                #header nav ul li:first-child {
+                    border-top: 0;
+                }
+
+                #header nav ul li a {
+                    height: 3rem;
+                    line-height: 3rem;
+                    min-width: 0;
+                    width: 100%;
+                }
+
+        #header nav.use-middle:after {
+            display: none;
+        }
+
+        #main article {
+            padding: 3.5rem 2rem 0.5rem 2rem ;
+        }
+
+            #main article .close:before {
+                top: 0.875rem;
+                left: 0.875rem;
+                width: 2.25rem;
+                height: 2.25rem;
+                background-size: 14px 14px;
+            }
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+    html, body {
+        min-width: 320px;
+    }
+
+    #wrapper {
+        padding: 1rem;
+    }
+
+    
+    #mapISS {
+        width: 317px;
+    }
+
+    #tweet-frame {
+        width: 250px
+    }
+
+    form > .fields {
+        width: calc(100% + 3rem);
+        margin: -1.5rem 0 2rem -1.5rem;
+    }
+
+    form > .fields > .field {
+     padding: 1.5rem 0 0 1.5rem;
+     width: calc(100% - 1.5rem);
+    }
+
+    form > .fields > .field.half {
+        width: calc(100% - 1.5rem);
+    }
+    form > .fields > .field.third {
+        width: calc(100% - 1.5rem);
+    }
+    form > .fields > .field.quarter {
+        width: calc(100% - 1.5rem);
+    }
+
+    .image.main {
+        margin: 1.5rem 0;
+    }
+
+    .mb-52 {
+        margin-bottom: 1px !important;
+        width: 102px !important;
+        height: 85px;
+    }
+
+    .trade-content {
+        
+        font-size: 7px;
+    }
+
+    .cardFont {
+    
+    font-size: 7px;
+    }
+
+    .rounded {
+    padding-top: -1px;
+    font-size: 7px;
+    }
+
+    .tab-link {
+        margin: 2px;
+        display: inline-block;
+        padding: 13px 17px;
+    font-size: 12px;
+    }
+
+    
+			ul.actions:not(.fixed) {
+				-moz-flex-direction: column;
+				-webkit-flex-direction: column;
+				-ms-flex-direction: column;
+				flex-direction: column;
+				margin-left: 0;
+				width: 100% !important;
+			}
+
+			
+
+	 		ul.actions:not(.fixed) li {
+	 			-moz-flex-grow: 1;
+	 			-webkit-flex-grow: 1;
+	 			-ms-flex-grow: 1;
+	 			flex-grow: 1;
+	 			-moz-flex-shrink: 1;
+	 			-webkit-flex-shrink: 1;
+	 			-ms-flex-shrink: 1;
+	 			flex-shrink: 1;
+	 			padding: 1rem 0 0 0;
+	 			text-align: center;
+	 			width: 100%;
+	 		}
+
+			ul.actions:not(.fixed) li > * {
+				width: 100%;
+			}
+
+			ul.actions:not(.fixed) li:first-child {
+				padding-top: 0;
+			}
+
+			ul.actions:not(.fixed) li input[type="submit"],
+			ul.actions:not(.fixed) li input[type="reset"],
+			ul.actions:not(.fixed) li input[type="button"],
+			ul.actions:not(.fixed) li button,
+			ul.actions:not(.fixed) li .button {
+				width: 100%;
+			}
+
+			ul.actions:not(.fixed) li input[type="submit"].icon:before,
+			ul.actions:not(.fixed) li input[type="reset"].icon:before,
+			ul.actions:not(.fixed) li input[type="button"].icon:before,
+			ul.actions:not(.fixed) li button.icon:before,
+			ul.actions:not(.fixed) li .button.icon:before {
+				margin-left: -0.5em;
+			}
+
+            #header {
+				padding: 1.5rem 0;
+			}
+
+				#header .content .inner {
+					padding: 2.5rem 0;
+				}
+
+				#header nav ul {
+					-moz-flex-direction: column;
+					-webkit-flex-direction: column;
+					-ms-flex-direction: column;
+					flex-direction: column;
+					min-width: 10rem;
+					max-width: 100%;
+				}
+
+					#header nav ul li {
+						border-left: 0;
+						border-top: solid 1px #ffffff;
+					}
+
+						#header nav ul li:first-child {
+							border-top: 0;
+						}
+
+						#header nav ul li a {
+							height: 3rem;
+							line-height: 3rem;
+							min-width: 0;
+							width: 100%;
+						}
+
+				#header nav.use-middle:after {
+					display: none;
+				}
+
+                #main article {
+                    padding: 3rem 1.5rem 0.5rem 1.5rem ;
+                }
+    
+                
+                #mapISS {
+                    height: 450px;
+                    margin-bottom: 20px;
+                }
+
+}
+
+
+@media screen and (max-width: 360px) {
+
+    html {
+        font-size: 10pt;
+    }
+
+}
