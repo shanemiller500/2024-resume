@@ -287,6 +287,204 @@ function formatSupplyValue(supplyValue) {
 
 
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+// new searchCrypto
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+let chart;
+let cryptocurrencies = {};
+
+async function getCryptoList() {
+    const url = 'https://api.coincap.io/v2/assets';
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.data.reduce((acc, crypto) => {
+            acc[crypto.symbol] = crypto.name.toLowerCase(); // Map symbol to lowercase name
+            return acc;
+        }, {});
+    } catch (error) {
+        console.error('Error fetching cryptocurrency list:', error);
+        return {};
+    }
+}
+
+async function fetchCryptoData(cryptoName) {
+    const end = Date.now();
+    const start = end - 24 * 60 * 60 * 1000;
+    const url = `https://api.coincap.io/v2/assets/${cryptoName}/history?interval=m1&start=${start}&end=${end}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!data.data || data.data.length === 0) {
+            console.log("No data received or empty data array.");
+            return [];
+        }
+        return data.data.map(entry => ({
+            t: entry.time,
+            y: parseFloat(entry.priceUsd)
+        }));
+    } catch (error) {
+        console.error('Error fetching cryptocurrency data:', error);
+        return [];
+    }
+}
+
+async function fetchCryptoDetails(cryptoName) {
+    const url = `https://api.coincap.io/v2/assets/${cryptoName}`;
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching cryptocurrency details:', error);
+        return null;
+    }
+}
+
+function displayCryptoDetails(data) {
+    const detailsBody = document.getElementById('cryptoDetails').querySelector('tbody');
+    const priceUsd = parseFloat(data.priceUsd).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const changePercent24Hr = parseFloat(data.changePercent24Hr).toFixed(2);
+    const color = changePercent24Hr.startsWith('-') ? '#F44336' : '#4CAF50';
+    var iconClass =changePercent24Hr.startsWith('-')? 'fa fa-angle-double-down' : 'fa fa-angle-double-up';
+    detailsBody.innerHTML = ''; // Clear previous entries
+    if (!data) {
+        const row = `<tr><td colspan="11">No details available</td></tr>`;
+        detailsBody.innerHTML = row;
+        return;
+    }
+    const row = `
+        
+        <h2>${data.name} (${data.symbol}) </h2>
+        <h2 style="color: ${color};">$${priceUsd} | ${changePercent24Hr}% <i style="color: ${color};" class="${iconClass}"></i></h2>
+        <br>
+        <tr>
+            <td>Rank:</td>
+            <td>${data.rank}</td>
+            <td>Supply:</td>
+            <td>${parseInt(data.supply).toLocaleString()}</td>
+            </tr>
+            <tr>
+            <td>Max Supply:</td>
+            <td>${data.maxSupply ? parseInt(data.maxSupply).toLocaleString() : 'N/A'}</td>
+            <td>Market Cap (USD):</td>
+            <td>${parseFloat(data.marketCapUsd).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            </tr>
+            <tr>
+            <td>24Hr Volume (USD):</td>
+            <td>${parseFloat(data.volumeUsd24Hr).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>VWAP (24Hr):</td>
+            <td>${data.vwap24Hr ? parseFloat(data.vwap24Hr).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</td>
+        
+            </tr>
+        <br><br>
+            <p><a href="${data.explorer}" target="_blank">${data.name} Blockchain Explorer</a></p>`;
+    detailsBody.innerHTML = row;
+}
+
+function setupTypeahead(cryptocurrencies) {
+    const cryptoSymbols = Object.keys(cryptocurrencies);
+    var bloodhound = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: cryptoSymbols
+    });
+
+    $('#cryptoName').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    }, {
+        name: 'cryptocurrencies',
+        source: bloodhound
+    });
+}
+
+document.getElementById('fetchData').addEventListener('click', async () => {
+    const symbol = document.getElementById('cryptoName').value.trim().toUpperCase();
+    const name = cryptocurrencies[symbol];
+    if (name) {
+        await renderChart(name);
+        const details = await fetchCryptoDetails(name);
+        if (details && details.data) {
+            displayCryptoDetails(details.data);
+        } else {
+            displayCryptoDetails(null);
+        }
+    } else {
+        console.log('Invalid cryptocurrency symbol.');
+    }
+});
+
+async function renderChart(cryptoName) {
+    const cryptoData = await fetchCryptoData(cryptoName);
+    if (cryptoData.length === 0) {
+        console.log("No data to display.");
+        return;
+    }
+    const ctx = document.getElementById('cryptoChart').getContext('2d');
+    if (chart) {
+        chart.destroy();
+    }
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: `${cryptoName.charAt(0).toUpperCase() + cryptoName.slice(1)} Price (USD)`,
+                data: cryptoData,
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                fill: true
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'hour',
+                        tooltipFormat: 'MMM D, HH:mm'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Price in USD'
+                    }
+                }
+            },
+            parsing: {
+                xAxisKey: 't',
+                yAxisKey: 'y'
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+async function init() {
+    cryptocurrencies = await getCryptoList();
+    setupTypeahead(cryptocurrencies);
+    await renderChart('bitcoin'); // Default chart rendering
+    const details = await fetchCryptoDetails('bitcoin');
+    if (details && details.data) {
+        displayCryptoDetails(details.data);
+    } else {
+        displayCryptoDetails(null);
+    }
+}
+
+init();
+
+
 
 // =====================================================
 

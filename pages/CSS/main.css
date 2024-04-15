@@ -1,3 +1,41 @@
+#chartContainer {
+	height: 400px;
+	width: 100%;
+}
+canvas {
+	height: 100% !important;
+	width: 100% !important;
+}
+.tt-menu {
+	background-color: white;
+	color: black;
+	border-radius: 4px;
+	padding: 5px;
+	width: 100%;
+	box-shadow: 0 4px 6px rgba(0,0,0,.1);
+}
+.tt-suggestion {
+	padding: 3px 20px;
+	cursor: pointer;
+}
+.tt-suggestion:hover {
+	background-color: #f8f9fa;
+}
+table {
+	width: 100%;
+	margin-top: 20px;
+}
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+.form-control:focus {
+	color: white;
+}
+
+
 #map {
 	height: 300px;
 	width: 100%;
@@ -824,6 +862,7 @@ i {
 
 p {
 	margin: 2px;
+	font-size: large;
 }
 
 .card-text {
