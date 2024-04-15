@@ -267,6 +267,11 @@ td:nth-child(2) {
 	display: none;
 }
 
+.randomTab {
+	display: none;
+}
+
+
 .blockCrypto {
 	padding-right: 9px;
 	padding-top: 9px;
@@ -286,8 +291,17 @@ td:nth-child(2) {
 	display: block;
 }
 
+.activeRandom {
+	display: block;
+}
+
 /* Styles for tab navigation */
 .MarvelTab-links {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.randomTab-links {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -300,10 +314,21 @@ td:nth-child(2) {
 	cursor: pointer;
 }
 
+.randomTab-link {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #0f0f0f79;
+	cursor: pointer;
+}
+
+
 .MarvelTab-link:hover {
 	background-color: #7777770a;
 }
 
+.randomTab-link:hover {
+	background-color: #7777770a;
+}
 /* Styles for tab navigation */
 .tab1-links {
 	list-style-type: none;
@@ -337,6 +362,7 @@ td:nth-child(2) {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	position: sticky;
 }
 
 .tab-link {
@@ -398,7 +424,7 @@ td:nth-child(2) {
 }
 
 .card.cardNews {
-max-width: min-content;
+max-width: 300px;
 margin: 2px;
 }
 
@@ -530,21 +556,9 @@ h3.card-title {
 	padding-bottom: 400px;
 }
 
-#trump {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-}
-
 .loading-overlay {
 	display: none;
 	/* Optional: hides the loading overlay initially */
-}
-
-#quote-container {
-	text-align: center;
 }
 
 .aTypeButton {

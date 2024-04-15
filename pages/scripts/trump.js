@@ -31,7 +31,7 @@ function refreshQuote() {
   
     const quoteElement = document.createElement('div');
     quoteElement.innerHTML = `
-      <h3><em>"${value}"</em></h3>
+      <P><bs><em>"${value}"</em></b></P>
       <br>
       <p>Wordsmith: The ${_embedded.author[0].name} </p>
       <p>Created: <em> ${datePart} </em></p>
