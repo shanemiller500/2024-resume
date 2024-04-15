@@ -106,3 +106,13 @@ function openTabMarvel(tabName) {
     }
     document.getElementById(tabName).classList.add("characterActive");
 }
+
+// MIX API tabs
+
+function openRandomTab(tabName) {
+    var tabs = document.getElementsByClassName("randomTab");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("activeRandom");
+    }
+    document.getElementById(tabName).classList.add("activeRandom");
+}
