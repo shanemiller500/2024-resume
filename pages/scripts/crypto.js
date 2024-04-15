@@ -27,6 +27,39 @@ $(document).ready(function () {
         });
     }
 
+    // Initialize Typeahead
+    $('#cryptoSearchInputField').typeahead({
+        source: function(query, result) {
+            // Make API call to get asset names
+            axios.get('https://api.coincap.io/v2/assets')
+                .then(function(response) {
+                    const assets = response.data.data.map(asset => asset.name);
+                    result(assets);
+                })
+                .catch(function(error) {
+                    console.error('Error fetching assets:', error);
+                });
+        }
+    });
+
+       // Function to format supply value
+function formatSupplyValue(supplyValue) {
+    // Convert the supply value to a number
+    let supplyNumber = parseFloat(supplyValue);
+
+    // Check if the value is valid
+    if (!isNaN(supplyNumber)) {
+        // Use toLocaleString to add commas as thousands separators
+        let formattedSupply = supplyNumber.toLocaleString('en-US', {
+            maximumFractionDigits: 2, // Limiting to 2 decimal places
+            minimumFractionDigits: 2 // Always display 2 decimal places
+        });
+        return formattedSupply;
+    } else {
+        return 'Invalid value';
+    }
+}
+
     // Function to fade out data points
     function fadeOutDataPoints(callback) {
         $('.card-body, .card-title').fadeOut(3000, callback);
@@ -50,6 +83,14 @@ $(document).ready(function () {
 
     // Call updateDataPoints every 15 seconds (15000 milliseconds)
     setInterval(updateDataPoints, 15000);
+
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    // for top gainers and losers 
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++
 
     function displayCryptoResults(cryptoData) {
         // Only update if it's the initial load
@@ -106,108 +147,7 @@ $(document).ready(function () {
         }
     }
 
-    // Initialize Typeahead
-    $('#cryptoSearchInputField').typeahead({
-        source: function(query, result) {
-            // Make API call to get asset names
-            axios.get('https://api.coincap.io/v2/assets')
-                .then(function(response) {
-                    const assets = response.data.data.map(asset => asset.name);
-                    result(assets);
-                })
-                .catch(function(error) {
-                    console.error('Error fetching assets:', error);
-                });
-        }
-    });
-
-    // Handle search button click
-    $('#cryptoSearchButton').on('click', function() {
-        const searchTerm = $('#cryptoSearchInputField').val();
-
-        // Make API call to search for asset by name
-        axios.get(`https://api.coincap.io/v2/assets?search=${searchTerm}`)
-            .then(function(response) {
-                const asset = response.data.data[0]; // Take the first matching asset
-                if (asset) {
-                    displaySearchResult(asset);
-                } else {
-                    displayNoResults();
-                }
-            })
-            .catch(function(error) {
-                console.error('Error searching assets:', error);
-            });
-    });
-
-    // Function to display search result in modal
-    function displaySearchResult(asset) {
-        const modalBody = document.getElementById('cryptoResultsContainerModal');
-        modalBody.innerHTML = '';
-    
-        const { name, rank, symbol, price, priceUsd, changePercent24Hr, marketCapUsd } = asset;
-    
-        // Determine the change class based on the change percentage value
-        let changeClass = parseFloat(changePercent24Hr) >= 0 ? 'w3-text-green' : 'w3-text-red';
-        let iconClass = parseFloat(changePercent24Hr) >= 0 ? 'fa fa-angle-double-up' : 'fa fa-angle-double-down';
-    
-        const resultHtml = `
-            <div class="w3-card cards w3-margin-bottom">
-                <div class="w3-container ${changeClass}">
-                    ${name} (${symbol})
-                    <i class="${iconClass}"></i>
-                </div>
-                <div class="w3-container">
-                    <p class="${changeClass}">Rank: ${rank}</p>
-                    <p class="${changeClass}">Price (USD): $ ${formatSupplyValue(priceUsd)}</p>
-                    <p class="${changeClass}">24h % Change: <span>${formatSupplyValue(changePercent24Hr)}%  <i class="${iconClass}"></i></span></p>
-                    <p class="${changeClass}">Market Cap (USD): $ ${formatSupplyValue(marketCapUsd)}</p>
-                </div>
-            </div>
-        `;
-        modalBody.insertAdjacentHTML('beforeend', resultHtml);
-    
-        // Apply the change class to the change percentage span
-        modalBody.querySelector('.w3-container .w3-text-green').classList.add('w3-text-green');
-        modalBody.querySelector('.w3-container .w3-text-red').classList.add('w3-text-red');
-    
-        document.getElementById('cryptoResultsModal').style.display = 'block';
-    }
-
-    // Function to display no results message in modal
-    function displayNoResults() {
-        const modalBody = $('#cryptoResultsContainerModal');
-        modalBody.empty();
-
-        const noResultsHtml = `
-            <div class="alert alert-warning" role="alert">
-                No results found for the entered search term.
-            </div>
-        `;
-        modalBody.append(noResultsHtml);
-
-        $('#cryptoResultsModal').modal('show');
-    }
-
-   // Function to format supply value
-function formatSupplyValue(supplyValue) {
-    // Convert the supply value to a number
-    let supplyNumber = parseFloat(supplyValue);
-
-    // Check if the value is valid
-    if (!isNaN(supplyNumber)) {
-        // Use toLocaleString to add commas as thousands separators
-        let formattedSupply = supplyNumber.toLocaleString('en-US', {
-            maximumFractionDigits: 2, // Limiting to 2 decimal places
-            minimumFractionDigits: 2 // Always display 2 decimal places
-        });
-        return formattedSupply;
-    } else {
-        return 'Invalid value';
-    }
-}
-
-    // Function to display crypto results with dynamic column class
+     // Function to display crypto results with dynamic column class
     function displayCryptoResults(cryptoData) {
         $('#cryptoResultsContainer').empty();
         cryptoData.forEach(function (crypto) {
@@ -224,8 +164,8 @@ function formatSupplyValue(supplyValue) {
         });
     }
 
-    // Function to display top gainers and losers
-    function displayTopGainersAndLosers(cryptoData) {
+       // Function to display top gainers and losers
+       function displayTopGainersAndLosers(cryptoData) {
         let sortedByChange = [...cryptoData];
         sortedByChange.sort((a, b) => parseFloat(b.changePercent24Hr) - parseFloat(a.changePercent24Hr));
 
@@ -261,20 +201,15 @@ function formatSupplyValue(supplyValue) {
         }
     }
 
-    // Initialize Typeahead
-    $('#cryptoSearchInputField').typeahead({
-        source: function(query, result) {
-            // Make API call to get asset names
-            axios.get('https://api.coincap.io/v2/assets')
-                .then(function(response) {
-                    const assets = response.data.data.map(asset => asset.name);
-                    result(assets);
-                })
-                .catch(function(error) {
-                    console.error('Error fetching assets:', error);
-                });
-        }
-    });
+
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    // for crypto searchCrypto
+
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // Handle search button click
     $('#cryptoSearchButton').on('click', function() {
@@ -300,7 +235,7 @@ function formatSupplyValue(supplyValue) {
         const modalBody = document.getElementById('cryptoResultsContainerModal');
         modalBody.innerHTML = '';
     
-        const { name, rank, symbol, price, priceUsd, changePercent24Hr, marketCapUsd, explorer } = asset;
+        const { name, rank, symbol, priceUsd, changePercent24Hr, marketCapUsd, explorer } = asset;
     
         // Determine the change class based on the change percentage value
         let changeClass = parseFloat(changePercent24Hr) >= 0 ? 'w3-text-green' : 'w3-text-red';
@@ -346,7 +281,7 @@ function formatSupplyValue(supplyValue) {
         $('#cryptoResultsModal').modal('show');
     }
 
-    // Initial fetch and display of crypto data
+    // Initial fetch and display of crypto ALL data
     fetchCryptoData();
 });
 
@@ -362,25 +297,16 @@ function formatSupplyValue(supplyValue) {
 
 // ======================================================
 
-const API_TOKEN = 'coc0j5hr01qj8q79kpj0coc0j5hr01qj8q79kpjg'; 
-
-
-const cryptoSocket = new WebSocket(`wss://ws.finnhub.io?token=${API_TOKEN}`);
+const cryptoSocket = new WebSocket('wss://ws.coincap.io/prices?assets=ALL');
 
 cryptoSocket.onopen = function(e) {
     console.log("Connection established");
-    subscribeToCryptoSymbols();
 };
 
 cryptoSocket.onmessage = function(event) {
     const data = JSON.parse(event.data);
-
-    if (data.type === 'trade') {
-        data.data.forEach((trade) => {
-            const symbolParts = trade.s.split(':');
-            const symbol = symbolParts[1].replace('USDT', '');
-            updateCryptoTradeInfoDisplay(symbol, trade.p);
-        });
+    for (const [symbol, price] of Object.entries(data)) {
+        updateCryptoTradeInfoDisplay(symbol, parseFloat(price));
     }
 };
 
@@ -388,49 +314,14 @@ cryptoSocket.onerror = function(error) {
     console.log(`WebSocket error: ${error.message}`);
 };
 
-function subscribeToCryptoSymbols() {
-    const symbols = [
-        'BINANCE:BTCUSDT', 'BINANCE:ETHUSDT', 'BINANCE:BNBUSDT', 'BINANCE:XRPUSDT',
-        'BINANCE:ADAUSDT', 'BINANCE:SOLUSDT', 'BINANCE:DOTUSDT', 'BINANCE:DOGEUSDT',
-        'BINANCE:UNIUSDT', 'BINANCE:LTCUSDT', 'BINANCE:LINKUSDT', 'BINANCE:BCHUSDT',
-        'BINANCE:MATICUSDT', 'BINANCE:XLMUSDT', 'BINANCE:VETUSDT', 'BINANCE:ETCUSDT',
-        'BINANCE:TRXUSDT', 'BINANCE:FILUSDT', 'BINANCE:THETAUSDT', 'BINANCE:ICPUSDT',
-        'BINANCE:AaveUSDT', 'BINANCE:XMRUSDT', 'BINANCE:MKRUSDT', 'BINANCE:XTZUSDT',
-        'BINANCE:BSVUSDT', 'BINANCE:COMPUSDT', 'BINANCE:KSMUSDT', 'BINANCE:ZECUSDT',
-        'BINANCE:NEOUSDT', 'BINANCE:DASHUSDT', 'BINANCE:CHZUSDT', 'BINANCE:ZILUSDT',
-        'BINANCE:ENJUSDT', 'BINANCE:BATUSDT', 'BINANCE:SNXUSDT', 'BINANCE:QTUMUSDT',
-        'BINANCE:OMGUSDT', 'BINANCE:BTTUSDT', 'BINANCE:ONTUSDT', 'BINANCE:AAVEUSDT',
-        'BINANCE:ATOMUSDT', 'BINANCE:ALGOUSDT', 'BINANCE:FTTUSDT', 'BINANCE:MANAUSDT',
-        'BINANCE:WAVESUSDT', 'BINANCE:SUSHIUSDT', 'BINANCE:YFIUSDT', 'BINANCE:UMAUSDT',
-        'BINANCE:CRVUSDT', 'BINANCE:1INCHUSDT', 'BINANCE:SANDUSDT', 'BINANCE:GRTUSDT',
-        'BINANCE:AXSUSDT', 'BINANCE:LUNAUSDT', 'BINANCE:FTMUSDT', 'BINANCE:CAKEUSDT',
-        'BINANCE:RUNEUSDT', 'BINANCE:KLAYUSDT', 'BINANCE:STXUSDT', 'BINANCE:ARUSDT',
-        'BINANCE:XEMUSDT', 'BINANCE:IOTAUSDT', 'BINANCE:ICXUSDT', 'BINANCE:BORAUSDT',
-        'BINANCE:LRCUSDT', 'BINANCE:KAVAUSDT', 'BINANCE:ZRXUSDT', 'BINANCE:ANKRUSDT',
-        'BINANCE:RENUSDT', 'BINANCE:CELOUSDT', 'BINANCE:RVNUSDT', 'BINANCE:KNCUSDT',
-        'BINANCE:BALUSDT', 'BINANCE:SRMUSDT', 'BINANCE:HBARUSDT', 'BINANCE:OCEANUSDT',
-        'BINANCE:CTSIUSDT', 'BINANCE:BANDUSDT', 'BINANCE:EOSUSDT'
-    ];
-    symbols.forEach(symbol => {
-        cryptoSocket.send(JSON.stringify({ type: 'subscribe', symbol: symbol }));
-        console.log(`Subscribed to ${symbol}`);
-    });
-}
-
-function updateCryptoTradeInfoDisplay(fullSymbol, price) {
-    let symbol = fullSymbol;
-    if (fullSymbol.includes(':')) {
-        const parts = fullSymbol.split(':');
-        symbol = parts[1].replace('USDT', '');
-    }
-
+function updateCryptoTradeInfoDisplay(symbol, price) {
     const tradeInfoGrid = document.getElementById('tradeInfoGridCrypto');
 
     let tradeInfoElement = document.getElementById(`tradeInfo_${symbol}`);
     if (!tradeInfoElement) {
         tradeInfoElement = document.createElement('div');
         tradeInfoElement.style.display = 'inline-block';
-        tradeInfoElement.classList.add( 'mb-5', 'col', 'blockCrypto');
+        tradeInfoElement.classList.add('mb-6', 'col', 'blockCrypto');
         tradeInfoElement.id = `tradeInfo_${symbol}`;
         tradeInfoGrid.appendChild(tradeInfoElement);
     }
@@ -453,11 +344,10 @@ function updateCryptoTradeInfoDisplay(fullSymbol, price) {
     tradeContent.classList.add('trade-content', 'p-3', 'rounded');
     tradeContent.innerText = `$${price.toFixed(2)}`;
 
-    cardBody.appendChild(combinedInfo);
-    cardBody.appendChild(tradeContent);
-
     card.innerHTML = '';
     card.appendChild(cardBody);
+    cardBody.appendChild(combinedInfo);
+    cardBody.appendChild(tradeContent);
 
     const prevPrice = parseFloat(tradeInfoElement.getAttribute('data-prev-price'));
     updateCryptoTradeColor(card, prevPrice, price);
@@ -473,3 +363,20 @@ function updateCryptoTradeColor(card, prevPrice, currentPrice) {
         card.style.backgroundColor = '';
     }
 }
+
+// Typeahead search functionality
+function searchCrypto() {
+    const searchText = document.getElementById('searchCrypto').value.toLowerCase();
+    const tradeInfoElements = document.querySelectorAll('[id^="tradeInfo_"]');
+
+    tradeInfoElements.forEach(element => {
+        const symbol = element.id.replace('tradeInfo_', '');
+        if (symbol.toLowerCase().includes(searchText)) {
+            element.style.display = ''; // Let CSS handle the display
+        } else {
+            element.style.display = 'none'; // Hide non-matching elements
+        }
+    });
+}
+
+document.getElementById('searchCrypto').addEventListener('input', searchCrypto);

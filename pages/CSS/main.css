@@ -339,14 +339,33 @@ td:nth-child(2) {
 	padding-top: 10px;
 }
 
+#tradeInfoGridCrypto {
+
+    padding: 10px;
+}
+
+.blockCrypto {
+    display: inline-block; /* Ensures that each block can size correctly */
+    box-sizing: border-box; /* Includes padding and border in the width */
+}
+
 .card {
 	padding-top: 10px;
-
 	background: #71717121
 }
 
 .card.cards {
-	width: 150px;
+	width: 200px;
+	max-height: 150px;
+}
+
+.card.cardNews {
+max-width: min-content;
+margin: 2px;
+}
+
+.col-md-6.mb-6 {
+	display: contents;
 }
 
 #marvel .card p {
@@ -772,7 +791,7 @@ b {
 
 .trade-content {
 	color: white;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 .typeahead .dropdown-menu {
@@ -876,7 +895,7 @@ h4 {
 }
 
 h5 {
-	font-size: 0.7rem;
+	font-size: 9px;
 }
 
 h6 {

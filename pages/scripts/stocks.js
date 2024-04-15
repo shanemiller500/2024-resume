@@ -463,7 +463,7 @@ $(document).ready(function() {
     if (newsData && newsData.length > 0) {
       newsData.forEach(function(news) {
         var newsItem = $('<div class="col-md-6 mb-6"></div>');
-        var newsCard = $('<div class="card"></div>');
+        var newsCard = $('<div class="card cardNews"></div>');
         var cardBody = $('<div class="card-body"></div>');
 
         var category = $('<h5 class="card-title white">' + news.category + '</h5>');

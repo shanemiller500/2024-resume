@@ -19,6 +19,11 @@
 
 @media screen and (max-width: 980px) {
 
+    .card.cards {
+        width: 200px;
+        max-height: 119px;
+    }
+
     #header {
         padding: 1.5rem 0;
     }
@@ -63,6 +68,11 @@
 }
 
 @media screen and (max-width: 736px) {
+
+    .card.cards {
+        width: 200px;
+        max-height: 119px;
+    }
 
     html {
         font-size: 11pt;
@@ -324,12 +334,30 @@
     }
 
     .card.cards {
-        width: 83px;
+        width: 105px;
     }
     .altImages {
         max-width: 100px !important;
     }
 
+    .card.cardNews {
+        max-width: 135px;
+        margin: 2px;
+    }
+
+    .aTypeButton {
+        font-size: 7px;
+        width: 102px;
+    }
+
+    h5 {
+        font-size: 6px;
+    }
+
+    
+    .card-text {
+        font-size: 11px;
+    }
 }
 
 
@@ -344,6 +372,24 @@
 
     .altImages {
         max-width: 100px;
+    }
+
+    .card.cardNews {
+        max-width: 135px;
+        margin: 2px;
+    }
+
+    .aTypeButton {
+        font-size: 7px;
+        width: 102px;
+    }
+
+    h5 {
+        font-size: 6px;
+    }
+
+    .card-text {
+        font-size: 11px;
     }
 
 }
