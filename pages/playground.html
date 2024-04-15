@@ -100,19 +100,12 @@
 
 
 				</ul>
-				<br>
-				<ul>
-
-					<li><a href="#chuck">Chuck Norris Quotes</a></li>
-					<li><a href="#advice">Solid Advice Search</a></li>
-					<li><a href="#trump">Did he really just say that?</a></li>
-					<li><a href="#mars">Mars photos</a></li>
-				</ul>
-				<br>
+		
 				<ul>
 					<li><a href="#exchangeRates">Crypto prices</a></li>
 					<li><a href="#art">Art Institute of Chicago</a></li>
 					<!-- <li><a href="#comic">Comic Book Search</a></li> -->
+					<li><a href="#mars">Mars photos</a></li>
 					<li><a href="#ISS">Track the ISS</a></li>
 					<li><a href="#nasa">NASA photo of the day</a></li>
 				</ul>
@@ -340,26 +333,53 @@
 
 			<!-- Bored -->
 			<article id="random">
-				<h2 class="major">Random Activity</h2>
-				<div id="randomSpinner" class="lds-ripple" style="display: none;">
-					<div></div>
-					<div></div>
-				</div>
-				<p id="smlTxt">Need something to do? Well find something below for you! </p> <br>
-				<br>
-				<p id="activity"></p>
-				<p id="type"></p>
-				<p id="warned"><small><em>Be warned, this can return some weird things..</em></small></p>
-				<p id="participants"></p>
-				<p id="price"></p>
-				<p id="link"></p>
-				<br>
-				<button id="getActivityButton">Get New Activity</button>
-			</article>
 
-			<!-- Chuck -->
-			<article id="chuck">
-				<h2 class="major">chuck Norris Quotes</h2>
+				<ul class="tab-links">
+					<li class="tab-link" onclick="openRandomTab('board')">Bored?</li>
+					<li class="tab-link" onclick="openRandomTab('TRump')">Did he really just say that?</li>
+					<li class="tab-link" onclick="openRandomTab('ChuckN')">Chuck Norris Quotes</li>
+					<li class="tab-link" onclick="openRandomTab('adviceSolid')">Solid advice</li>	
+				</ul>
+				<br><br>
+				<div id="board" class="randomTab activeRandom">
+					<h2 class="major">Random Activity</h2>
+					<div id="randomSpinner" class="lds-ripple" style="display: none;">
+						<div></div>
+						<div></div>
+					</div>
+					<p id="smlTxt">Need something to do? Well find something below for you! </p> <br>
+					<br>
+					<p id="activity"></p>
+					<p id="type"></p>
+					<p id="warned"><small><em>Be warned, this can return some weird things..</em></small></p>
+					<p id="participants"></p>
+					<p id="price"></p>
+					<p id="link"></p>
+					<br>
+					<button id="getActivityButton">Get New Activity</button>
+				</div>
+
+				<div id="TRump" class="randomTab">
+					<div id="trump">
+					<h2 class="major">Trump quotes</h2>
+					<div id="spinner" class="lds-ripple" style="display: none;">
+						<div></div>
+						<div></div>
+					</div>
+					<p id="quote-text">We've been inundated with quotes we never asked for, yet they keep coming and we
+						can't stop looking.</p>
+					<br>
+					<div id="quote-container"></div>
+					<br>
+	
+					<iframe id="tweet-frame" height="400" width="550"></iframe>
+					<button id="refresh-button" onclick="refreshQuote()">Refresh Quote</button>
+	
+				</div>
+			</div>
+
+				<div id="ChuckN" class="randomTab">
+					<h2 class="major">chuck Norris Quotes</h2>
 				<br>
 				<div id="roundhouseSpinner" class="shuriken-4" style="display: none;">
 					<div></div>
@@ -368,17 +388,10 @@
 				<div id="jokeContainer"></div>
 				<br><br><br>
 				<button id="getJokeButton">Get New Quote</button>
-			</article>
+				</div>
 
-			<!-- Comic -->
-			<!-- <article id="comic">
-				
-			</article>
-	 -->
-
-			<!-- Advice -->
-			<article id="advice">
-				<h2 class="major">Solid Advice Search</h2>
+				<div id="adviceSolid" class="randomTab">
+					<h2 class="major">Solid Advice Search</h2>
 				<div id="AdviceSpinner" class="lds-ripple" style="display: none;">
 					<div></div>
 					<div></div>
@@ -389,7 +402,14 @@
 				<div id="adviceContainer"></div>
 				<br>
 				<button id="getAdviceButton">Get Advice</button>
+				</div>
+			
+
+
+	
 			</article>
+
+
 
 			<!-- ISS -->
 			<article id="ISS">
@@ -494,23 +514,6 @@
 				</div>
 			</article>
 
-			<!-- trump -->
-			<article id="trump">
-				<h2 class="major">Trump quotes</h2>
-				<div id="spinner" class="lds-ripple" style="display: none;">
-					<div></div>
-					<div></div>
-				</div>
-				<p id="quote-text">We've been inundated with quotes we never asked for, yet they keep coming and we
-					can't stop looking.</p>
-				<br>
-				<div id="quote-container"></div>
-				<br>
-
-				<iframe id="tweet-frame" height="400" width="550"></iframe>
-				<button id="refresh-button" onclick="refreshQuote()">Refresh Quote</button>
-
-			</article>
 
 			<!-- Nasa -->
 			<article id="nasa">
