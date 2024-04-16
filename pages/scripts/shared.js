@@ -68,6 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// +++++++++++++++++++++++
+
+// XXS for dev tools 
+
+// +++++++++++++++++++++++
+
+
+let rightClickCount = 0;  
+let f12Count = 0;        
+
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();  // Prevent the default context menu
+    rightClickCount++;       // Increment the right-click counter
+    if (rightClickCount === 5) {  
+        alert('Enhanced security measures are implemented here for non-intrusive monitoring. To see how this was done, visit my GitHub link at shanemiller.ninja!');
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.metaKey && event.altKey && event.key === 'I')) {
+        event.preventDefault();  // Prevent the default action for F12 or Cmd+Option+I
+        f12Count++;             // Increment the F12 key press counter
+        if (f12Count === 100) {  
+            alert('Enhanced security measures are implemented here for non-intrusive monitoring. To see how this was done, visit my GitHub link at shanemiller.ninja!');
+        }
+
+    }
+});
+
+
+
 
 // ==============================================
 
@@ -141,3 +172,4 @@ function showAlertOnSmallScreen() {
   
   // Add a listener to re-check when the window is resized
   window.addEventListener('resize', showAlertOnSmallScreen);
+
