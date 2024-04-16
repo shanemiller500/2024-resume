@@ -888,6 +888,19 @@ p.card-text.mb-2,
 	color: white !important;
 }
 
+.card-title.crypto-title h5 {
+	color: #ffffff;
+	font-weight: 600;
+	line-height: 1.5;
+	margin: 0 0 1rem 0;
+	text-transform: uppercase;
+	font-size: large;
+}
+
+#alertSmallscreen {
+	display: none;
+  }
+
 h1,
 h2,
 h3,
@@ -900,6 +913,14 @@ h6 {
 	margin: 0 0 1rem 0;
 	text-transform: uppercase;
 	letter-spacing: 0.2rem;
+}
+
+h5.crypto-title {
+    color: #ffffff;
+    line-height: 1.5;
+    margin: -1px;
+    text-transform: uppercase;
+    font-size: 9px;
 }
 
 h1 a,

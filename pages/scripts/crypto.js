@@ -535,7 +535,7 @@ function updateCryptoTradeInfoDisplay(symbol, price) {
     cardBody.classList.add('card-body');
 
     const combinedInfo = document.createElement('h5');
-    combinedInfo.classList.add('card-title');
+    combinedInfo.classList.add('card-title', 'crypto-title');
     combinedInfo.innerText = symbol;
 
     const tradeContent = document.createElement('div');

@@ -116,3 +116,23 @@ function openRandomTab(tabName) {
     }
     document.getElementById(tabName).classList.add("activeRandom");
 }
+
+
+//Alert for smaller screens
+
+function showAlertOnSmallScreen() {
+    var screenWidth = window.innerWidth;
+    var alertElement = document.getElementById('alertSmallscreen');
+  
+    if (screenWidth < 768) {  // Adjust 768px according to your needs for "small screens"
+      alertElement.style.display = 'block';
+    } else {
+      alertElement.style.display = 'none';
+    }
+  }
+  
+  // Run the function on initial load
+  showAlertOnSmallScreen();
+  
+  // Add a listener to re-check when the window is resized
+  window.addEventListener('resize', showAlertOnSmallScreen);
