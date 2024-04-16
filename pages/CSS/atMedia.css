@@ -31,6 +31,11 @@
         font-size: 8px;
 
     }
+
+    .card-text {
+        font-size: 13px;
+    }
+
 }
 
 
@@ -82,6 +87,10 @@
     
     .altImages {
         max-width: 135px !important;
+    }
+
+    .card-text {
+        font-size: 13px;
     }
 
 }
@@ -178,6 +187,9 @@
         max-width: 150px !important;
     }
 
+    .card-text {
+        font-size: 13px;
+    }
 
 }
 
@@ -185,6 +197,7 @@
 .card.cards {
     width: 154px;
      }
+
 
 @media screen and (max-width: 480px) {
 
@@ -233,8 +246,7 @@
     }
 
     .mb-52 {
-        margin-bottom: 1px !important;
-        width: 102px !important;
+        width: 109px !important;
         height: 85px;
     }
 
@@ -249,8 +261,8 @@
     }
 
     .rounded {
-        padding-top: -1px;
-        font-size: 9px;
+       
+        font-size: 7px;
     }
 
     .tab-link {
@@ -366,7 +378,7 @@
     }
 
     .card.cardNews {
-        max-width: 135px;
+        max-width: 170px;
         margin: 2px;
     }
 
@@ -393,6 +405,8 @@
     
         font-size: 8px;
     }
+
+    
 }
 
 
@@ -430,6 +444,11 @@
     .blockCrypto {
         padding-right: 4px;
         padding-top: 2px;
+    }
+
+    .card.cardNews {
+        max-width: 135px;
+        margin: 2px;
     }
 
 }

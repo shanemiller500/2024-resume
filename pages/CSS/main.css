@@ -278,7 +278,7 @@ td:nth-child(2) {
 }
 
 .mb-5 {
-	margin-bottom: 0rem !important;
+	margin-bottom: -11px !important;
 }
 
 /* Styles for active tab */
@@ -424,7 +424,7 @@ td:nth-child(2) {
 }
 
 .card.cardNews {
-max-width: 300px;
+max-width: 400px;
 margin: 2px;
 }
 
@@ -827,7 +827,6 @@ b {
 }
 
 .mb-52 {
-	margin-bottom: 2px !important;
 	width: 159px;
 	height: 127px;
 }
@@ -2155,3 +2154,4 @@ body.is-preload #header .content .inner {
 #main article .close:active:before {
 	background-color: rgba(255, 255, 255, 0.175);
 }
+
