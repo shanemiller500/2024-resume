@@ -33,10 +33,12 @@
     }
 }
 
+
+
 @media screen and (max-width: 980px) {
 
     .card.cards {
-        width: 200px;
+        width: 105px;     
         max-height: 119px;
     }
 
@@ -87,7 +89,7 @@
 @media screen and (max-width: 736px) {
 
     .card.cards {
-        width: 200px;
+        width: 120px;
         max-height: 119px;
     }
 
@@ -179,6 +181,11 @@
 
 }
 
+@media screen and (min-width: 479px) {}
+.card.cards {
+    width: 154px;
+     }
+
 @media screen and (max-width: 480px) {
 
     html,
@@ -243,7 +250,7 @@
 
     .rounded {
         padding-top: -1px;
-        font-size: 7px;
+        font-size: 6px;
     }
 
     .tab-link {
@@ -351,8 +358,9 @@
     }
 
     .card.cards {
-        width: 105px;
+        max-width: 82px;
     }
+
     .altImages {
         max-width: 100px !important;
     }
@@ -374,6 +382,16 @@
     
     .card-text {
         font-size: 11px;
+    }
+
+    .blockCrypto {
+        padding-right: 4px;
+        padding-top: 2px;
+    }
+
+    h5.crypto-title {
+    
+        font-size: 5px;
     }
 }
 
@@ -407,6 +425,11 @@
 
     .card-text {
         font-size: 11px;
+    }
+
+    .blockCrypto {
+        padding-right: 4px;
+        padding-top: 2px;
     }
 
 }
