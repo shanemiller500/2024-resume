@@ -149,6 +149,17 @@ function openRandomTab(tabName) {
 }
 
 
+//NASA tabs
+
+function openTabNasa(tabName) {
+    var tabs = document.getElementsByClassName("nasaTab");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("nasaActive");
+    }
+    document.getElementById(tabName).classList.add("nasaActive");
+}
+
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Alert for smaller screens

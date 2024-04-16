@@ -267,6 +267,10 @@ td:nth-child(2) {
 	display: none;
 }
 
+.nasaTab {
+	display: none;
+}
+
 .randomTab {
 	display: none;
 }
@@ -290,6 +294,9 @@ td:nth-child(2) {
 .characterActive {
 	display: block;
 }
+.nasaActive {
+	display: block;
+}
 
 .activeRandom {
 	display: block;
@@ -297,6 +304,12 @@ td:nth-child(2) {
 
 /* Styles for tab navigation */
 .MarvelTab-links {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nasaTab-links {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -314,6 +327,12 @@ td:nth-child(2) {
 	cursor: pointer;
 }
 
+.nasaTab-link {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #0f0f0f79;
+	cursor: pointer;
+}
 .randomTab-link {
 	display: inline-block;
 	padding: 10px 20px;
@@ -323,6 +342,10 @@ td:nth-child(2) {
 
 
 .MarvelTab-link:hover {
+	background-color: #7777770a;
+}
+
+.nasaTab-link:hover {
 	background-color: #7777770a;
 }
 
