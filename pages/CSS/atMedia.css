@@ -14,7 +14,23 @@
         margin-bottom: 20px;
     }
 
+    #header nav ul li a {
+ 
+        font-size: 10px;
 
+    }
+
+
+}
+
+@media screen and (min-width:970px ) and (max-width: 1100px) {
+
+    
+    #header nav ul li a {
+ 
+        font-size: 8px;
+
+    }
 }
 
 @media screen and (max-width: 980px) {
@@ -65,6 +81,7 @@
     .altImages {
         max-width: 135px !important;
     }
+
 }
 
 @media screen and (max-width: 736px) {

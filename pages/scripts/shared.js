@@ -118,13 +118,18 @@ function openRandomTab(tabName) {
 }
 
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++
+
 //Alert for smaller screens
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 function showAlertOnSmallScreen() {
     var screenWidth = window.innerWidth;
     var alertElement = document.getElementById('alertSmallscreen');
   
-    if (screenWidth < 768) {  // Adjust 768px according to your needs for "small screens"
+    if (screenWidth < 980) { 
       alertElement.style.display = 'block';
     } else {
       alertElement.style.display = 'none';
