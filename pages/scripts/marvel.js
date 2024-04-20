@@ -40,7 +40,7 @@ const displayCustomResults = async () => {
                 data.data.results.forEach(character => {
                     // Create HTML elements for each character result
                     const characterDiv = document.createElement('div');
-                    characterDiv.classList.add('col-md-4', 'mb-4');
+                    characterDiv.classList.add('col-md-5', 'mb-5');
 
                     // Construct image and character info HTML
                     const thumbnail = `${character.thumbnail.path}.${character.thumbnail.extension}`;
@@ -104,13 +104,13 @@ function getHash(timestamp) {
 }
 
 // Construct the autocomplete URL with the necessary parameters
-const autocompleteUrl = `${CUSTOM_API_URL1}?apikey=${CUSTOM_PUBLIC_KEY}&ts=${new Date().getTime()}&hash=${getHash(new Date().getTime())}`;
+const autocompleteUrl1 = `${CUSTOM_API_URL1}?apikey=${CUSTOM_PUBLIC_KEY}&ts=${new Date().getTime()}&hash=${getHash(new Date().getTime())}`;
 
 // Initialize the typeahead functionality for the search input
 $('#searchInputComic').typeahead({
   source: function (query, result) {
     // Perform a JSON GET request to retrieve autocomplete suggestions
-    $.getJSON(autocompleteUrl + '&titleStartsWith=' + query, function (data) {
+    $.getJSON(autocompleteUrl1 + '&titleStartsWith=' + query, function (data) {
       // Extract titles from the response data and pass them to the typeahead result
       const titles = data.data.results.map(comic => comic.title);
       result(titles);
@@ -150,7 +150,7 @@ function searchComics() {
         // Loop through the comic data and create HTML elements to display each comic
         data.data.results.forEach(comic => {
           const comicCard = document.createElement('div');
-          comicCard.classList.add('col-lg-4', 'comic-card');
+          comicCard.classList.add('col-lg-5', 'comic-card');
           comicCard.innerHTML = `
             <div class="card" id="marvel">
               <img src="${comic.thumbnail.path}.${comic.thumbnail.extension}" class="card-img-top" alt="${comic.title}">

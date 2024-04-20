@@ -393,7 +393,7 @@
 
     
     .card-text {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .blockCrypto {
@@ -406,11 +406,27 @@
         font-size: 8px;
     }
 
-    
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        --bs-gutter-x: 5px;
+        width: 115%;
+    }
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 45.3%;
+    }
 }
 
 
 @media screen and (max-width: 360px) {
+
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+        --bs-gutter-x: 5px;
+        width: 115%;
+    }
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 45.3%;
+    }
 
     html {
         font-size: 10pt;

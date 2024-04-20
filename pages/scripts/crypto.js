@@ -385,23 +385,39 @@ function displayCryptoDetails(data) {
     detailsBody.innerHTML = row;
 }
 
-function setupTypeahead(cryptocurrencies) {
-    const cryptoSymbols = Object.keys(cryptocurrencies);
-    var bloodhound = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: cryptoSymbols
+    function loadTypeaheadScript() {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.bundle.min.js';
+        script.onload = () => {
+            console.log('Typeahead script loaded successfully.');
+            initializeTypeahead(); // Function to initialize Typeahead
+        };
+        script.onerror = () => {
+            console.error('Failed to load the Typeahead script.');
+        };
+        document.head.appendChild(script);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        loadTypeaheadScript(); // Load Typeahead when the DOM is fully loaded
     });
 
-    $('#cryptoName').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    }, {
-        name: 'cryptocurrencies',
-        source: bloodhound
-    });
-}
+    function setupTypeahead(cryptocurrencies) {
+        const cryptoSymbols = Object.keys(cryptocurrencies);
+        var bloodhound = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: cryptoSymbols
+        });
+
+        $('#cryptoName').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'cryptocurrencies',
+            source: bloodhound
+        });
+    }
 
 document.getElementById('fetchData').addEventListener('click', async () => {
     const symbol = document.getElementById('cryptoName').value.trim().toUpperCase();
