@@ -90,7 +90,7 @@ document.addEventListener('keydown', function(event) {
     if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.metaKey && event.altKey && event.key === 'I')) {
         event.preventDefault();  // Prevent the default action for F12 or Cmd+Option+I
         f12Count++;             // Increment the F12 key press counter
-        if (f12Count === 100) {  
+        if (f12Count === 1000) {  
             alert('Enhanced security measures are implemented here for non-intrusive monitoring. To see how this was done, visit my GitHub link at shanemiller.ninja!');
         }
 
@@ -189,7 +189,7 @@ function showAlertOnSmallScreen() {
   document.getElementById('umail-link').addEventListener('click', function(event) {
     event.preventDefault(); 
 
-    if (confirm("You are leaving my portfolio to view U-Mail, a React application that is almost complete and will be released to the public soon." )) {
+    if (confirm("You are leaving my portfolio to view U-Mail, an application I'm working on that's almost complete and will be released to the public soon." )) {
         // If the user confirms, proceed to open the link in a new tab
         window.open(this.href, '_blank');
     }
