@@ -184,3 +184,13 @@ function showAlertOnSmallScreen() {
   // Add a listener to re-check when the window is resized
   window.addEventListener('resize', showAlertOnSmallScreen);
 
+
+
+  document.getElementById('umail-link').addEventListener('click', function(event) {
+    event.preventDefault(); 
+
+    if (confirm("You are leaving my portfolio to view U-Mail, a React application that is almost complete and will be released to the public soon." )) {
+        // If the user confirms, proceed to open the link in a new tab
+        window.open(this.href, '_blank');
+    }
+});

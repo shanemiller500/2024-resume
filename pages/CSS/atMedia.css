@@ -408,7 +408,7 @@
 
     .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
         --bs-gutter-x: 5px;
-        width: 115%;
+        width: 110%;
     }
     .col-md-4 {
         flex: 0 0 auto;
